@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content=".zip 格式123456789101112131415压缩命令 zip[root@localhost &#x2F;]# zip  [选项]      压缩包名 源文件&#x2F;源目录     选项          -r   ：    压缩目录               案例          [root@localhost &#x2F;]# zip  test.zip  abcd      bcda解压命令 unzip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令4-压缩和解压">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/Linux%E5%91%BD%E4%BB%A44-%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content=".zip 格式123456789101112131415压缩命令 zip[root@localhost &#x2F;]# zip  [选项]      压缩包名 源文件&#x2F;源目录     选项          -r   ：    压缩目录               案例          [root@localhost &#x2F;]# zip  test.zip  abcd      bcda解压命令 unzip">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-25T15:50:00.000Z">
+<meta property="article:modified_time" content="2021-04-22T16:49:43.334Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="Linux基础">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/25/Linux%E5%91%BD%E4%BB%A44-%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Linux命令4-压缩和解压 | Mark_Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mark_Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/Linux%E5%91%BD%E4%BB%A44-%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mark_Xu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux命令4-压缩和解压
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-25 23:50:00" itemprop="dateCreated datePublished" datetime="2020-05-25T23:50:00+08:00">2020-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 00:49:43" itemprop="dateModified" datetime="2021-04-23T00:49:43+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">Linux命令</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="zip-格式"><a href="#zip-格式" class="headerlink" title=".zip 格式"></a>.zip 格式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">压缩命令 zip</span><br><span class="line">[root@localhost /]# zip  [选项]      压缩包名 源文件/源目录</span><br><span class="line">     选项</span><br><span class="line">          -r   ：    压缩目录</span><br><span class="line">          </span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# zip  test.zip  abcd      bcda</span><br><span class="line"></span><br><span class="line">解压命令 unzip</span><br><span class="line">[root@localhost /]# unzip     [选项]      压缩包名</span><br><span class="line">     选项</span><br><span class="line">          -d   ：    指定解压位置</span><br><span class="line">          </span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# unzip     -d /tmp   test.zip</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="gz-格式"><a href="#gz-格式" class="headerlink" title=".gz 格式"></a>.gz 格式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">压缩命令 gzip</span><br><span class="line">[root@localhost /]# gzip      [选项]      源文件</span><br><span class="line">     选项</span><br><span class="line">          -c   ：    将压缩数据输出到标准输出中，可以用于保留源文件</span><br><span class="line">          -d   ：    解压缩</span><br><span class="line">          -r   ：    压缩目录 </span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# gzip      -c   abcd &gt; bcda.gz</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解压命令 gzip/gunzip</span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# gzip      -c   cda.gz</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="bz2-格式-不能压缩目录"><a href="#bz2-格式-不能压缩目录" class="headerlink" title=".bz2 格式    不能压缩目录"></a>.bz2 格式    不能压缩目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">算法更先进，压缩比更高</span><br><span class="line">压缩命令 bzip2</span><br><span class="line">[root@localhost /]# bzip2     [选项]      源文件</span><br><span class="line">     选项</span><br><span class="line">          -d   ：    解压缩</span><br><span class="line">          -k   ：    压缩时，保留源文件</span><br><span class="line">          -v   ：    显示压缩详细信息</span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# bzip2 abcd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解压命令 bzip2/bunzip2</span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# gzip      -c   cda.gz</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="tar-格式-用于打包-不会压缩"><a href="#tar-格式-用于打包-不会压缩" class="headerlink" title=".tar 格式    用于打包 不会压缩"></a>.tar 格式    用于打包 不会压缩</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">压缩命令 tar</span><br><span class="line">[root@localhost /]# tar  [选项]      [-f 压缩包名]      源文件或目录</span><br><span class="line">     选项</span><br><span class="line">          -c   ：    打包</span><br><span class="line">          -f   ：    指定压缩包文件夹，压缩包的拓展名是用来给管理员识别格式的，所以一定要正确指明拓展名</span><br><span class="line">          -v   ：    显示打包过程</span><br><span class="line">     案例</span><br><span class="line">          [root@localhost /]# tar       -cvf  abcd.tar abcd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解压命令 tar</span><br><span class="line">     root@localhost /]#  tar  [选项]      压缩包 </span><br><span class="line">          选项</span><br><span class="line">               -x   ：    解打包</span><br><span class="line">               -f   ：    指定压缩包文件名</span><br><span class="line">               -v   ：    显示解打包过程</span><br><span class="line">               -t   ：    测试，不解打包，只是查看有哪些文件</span><br><span class="line">               -C   ：    目录：指定解打包位置</span><br><span class="line">          案例</span><br><span class="line">               [root@localhost /]# tar       -xvf  abcd.tar</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="tar-gz-和-tar-bz2-格式"><a href="#tar-gz-和-tar-bz2-格式" class="headerlink" title=".tar.gz 和 .tar.bz2 格式"></a>.tar.gz 和 .tar.bz2 格式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# tar  [选项]      压缩包  源文件或目录</span><br><span class="line">选项</span><br><span class="line">     -z   ：    压缩和解压缩“.tar.gz”格式</span><br><span class="line">     -j   :    压缩和解压缩“.tar.bz2”格式</span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">案例：.tar.gz 格式</span><br><span class="line">     #把 /tmp   打包压缩成     .tar.gz   格式                  </span><br><span class="line">     [root@localhost /]# tar  -zcvf     tmp.tar.gz     /tmp</span><br><span class="line">     #解压</span><br><span class="line">     [root@localhost /]# tar  -zxvf     tmp.tar.gz</span><br><span class="line">     </span><br><span class="line">案例：.tar.bz2 格式</span><br><span class="line">     #把 /tmp   打包压缩成     .tar.gz   格式                  </span><br><span class="line">     [root@localhost /]# tar  -jcvf     tmp.tar.bz2    /tmp</span><br><span class="line">     #解压</span><br><span class="line">     [root@localhost /]# tar  -jxvf     tmp.tar.bz2    </span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux%E5%9F%BA%E7%A1%80/" rel="tag"># Linux基础</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/25/Linux%E5%91%BD%E4%BB%A43-%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux命令3-搜索命令">
+      <i class="fa fa-chevron-left"></i> Linux命令3-搜索命令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/30/Java%E9%9B%86%E5%90%88%E7%B1%BB3-Set/" rel="next" title="Java集合类3-Set">
+      Java集合类3-Set <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#zip-%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">.zip 格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gz-%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">.gz 格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bz2-%E6%A0%BC%E5%BC%8F-%E4%B8%8D%E8%83%BD%E5%8E%8B%E7%BC%A9%E7%9B%AE%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">.bz2 格式    不能压缩目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-%E6%A0%BC%E5%BC%8F-%E7%94%A8%E4%BA%8E%E6%89%93%E5%8C%85-%E4%B8%8D%E4%BC%9A%E5%8E%8B%E7%BC%A9"><span class="nav-number">4.</span> <span class="nav-text">.tar 格式    用于打包 不会压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-gz-%E5%92%8C-tar-bz2-%E6%A0%BC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">.tar.gz 和 .tar.bz2 格式</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mark_Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

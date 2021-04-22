@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="绑定事件 bind 绑定事件 12345678910111213141516171819202122232425262728293031&#x2F;*bind(eventType,data,handler)	eventType 指定事件类型的字符串，click（单击），double-click（双击），focus（聚焦），blur（失焦）	data 传递到事件处理函数进行处理的数据。	handler 事件处">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery_基础3_事件学习">
+<meta property="og:url" content="http://yoursite.com/2020/06/28/jQuery-%E5%9F%BA%E7%A1%803-%E4%BA%8B%E4%BB%B6%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="绑定事件 bind 绑定事件 12345678910111213141516171819202122232425262728293031&#x2F;*bind(eventType,data,handler)	eventType 指定事件类型的字符串，click（单击），double-click（双击），focus（聚焦），blur（失焦）	data 传递到事件处理函数进行处理的数据。	handler 事件处">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-27T16:06:14.000Z">
+<meta property="article:modified_time" content="2021-04-22T16:49:43.334Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/28/jQuery-%E5%9F%BA%E7%A1%803-%E4%BA%8B%E4%BB%B6%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>jQuery_基础3_事件学习 | Mark_Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mark_Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/28/jQuery-%E5%9F%BA%E7%A1%803-%E4%BA%8B%E4%BB%B6%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mark_Xu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jQuery_基础3_事件学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-28 00:06:14" itemprop="dateCreated datePublished" datetime="2020-06-28T00:06:14+08:00">2020-06-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 00:49:43" itemprop="dateModified" datetime="2021-04-23T00:49:43+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">jQuery基础</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h4><ul>
+<li><p>bind 绑定事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">bind(eventType,data,handler)</span></span><br><span class="line"><span class="comment">	eventType 指定事件类型的字符串，click（单击），double-click（双击），focus（聚焦），blur（失焦）</span></span><br><span class="line"><span class="comment">	data 传递到事件处理函数进行处理的数据。</span></span><br><span class="line"><span class="comment">	handler 事件处理函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例一：使用bind()方法为按钮附加点击事件</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.bold&#x27;</span>).bind(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;You have clicked the Bold button&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&#x27;.italic&#x27;</span>).bind(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;You have clicked the Italic button&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//示例二：把点击事件同时应用到两个按钮</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).bind(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;You hava clicked the &#x27;</span> + $(<span class="built_in">this</span>).text() + <span class="string">&#x27; button&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">界面代码示例</span></span><br><span class="line"><span class="comment">&lt;body&gt;</span></span><br><span class="line"><span class="comment">	&lt;span class=&quot;bold buttons&quot;&gt;Bold&lt;/span&gt;</span></span><br><span class="line"><span class="comment">	&lt;span class=&quot;italic buttons&quot;&gt;Italic&lt;/span&gt;</span></span><br><span class="line"><span class="comment">&lt;/body&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
+<li><p>直接附加绑定事件：click（单击），double-click（双击），focus（聚焦），blur（失焦）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">直接附加事件有一下几种：</span></span><br><span class="line"><span class="comment">	click（单击），double-click（双击），focus（聚焦），blur（失焦）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例一</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;You hava clicked the &#x27;</span> + $(<span class="built_in">this</span>).text() + <span class="string">&#x27; button&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>trigger 绑定自动触发事件,基本不用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">trigger(eventType)</span></span><br><span class="line"><span class="comment">	eventType	是字符串，指定事件的类型，即单击、双击、聚焦等等。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.buttons&quot;</span>).bind(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&#x27;.italic&#x27;</span>).trigger(<span class="string">&#x27;click&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>hover 在按钮上应用悬停效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。</span></span><br><span class="line"><span class="comment">	$(selector).hover(inFunction,outFunction)</span></span><br><span class="line"><span class="comment">	inFunction	必需。规定 mouseover 事件发生时运行的函数。</span></span><br><span class="line"><span class="comment">	outFunction	可选。规定 mouseout 事件发生时运行的函数。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例</span></span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).hover(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="built_in">this</span>).addClass(<span class="string">&#x27;hoverClass&#x27;</span>);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $(<span class="built_in">this</span>).removeClass(<span class="string">&#x27;hoverClass&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="禁用事件"><a href="#禁用事件" class="headerlink" title="禁用事件"></a>禁用事件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	从指定元素 删除事件</span></span><br><span class="line"><span class="comment">		unbind(eventType,handler)</span></span><br><span class="line"><span class="comment">		unbind(eventType)</span></span><br><span class="line"><span class="comment">		unbind()</span></span><br><span class="line"><span class="comment">		eventType	click（单击），double-click（双击），focus（聚焦），blur（失焦）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.buttons&quot;</span>).bind(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">        $(<span class="string">&#x27;.italic&#x27;</span>).unbind(<span class="string">&#x27;click&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>鼠标事件</p>
+<ol>
+<li><p>mousedown</p>
+<p>鼠标在指定元素上被<strong>按下</strong>就会被触发。</p>
+</li>
+<li><p>mouseup</p>
+<p>鼠标指针在元素上并<strong>释放</strong>鼠标键，触发</p>
+</li>
+<li><p>mouseover</p>
+<p>鼠标指针<strong>进入</strong>指定元素的区域(包含子元素)，触发</p>
+</li>
+<li><p>mouseout</p>
+<p>鼠标指针<strong>离开</strong>指定元素的区域，触发</p>
+</li>
+<li><p>mouseenter</p>
+<p>当鼠标指针<strong>穿过</strong>指定（进入）被选元素时，会发生 mouseenter 事件。</p>
+<p><strong>注意：</strong>与  mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意子元素时也会被触发</p>
+</li>
+<li><p>mouseleave</p>
+<p>当鼠标指针离开被选元素时，会发生 mouseleave 事件。</p>
+<p><strong>注意：</strong>与  mouseout 事件不同，mouseleave 事件只有在鼠标指针离开被选元素时被触发，mouseout 事件在鼠标指针离开任意子元素时也会被触发。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例一</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.buttons&quot;</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">   $(<span class="string">&quot;.buttons&quot;</span>).mouseup(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&quot;.buttons&quot;</span>).mouseover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&quot;.buttons&quot;</span>).mouseout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;You have clicked the &quot;</span> +$(<span class="built_in">this</span>).text()+<span class="string">&quot; buttons&quot;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例二：查找鼠标被按下时的屏幕坐标</span></span><br><span class="line"><span class="comment">// screenX ：指定事件发生时相对于屏幕原点的横坐标</span></span><br><span class="line"><span class="comment">// screenX ：指定事件发生时相对于屏幕原点的纵坐标</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;img&quot;</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        $(<span class="string">&quot;p&quot;</span>).text(<span class="string">&#x27;Mouse is clicked at horizontal coordinate: &#x27;</span> +event.screenX+ <span class="string">&quot; and at vertical coordinate: &quot;</span>+event.screenY);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例三：随着鼠标移动使图像变明亮或模糊</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;img&#x27;</span>).css(<span class="string">&#x27;opacity&#x27;</span>,<span class="number">0.4</span>);</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).bind(<span class="string">&#x27;mouseover&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="string">&#x27;img&#x27;</span>).css(<span class="string">&#x27;opacity&#x27;</span>,<span class="number">1.0</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).bind(<span class="string">&#x27;mouseout&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">&#x27;img&#x27;</span>).css(<span class="string">&#x27;opacity&#x27;</span>,<span class="number">0.4</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).bind(<span class="string">&#x27;mousedown&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $(<span class="string">&#x27;img&#x27;</span>).css(<span class="string">&#x27;width&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $(<span class="built_in">this</span>).width()+<span class="number">50</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        $(<span class="string">&#x27;img&#x27;</span>).css(<span class="string">&#x27;height&#x27;</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $(<span class="built_in">this</span>).height()+<span class="number">30</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例四：切换class类</span></span><br><span class="line"><span class="comment">// toggleClass() 方法对添加和移除被选元素的一个或多个类进行切换。</span></span><br><span class="line"><span class="comment">// 该方法检查每个元素中指定的类。</span></span><br><span class="line"><span class="comment">// 如果不存在则添加类，如果已设置则删除之。这就是所谓的切换效果。</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.buttons&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="built_in">this</span>).toggleClass(<span class="string">&#x27;hover&#x27;</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h4><ul>
+<li><p>submit事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	该事件只适用于 &lt;form&gt; 元素。</span></span><br><span class="line"><span class="comment">	submit() 方法触发 submit 事件，或规定当发生 submit 事件时运行的函数。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    界面元素</span></span><br><span class="line"><span class="comment">    &lt;form action=&quot;&quot;&gt;</span></span><br><span class="line"><span class="comment">        First name: &lt;input type=&quot;text&quot; name=&quot;FirstName&quot; value=&quot;Mickey&quot;&gt;&lt;br&gt;</span></span><br><span class="line"><span class="comment">        Last name: &lt;input type=&quot;text&quot; name=&quot;LastName&quot; value=&quot;Mouse&quot;&gt;&lt;br&gt;</span></span><br><span class="line"><span class="comment">        &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span></span><br><span class="line"><span class="comment">    &lt;/form&gt; </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">&quot;form&quot;</span>).submit(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;提交&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>change 当元素值发生改变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	当元素的值改变时发生 change 事件（仅适用于表单字段）。</span></span><br><span class="line"><span class="comment">	change() 方法触发 change 事件，或规定当发生 change 事件时运行的函数。</span></span><br><span class="line"><span class="comment">	注意：当用于 select 元素时，change 事件会在选择某个选项时发生。当用于 text field 或 text area 时，change 事件会在元素失去焦点时发生。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    界面元素</span></span><br><span class="line"><span class="comment">    &lt;p&gt;点击按钮触发 change 事件 (即使元素没有改变)。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">    &lt;button&gt;输入框中触发 change 事件&lt;/button&gt;</span></span><br><span class="line"><span class="comment">    &lt;p&gt;输入你的名字: &lt;input value=&quot;Runoob&quot; onchange=&quot;alert(this.value)&quot; type=&quot;text&quot;&gt;&lt;/p&gt; </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	  $(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	    $(<span class="string">&quot;input&quot;</span>).change();</span><br><span class="line">	  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>focus() 聚焦</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  &lt;style&gt;</span></span><br><span class="line"><span class="comment">      span&#123;</span></span><br><span class="line"><span class="comment">      display:none;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">  &lt;/style&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  &lt;input&gt;</span></span><br><span class="line"><span class="comment">  &lt;span&gt;请输入你的电话号码?&lt;/span&gt;</span></span><br><span class="line"><span class="comment">  &lt;p&gt;点击输入框获取焦点。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	 $(<span class="string">&quot;input&quot;</span>).focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	    $(<span class="string">&quot;span&quot;</span>).css(<span class="string">&quot;display&quot;</span>,<span class="string">&quot;inline&quot;</span>).fadeOut(<span class="number">2000</span>);</span><br><span class="line">	  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>blur() 失去焦点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  输入你的名字: &lt;input type=&quot;text&quot;&gt;</span></span><br><span class="line"><span class="comment">  &lt;p&gt;在输入框写些东西，然后点击输入框外，让其失去焦点。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	  $(<span class="string">&quot;input&quot;</span>).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	    alert(<span class="string">&quot;输入框失去了焦点&quot;</span>);</span><br><span class="line">	  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="阻止事件方法"><a href="#阻止事件方法" class="headerlink" title="阻止事件方法"></a>阻止事件方法</h4><p>​    event.preventDefault() 方法阻止元素发生默认的行为。</p>
+<hr>
+<h4 id="创建返回顶部链接"><a href="#创建返回顶部链接" class="headerlink" title="创建返回顶部链接"></a>创建返回顶部链接</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;&lt;a href=&quot;#topofpage&quot;&gt;Return to top&lt;/a&gt;&#x27;</span>).insertAfter(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line">在HTML文档的每个段落元素后创建一个包含文本 Return to top 的链接，用户一旦选择该链接，就会导航到id为topofpage的元素。</span><br><span class="line"></span><br><span class="line">$(<span class="string">&#x27;&lt;a id=&quot;topofpage&quot; name=&quot;topofpage&quot;&gt;&lt;/a&gt;&#x27;</span>).prependTo(<span class="string">&#x27;body&#x27;</span>);</span><br><span class="line">在HTML的body之前添加了锚点元素（name 和 id均为 topofpage）,换句话说在网页开头创建了id为topofpage的锚元素。</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/28/jQuery-%E5%9F%BA%E7%A1%802-%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="jQuery_基础2_选择器">
+      <i class="fa fa-chevron-left"></i> jQuery_基础2_选择器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/28/jQuery-%E5%9F%BA%E7%A1%804-%E5%B8%B8%E7%94%A8%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/" rel="next" title="jQuery_基础4_常用表单验证">
+      jQuery_基础4_常用表单验证 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">绑定事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%81%E7%94%A8%E4%BA%8B%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">禁用事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">表单事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">阻止事件方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">创建返回顶部链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mark_Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

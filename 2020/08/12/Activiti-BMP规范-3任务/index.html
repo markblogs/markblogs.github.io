@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="顺序流分为11种类型 用户任务 脚本任务 Java Service Web Service 业务规则任务 邮件任务 Camel任务 Mule任务 手动任务 接受任务 Shell任务   用户任务​    用户任务需要人来参与，因为它需要被人为触发 对应XML描述 123456789101112131415161718192021222324&lt;userTask id&#x3D;&quot;leaderA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activiti-基础2-3任务">
+<meta property="og:url" content="http://yoursite.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-3%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="顺序流分为11种类型 用户任务 脚本任务 Java Service Web Service 业务规则任务 邮件任务 Camel任务 Mule任务 手动任务 接受任务 Shell任务   用户任务​    用户任务需要人来参与，因为它需要被人为触发 对应XML描述 123456789101112131415161718192021222324&lt;userTask id&#x3D;&quot;leaderA">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-11T16:35:41.000Z">
+<meta property="article:modified_time" content="2021-04-22T16:49:43.334Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="Activiti">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-3%E4%BB%BB%E5%8A%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Activiti-基础2-3任务 | Mark_Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mark_Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-3%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mark_Xu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Activiti-基础2-3任务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-12 00:35:41" itemprop="dateCreated datePublished" datetime="2020-08-12T00:35:41+08:00">2020-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 00:49:43" itemprop="dateModified" datetime="2021-04-23T00:49:43+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index"><span itemprop="name">Activiti</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="顺序流分为11种类型"><a href="#顺序流分为11种类型" class="headerlink" title="顺序流分为11种类型"></a>顺序流分为11种类型</h4><ul>
+<li>用户任务</li>
+<li>脚本任务</li>
+<li>Java Service</li>
+<li>Web Service</li>
+<li>业务规则任务</li>
+<li>邮件任务</li>
+<li>Camel任务</li>
+<li>Mule任务</li>
+<li>手动任务</li>
+<li>接受任务</li>
+<li>Shell任务</li>
+</ul>
+<hr>
+<h4 id="用户任务"><a href="#用户任务" class="headerlink" title="用户任务"></a>用户任务</h4><p>​    用户任务需要人来参与，因为它需要被人为触发</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;leaderAudit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;领导审批&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">humanPerformer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">formalExpression</span>&gt;</span></span><br><span class="line">        user(henryyan),group(leader),manager</span><br><span class="line">      <span class="tag">&lt;/<span class="name">formalExpression</span>&gt;</span>				</span><br><span class="line">    <span class="tag">&lt;/<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">humanPerformer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line">			</span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;leaderAudit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;领导审批&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">potentialOwner</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">formalExpression</span>&gt;</span></span><br><span class="line">        user(henryyan),group(leader),manager</span><br><span class="line">      <span class="tag">&lt;/<span class="name">formalExpression</span>&gt;</span>				</span><br><span class="line">    <span class="tag">&lt;/<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">potentialOwner</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 用户任务的属性 </span></span><br><span class="line"><span class="comment">  	humanPerformer：标签定义表示把这个任务分配给一个人。</span></span><br><span class="line"><span class="comment">	potentialOwner：标签来描述一个潜在用户、组集合。这个用户任务同时分配给用户 henryyan、组 leader 和 组 manager</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="脚本任务"><a href="#脚本任务" class="headerlink" title="脚本任务"></a>脚本任务</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;initvars&quot;</span> <span class="attr">name</span>=<span class="string">&quot;初始化变量&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;groovy&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    &lt;![CDATA[</span><br><span class="line"><span class="javascript">     def name = <span class="string">&quot;HenryYan&quot;</span>;</span></span><br><span class="line"><span class="javascript">     execution.setVariable(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;name&quot;</span>);			</span></span><br><span class="line">    ]]&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;printvars&quot;</span> <span class="attr">name</span>=<span class="string">&quot;输出脚本&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;groovy&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    &lt;![CDATA[</span><br><span class="line">     out:println name;		</span><br><span class="line">    ]]&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;scripttask1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;初始化变量&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;juel&quot;</span> <span class="attr">activiti:resultvariable</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 脚本任务的属性 </span></span><br><span class="line"><span class="comment">	指定的变量名称需要在脚本中预定义才能使用</span></span><br><span class="line"><span class="comment">  	scriptFormat	用来指定符合 JSR-223 规范的脚本语言的类型		</span></span><br><span class="line"><span class="comment">	activiti:resultvariable	Activiti在原BPM 2.0 规范中的脚本任务基础上进行了扩展，可以把脚本处理的结果保存到一个变量中</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Java-Service-任务"><a href="#Java-Service-任务" class="headerlink" title="Java Service 任务"></a>Java Service 任务</h4><p>​    Java Service 任务允许定义一个实现了指定接口的Java类，或者执行一个表达式，还可以像脚本一样把结果保存到变量中</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:class</span>=<span class="string">&quot;me.kafeitu.activiti.JavaServiceDelegate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:class		实现了 JavaDelegate 或 Activity_Behavior 的 Java 类</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:class</span>=<span class="string">&quot;me.kafeitu.activiti.JavaServiceDelegate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:expression	可以使用UEL定义需要执行的任务内容，例如计算公式、调用Bean对象的方法；并且在执行任务的时候可以使用流程变量作为参数。Bean实例除了可以使用new创建之外，还可以使用 Spring 代理.</span></span><br><span class="line"><span class="comment">其中 leaveService 作为一个流程变量存在，和 activiti:class 一样需要实现 JavaDelegate 接口 或 ActivityBehavior 接口，另外还实现了Java.Serializable 接口以便引擎可以序列化变量</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:expression</span>=<span class="string">&quot;#&#123;leaveService.back()&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:delegateExpression	功能和 activiti:class 类似，而且同样需要实现 JavaDelegate 接口 或 ActivityBehavior 接口,只不过这里不是指定一个具体的实现类，而是运行时动态设置。和 activiti:expression 类似，Bean 可以使用 new 创建，也可以用 spring 代理。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">执行此任务时引擎会从变量中查询名称为 leaveBackDelegate 的 Bean 对象，然后调用实现接口的方法。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:delegateExpression</span>=<span class="string">&quot;#&#123;leaveBackDelegate&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:resultVariable	此属性适用于 activiti:expression 类型的 Java Service ，可以把一个表达式的执行结果保存到 resultVariable 指定的变量名称中</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">把leaveService.bask() 的执行结果保存到变量 backDate 中</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:expression</span>=<span class="string">&quot;#&#123;leaveService.back()&#125;&quot;</span> <span class="attr">activiti:resultVariable</span>=<span class="string">&quot;backDate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Web-Service-任务"><a href="#Web-Service-任务" class="headerlink" title="Web Service 任务"></a>Web Service 任务</h4><p>​    通过 Web Service 任务可以调用外部的 Web Service 资源，完成调用只需要一些必须的配置。并且支持标准的 WebService 和 Rest 风格的 Service。</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;webServiceTasks&quot;</span> <span class="attr">implementation</span>=<span class="string">&quot;##WebService&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ioSpecification</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataInput</span> <span class="attr">itemSubjectRef</span>=<span class="string">&quot;tns:prettyPrintCountRequestItem&quot;</span> <span class="attr">id</span>=<span class="string">&quot;dataInputOfServiceTask&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataOutput</span> <span class="attr">itemSubjectRef</span>=<span class="string">&quot;tns:prettyPrintCountResponseItem&quot;</span> <span class="attr">id</span>=<span class="string">&quot;dataOutputOfServuceTask&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">inputSet</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">dataInputRefs</span>&gt;</span>dataInputOfServiceTask<span class="tag">&lt;/<span class="name">dataInputRefs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">inputSet</span>&gt;</span>			</span><br><span class="line">        <span class="tag">&lt;<span class="name">outPutSet</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">dataOutputRefs</span>&gt;</span>dataOutputOfServiceTask<span class="tag">&lt;/<span class="name">dataOutputRefs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">outPutSet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ioSpecification</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>PrefixVariable<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>prefix<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>SuffixVariable<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>suffix<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataOutputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>PrettyPrint<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>OutputVariable<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataOutputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- web service任务的属性 </span></span><br><span class="line"><span class="comment">	ioSpecification 定义输入，输出参数。dataInputAssociation 中定义了数据输入的关系，dataOutputAssociation中定义了数据输出的关系</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="业务规则任务"><a href="#业务规则任务" class="headerlink" title="业务规则任务"></a>业务规则任务</h4><p>​    业务逻辑和规则分开维护，一旦规则有变动只需要更改预设规则即可，业务规则任务可以流程变量的值处理预设的业务规则。</p>
+<p>​    支持的规则引擎 Drools，只需要把含有业务规则的 流程文件 和 规则引擎文件 “.drl” 一同打包部署到系统中。同时把Drools的jar包添加到classpath即可实现Activiti驱动规则引擎。</p>
+<p>​    将业务数据交由规则引擎处理，规则引擎根据不同业务规则（各种条件的判定）计算得出最终结果，最后把结果返回给 <strong>调用者</strong>，在BPMN 2.0 中 调用者为 规则引擎（项目中为Activiti）</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">activiti:rules</span>=<span class="string">&quot;rule1,rule2&quot;</span> </span></span><br><span class="line"><span class="tag">			<span class="attr">acriviti:ruleVariablesInput</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> <span class="attr">acriviti:exclude</span>=<span class="string">&quot;flase&quot;</span> <span class="attr">acriviti:resultVariableName</span>=<span class="string">&quot;rulesOutput&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :rules</span></span><br><span class="line"><span class="comment">	activiti:rules		在规则文件中 .drl 中定义的规则名称，对个规则用逗号分隔。要执行规则文件中的全部规则，将该属性设置为空即可。	</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">activiti:rules</span>=<span class="string">&quot;rule1,rule2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :ruleVariablesInput</span></span><br><span class="line"><span class="comment">	acriviti:ruleVariablesInput	业务规则执行需要的数据源，使用$&#123;fooVar&#125; 方式定义，多个规则用逗号分割</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">acriviti:ruleVariablesInput</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :resultVariableName</span></span><br><span class="line"><span class="comment">	activiti:resultVariableName	规则执行结果变量，变量的值为 ruleVariablesInput 定义的变量集合 （ArrayList）</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">acriviti:resultVariableName</span>=<span class="string">&quot;rulesOutput&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :execlude	</span></span><br><span class="line"><span class="comment">	activiti:execlude		用来设置是否排除某些规则（rule），如果值为false，不排除按照acriviti:rules 规则执行；如果设置为 true，则忽略 activiti:rules</span></span><br><span class="line"><span class="comment">	指定的规则，如果设置为false的同事 acriviti:rules 值为空，则不执行任何规则</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="邮件任务"><a href="#邮件任务" class="headerlink" title="邮件任务"></a>邮件任务</h4><p>​    可以通过 Activiti 发送邮件</p>
+<p>​    发送邮件需要配置的邮件服务信息到流程引擎中，可以在 acriviti.cfg.xml 定义的引擎属性中设置。</p>
+<h5 id="配置邮件服务器的属性"><a href="#配置邮件服务器的属性" class="headerlink" title="配置邮件服务器的属性"></a>配置邮件服务器的属性</h5><ul>
+<li>mailServerHost：    不是必填    邮件服务器的主机名，默认为localhost</li>
+<li>mailServerPort：  必填，如果没填默认的端口        SMTP通讯端口，默认为25；如果使用SSL，则为465</li>
+<li>mailServerDefaultFrom：    不必填    发件人email，如果不设置，默认为 <a href="mailto:&#97;&#x63;&#x72;&#105;&#x76;&#105;&#x74;&#x69;&#64;&#x61;&#x63;&#x72;&#x69;&#x76;&#105;&#116;&#x69;&#x2e;&#x6f;&#114;&#x67;">&#97;&#x63;&#x72;&#105;&#x76;&#105;&#x74;&#x69;&#64;&#x61;&#x63;&#x72;&#x69;&#x76;&#105;&#116;&#x69;&#x2e;&#x6f;&#114;&#x67;</a></li>
+<li>mailServerUserName:    邮件服务认证账号，默认为空</li>
+<li>mailServerPassword    邮件服务认证密码    </li>
+</ul>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;mailTask&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Mail Task&quot;</span> <span class="attr">activiti:type</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">extensionElements</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;to&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;henryyan@gmail.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;from&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;yanhonglei@gmail.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;subject&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;hello henryyan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;charset&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;cc&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;cc&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;bcc&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;bcc&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;html&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activiti:expression</span>&gt;</span>&lt;![CDATA[</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">       你好，我是&lt;b&gt;$&#123;userName&#125;&lt;/b&gt;。</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">      ]]&gt; <span class="tag">&lt;/<span class="name">activiti:expression</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;text&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;text&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">extensionElements</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">邮件任务属性</span></span><br><span class="line"><span class="comment">	to	必填	收件人，多个收件人用逗号隔开</span></span><br><span class="line"><span class="comment">	from	邮件发送人地址，如果不设置，使用引擎的 mailServerDefaultFrom 属性指定的发件人</span></span><br><span class="line"><span class="comment">	subject 发件人email，如果不设置，默认为 activiti@acriviti.org</span></span><br><span class="line"><span class="comment">	cc	抄送列表</span></span><br><span class="line"><span class="comment">	bcc	密送列表</span></span><br><span class="line"><span class="comment">	charset	邮件内容字符集</span></span><br><span class="line"><span class="comment">	text	纯文本邮件格式内容</span></span><br><span class="line"><span class="comment">	html	html格式的邮件内容</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Activiti/" rel="tag"># Activiti</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-2%E9%A1%BA%E5%BA%8F%E6%B5%81/" rel="prev" title="Activiti-基础2-2顺序流">
+      <i class="fa fa-chevron-left"></i> Activiti-基础2-2顺序流
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-4%E7%BD%91%E5%85%B3/" rel="next" title="Activiti-基础2-4网关">
+      Activiti-基础2-4网关 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%B5%81%E5%88%86%E4%B8%BA11%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">顺序流分为11种类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">用户任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E4%BB%BB%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">脚本任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-Service-%E4%BB%BB%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">Java Service 任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-Service-%E4%BB%BB%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">Web Service 任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E8%A7%84%E5%88%99%E4%BB%BB%E5%8A%A1"><span class="nav-number">6.</span> <span class="nav-text">业务规则任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">7.</span> <span class="nav-text">邮件任务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">7.1.</span> <span class="nav-text">配置邮件服务器的属性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mark_Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

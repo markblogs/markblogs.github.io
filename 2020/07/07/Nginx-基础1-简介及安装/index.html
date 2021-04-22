@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什么是 Nginx ?​    高性能的 HTTP 和反向代理的web 服务器。特点：占有内存少，并发能力强。  nginx基本概念 反向代理 正向代理：在客户端（浏览器）配置代理服务器，通过代理服务器进行互联网访问 反向代理：客户端（浏览器）将请求发送到代理服务器，由反向代理服务器去选择目标服务器获取数据，再返回给客户端。暴露了代理服务器，隐藏了真实服务器的ip  负载均衡 将请求分发到多个服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx-基础1-简介及安装">
+<meta property="og:url" content="http://yoursite.com/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="什么是 Nginx ?​    高性能的 HTTP 和反向代理的web 服务器。特点：占有内存少，并发能力强。  nginx基本概念 反向代理 正向代理：在客户端（浏览器）配置代理服务器，通过代理服务器进行互联网访问 反向代理：客户端（浏览器）将请求发送到代理服务器，由反向代理服务器去选择目标服务器获取数据，再返回给客户端。暴露了代理服务器，隐藏了真实服务器的ip  负载均衡 将请求分发到多个服务">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-07T11:32:17.000Z">
+<meta property="article:modified_time" content="2021-04-22T16:49:43.334Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="Nginx Nginx基础">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Nginx-基础1-简介及安装 | Mark_Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mark_Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mark_Xu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Nginx-基础1-简介及安装
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-07 19:32:17" itemprop="dateCreated datePublished" datetime="2020-07-07T19:32:17+08:00">2020-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 00:49:43" itemprop="dateModified" datetime="2021-04-23T00:49:43+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="什么是-Nginx"><a href="#什么是-Nginx" class="headerlink" title="什么是 Nginx ?"></a>什么是 Nginx ?</h4><p>​    高性能的 HTTP 和反向代理的web 服务器。特点：占有内存少，并发能力强。</p>
+<hr>
+<h4 id="nginx基本概念"><a href="#nginx基本概念" class="headerlink" title="nginx基本概念"></a>nginx基本概念</h4><ul>
+<li><p>反向代理</p>
+<p>正向代理：在客户端（浏览器）配置代理服务器，通过代理服务器进行互联网访问</p>
+<p>反向代理：客户端（浏览器）将请求发送到代理服务器，由反向代理服务器去选择目标服务器获取数据，再返回给客户端。暴露了代理服务器，隐藏了真实服务器的ip</p>
+</li>
+<li><p>负载均衡</p>
+<p>将请求分发到多个服务器上。</p>
+</li>
+<li><p>动静分离</p>
+<p>将静态资源和动态资源分开部署，达到给服务器减轻压力的效果</p>
+</li>
+</ul>
+<hr>
+<h4 id="Linux-中安装-Nginx"><a href="#Linux-中安装-Nginx" class="headerlink" title="Linux 中安装 Nginx"></a>Linux 中安装 Nginx</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 第一步 安装编译工具及库文件</span></span><br><span class="line">yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第二步 安装 PCRE：PCRE 作用是让 Nginx 支持 Rewrite 功能。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载</span></span><br><span class="line">wget http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar zxvf pcre-8.35.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入目录</span></span><br><span class="line">cd pcre-8.35</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译安装】</span></span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果make错误 <span class="string">&quot;make:*** No targets specified and no makefile found.Stop.&quot;</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum update</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum apt-get install gcc build-essential</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ls 查看当前文件夹下是否有 makefile 文件，如果没有文件重新 ./configure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看pcre版本</span></span><br><span class="line">pcre-config --version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第三步 下载Nginx</span></span><br><span class="line">wget http://nginx.org/download/nginx-1.12.2.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar zxvf nginx-1.12.2.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入文件夹</span></span><br><span class="line"> cd nginx-1.12.2</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译安装</span></span><br><span class="line">./configure --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.35</span><br><span class="line"></span><br><span class="line">make &amp; make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看版本</span></span><br><span class="line">/usr/local/webserver/nginx/sbin/nginx -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动nginx</span></span><br><span class="line">cd /usr/local/webserver/nginx/sbin</span><br><span class="line">./nginx</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 nginx 进程</span></span><br><span class="line"> ps -ef | grep nginx</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 nginx 配置文件</span></span><br><span class="line">cd /usr/local/webserver/nginx/conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 nginx.conf 文件 server 节点端口号,默认为80端口</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 直接 ip:80 浏览器访问，看能否访问到 nginx 界面</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol>
+<li>​</li>
+</ol>
+<hr>
+<h4 id="nginx配置实例"><a href="#nginx配置实例" class="headerlink" title="nginx配置实例"></a>nginx配置实例</h4><h5 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h5><ul>
+<li><p>实现效果</p>
+<p>打开浏览器，在浏览器地址输入 <a target="_blank" rel="noopener" href="http://www.123.com/">www.123.com</a> 跳转到 linux 系统 tomcat 主页</p>
+</li>
+<li><p>配置文件修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"> #</span><span class="bash"> 简单版本 修改 http块-》server块-》location块 加入proxy_pass节点</span></span><br><span class="line"> location / &#123;</span><br><span class="line">   root   html;</span><br><span class="line">   proxy_pass  http://127.0.0.1:8080;</span><br><span class="line">   index  index.html index.htm;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 复杂版本 对 “/” 启用反向代理</span></span><br><span class="line">location / &#123;</span><br><span class="line">  proxy_pass http://127.0.0.1:3000;  # 设置要代理的 uri，注意最后的 /。可以是 Unix 域套接字路径，也可以是正则表达式。</span><br><span class="line">  proxy_redirect off; # 设置后端服务器“Location”响应头和“Refresh”响应头的替换文本</span><br><span class="line">  proxy_set_header X-Real-IP $remote_addr; # 获取用户的真实 IP 地址</span><br><span class="line"><span class="meta">  #</span><span class="bash">后端的Web服务器可以通过 X-Forwarded-For 获取用户真实IP，多个 nginx 反代的情况下，例如 CDN。参见：http://gong1208.iteye.com/blog/1559835 和 http://bbs.linuxtone.org/thread-9050-1-1.html</span></span><br><span class="line">  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"><span class="meta">  #</span><span class="bash">以下是一些反向代理的配置，可选。</span></span><br><span class="line">  proxy_set_header Host $host; # 允许重新定义或者添加发往后端服务器的请求头。</span><br><span class="line"> </span><br><span class="line">  client_max_body_size 10m; #允许客户端请求的最大单文件字节数</span><br><span class="line">  client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，</span><br><span class="line">  proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">  proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)</span><br><span class="line">  proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">  proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">  proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置</span><br><span class="line">  proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">  proxy_temp_file_write_size 64k;</span><br><span class="line"><span class="meta">  #</span><span class="bash">设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h5><ul>
+<li><p>实现效果</p>
+<p>请求暴露出端口，随机映射到代理的几台服务器中</p>
+</li>
+<li><p>配置文件修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">http块中加入 upstream 节点</span></span><br><span class="line"><span class="meta">#</span><span class="bash">四种调度算法：</span></span><br><span class="line"><span class="meta">#</span><span class="bash">默认（轮询）：Weight 指定轮询权值，Weight值越大，分配到的访问机率越高，主要用于后端每个服务器性能不均的情况下。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ip_hash：每个请求按访问IP的<span class="built_in">hash</span>结果分配，这样来自同一个IP的访客固定访问一个后端服务器，有效解决了动态网页存在的session共享问题</span></span><br><span class="line"><span class="meta">#</span><span class="bash">fair：这是比上面两个更加智能的负载均衡算法。此种算法可以依据页面大小和加载时间长短智能地进行负载均衡，也就是根据后端服务器的响应时间来分配请求，响应时间短的优先分配。Nginx本身是不支持fair的，如果需要使用这种调度算法，必须下载Nginx的upstream_fair模块。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">url_hash：此方法按访问url的<span class="built_in">hash</span>结果来分配请求，使每个url定向到同一个后端服务器，可以进一步提高后端缓存服务器的效率。Nginx本身是不支持url_hash的，如果需要使用这种调度算法，必须安装Nginx 的<span class="built_in">hash</span>软件包。</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">调度状态</span></span><br><span class="line"><span class="meta">#</span><span class="bash">down，表示当前的server暂时不参与负载均衡</span></span><br><span class="line"><span class="meta">#</span><span class="bash">backup，预留的备份机器。当其他所有的非backup机器出现故障或者忙的时候，才会请求backup机器，因此这台机器的压力最轻。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">max_fails，允许请求失败的次数，默认为1。当超过最大次数时，返回proxy_next_upstream 模块定义的错误。</span></span><br><span class="line"><span class="meta">#</span><span class="bash">ail_timeout，在经历了max_fails次失败后，暂停服务的时间。max_fails可以和fail_timeout一起使用。</span></span><br><span class="line">upstream myserver&#123;</span><br><span class="line">   ip_hash;</span><br><span class="line">	server 127.0.0.1:8080 down;</span><br><span class="line">	server 127.0.0.1:8081 max_fails=3  fail_timeout=20s;</span><br><span class="line">	server 127.0.0.1:8083;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">暴露出的端口</span></span><br><span class="line">listen       80;</span><br><span class="line">server_name  127.0.0.1;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">charset koi8-r;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">  root   html;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> 请求改为上方的 myserver</span></span><br><span class="line">  proxy_pass  http://myserver;</span><br><span class="line">  index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h5><h5 id="nginx配置高可用集群"><a href="#nginx配置高可用集群" class="headerlink" title="nginx配置高可用集群"></a>nginx配置高可用集群</h5><h5 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        #charset koi8-r;</span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line">        location / &#123;</span><br><span class="line">                proxy_pass http://192.128.133.202;</span><br><span class="line">                if ($request_method = &quot;PUT&quot;)&#123;</span><br><span class="line">                        proxy_pass http://192.128.18.201;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="配置文件案例"><a href="#配置文件案例" class="headerlink" title="配置文件案例"></a>配置文件案例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="如何配置rewrite？"><a href="#如何配置rewrite？" class="headerlink" title="如何配置rewrite？"></a>如何配置rewrite？</h3><p>rewrite功能就是集合正则表达式和标志位实现url重写和重定向。rewrite只能放在server{}、location{}、if(){}块中，并且只能对域名后边的出去传递参数外的字符串起作用。如URL：<br><code>http://microloan-sms-platform.yxapp.xyz/proxy/sms/task/querydeleted?page=1&amp;pagesize=10</code><br>只对/proxy/sms/task/querydeleted进行重写。</p>
+<p>如果相对域名或参数字符串起作用，可以使用全局变量匹配，也可以使用proxy_pass反向代理。</p>
+<p>表明看rewrite和location功能有点像，都能实现跳转，主要区别在于rewrite是在同一域名内更改获取资源的路径，而location是对一类路径做控制访问或反向代理，可以proxy_pass到其他机器。很多情况下rewrite也会写在location里，它们的执行顺序是：</p>
+<ul>
+<li>执行server块的rewrite指令</li>
+<li>执行location匹配</li>
+<li>执行选定的location中的rewrite指令</li>
+</ul>
+<p>如果其中某步URI被重写，则重新循环执行1-3，直到找到真实存在的文件；循环超过10次，则返回500 Internal Server Error错误。</p>
+<p>rewrite规则后边，通常会带有flag标志位：</p>
+<ul>
+<li>last : 相当于Apache的[L]标记，表示完成rewrite</li>
+<li>break : 停止执行当前虚拟主机的后续rewrite指令集</li>
+<li>redirect : 返回<code>302</code>临时重定向，地址栏会显示跳转后的地址</li>
+<li>permanent : 返回<code>301</code>永久重定向，地址栏会显示跳转后的地址</li>
+</ul>
+<p>last 和 break 区别：</p>
+<ul>
+<li>last一般写在server和if中，而break一般使用在location中</li>
+<li>last不终止重写后的url匹配，即新的url会再从server走一遍匹配流程，而break终止重写后的匹配</li>
+<li>break和last都能组织继续执行后面的rewrite指令</li>
+</ul>
+<p>rewrite常用正则：</p>
+<ul>
+<li><code>.</code> ： 匹配除换行符以外的任意字符</li>
+<li><code>?</code> ： 重复0次或1次</li>
+<li><code>+</code> ： 重复1次或更多次</li>
+<li><code>*</code> ： 重复0次或更多次</li>
+<li><code>\d</code> ：匹配数字</li>
+<li><code>^</code> ： 匹配字符串的开始</li>
+<li><code>$</code> ： 匹配字符串的介绍</li>
+<li><code>&#123;n&#125;</code> ： 重复n次</li>
+<li><code>&#123;n,&#125;</code> ： 重复n次或更多次</li>
+<li><code>[c]</code> ： 匹配单个字符c</li>
+<li><code>[a-z]</code> ： 匹配a-z小写字母的任意一个</li>
+</ul>
+<p>可以使用<code>()</code>来进行分组，可以通过<code>$1</code>的形式来引用。</p>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /proxy/ &#123;</span><br><span class="line">        proxy_pass http://microloan-notification-web.yxapp.in;</span><br><span class="line">        rewrite /proxy/(.*)$ /$1 break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Nginx-Nginx%E5%9F%BA%E7%A1%80/" rel="tag"># Nginx Nginx基础</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/" rel="prev" title="Java-异常处理-受检-非受检">
+      <i class="fa fa-chevron-left"></i> Java-异常处理-受检-非受检
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/09/Nginx-%E5%9F%BA%E7%A1%802-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" rel="next" title="Nginx-基础2-基础命令">
+      Nginx-基础2-基础命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Nginx"><span class="nav-number">1.</span> <span class="nav-text">什么是 Nginx ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">nginx基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-%E4%B8%AD%E5%AE%89%E8%A3%85-Nginx"><span class="nav-number">3.</span> <span class="nav-text">Linux 中安装 Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">nginx配置实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">4.2.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB"><span class="nav-number">4.3.</span> <span class="nav-text">动静分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nginx%E9%85%8D%E7%BD%AE%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4"><span class="nav-number">4.4.</span> <span class="nav-text">nginx配置高可用集群</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="nav-number">4.5.</span> <span class="nav-text">读写分离</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A1%88%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">配置文件案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AErewrite%EF%BC%9F"><span class="nav-number"></span> <span class="nav-text">如何配置rewrite？</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mark_Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

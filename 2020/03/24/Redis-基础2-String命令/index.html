@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="设置key值命令用于设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型。 命令:SET KEY_NAME VALUE返回值在 Redis 2.6.12 以前版本， SET 命令总是返回 OK 。从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。 实例1）对不存在的键进行设置 1234redis 127.0.0.1:6379&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis-基础2-String命令">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="设置key值命令用于设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型。 命令:SET KEY_NAME VALUE返回值在 Redis 2.6.12 以前版本， SET 命令总是返回 OK 。从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。 实例1）对不存在的键进行设置 1234redis 127.0.0.1:6379&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-24T01:23:11.000Z">
+<meta property="article:modified_time" content="2021-04-22T16:49:43.334Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="Redis Redis基础 Redis命令">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Redis-基础2-String命令 | Mark_Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mark_Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mark_Xu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis-基础2-String命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-03-24 09:23:11" itemprop="dateCreated datePublished" datetime="2020-03-24T09:23:11+08:00">2020-03-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-23 00:49:43" itemprop="dateModified" datetime="2021-04-23T00:49:43+08:00">2021-04-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="设置key值"><a href="#设置key值" class="headerlink" title="设置key值"></a>设置key值</h4><p>命令用于设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型。</p>
+<h6 id="命令-SET-KEY-NAME-VALUE"><a href="#命令-SET-KEY-NAME-VALUE" class="headerlink" title="命令:SET KEY_NAME VALUE"></a>命令:SET KEY_NAME VALUE</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>在 Redis 2.6.12 以前版本， SET 命令总是返回 OK 。<br>从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。</p>
+<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>1）对不存在的键进行设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key &quot;value&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key</span><br><span class="line">&quot;value&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2)对已存在的键进行设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key &quot;new-value&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key</span><br><span class="line">&quot;new-value&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="获取Key值"><a href="#获取Key值" class="headerlink" title="获取Key值"></a>获取Key值</h4><p>用于获取指定 key 的值。如果 key 不存在，返回 nil 。如果key 储存的值不是字符串类型，返回一个错误。</p>
+<h6 id="命令-GET-KEY-NAME"><a href="#命令-GET-KEY-NAME" class="headerlink" title="命令:GET KEY_NAME"></a>命令:GET KEY_NAME</h6><h6 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h6><p>​    返回 key 的值，如果 key 不存在时，返回 nil。 如果 key 不是字符串类型，那么返回一个错误。</p>
+<h6 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h6><p>1）对不存在的 key 或字符串类型 key 进行 GET</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET db</span></span><br><span class="line">(nil)</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET db redis</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET db</span></span><br><span class="line">&quot;redis&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2)对不是字符串类型的 key 进行 GET</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DEL db</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> LPUSH db redis mongodb mysql</span></span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET db</span></span><br><span class="line">(error) ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="GETRANGE-key-start-end-字符串值的子字符"><a href="#GETRANGE-key-start-end-字符串值的子字符" class="headerlink" title="GETRANGE key start end (字符串值的子字符)"></a>GETRANGE key start end (字符串值的子字符)</h4><p>用于获取存储在指定 key 中字符串的子字符串。字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)。</p>
+<h6 id="命令：GETRANGE-KEY-NAME-start-end"><a href="#命令：GETRANGE-KEY-NAME-start-end" class="headerlink" title="命令：GETRANGE KEY_NAME start end"></a>命令：GETRANGE KEY_NAME start end</h6><h6 id="返回值-2"><a href="#返回值-2" class="headerlink" title="返回值"></a>返回值</h6><p>​    截取得到的子字符串。</p>
+<p>实例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET mykey &quot;This is my test key&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GETRANGE mykey 0 3</span><br><span class="line">&quot;This&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt; GETRANGE mykey 0 -1</span><br><span class="line">&quot;This is my test key&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="GETSET-key-value-值设为-value-，并返回-key-的旧值"><a href="#GETSET-key-value-值设为-value-，并返回-key-的旧值" class="headerlink" title="GETSET key value(值设为 value ，并返回 key 的旧值)"></a>GETSET key value(值设为 value ，并返回 key 的旧值)</h4><p>用于对 key 所储存的字符串值，获取指定偏移量上的位(bit)。</p>
+<h6 id="命令-GETBIT-KEY-NAME-OFFSET"><a href="#命令-GETBIT-KEY-NAME-OFFSET" class="headerlink" title="命令:GETBIT KEY_NAME OFFSET"></a>命令:GETBIT KEY_NAME OFFSET</h6><h6 id="返回值-3"><a href="#返回值-3" class="headerlink" title="返回值"></a>返回值</h6><p>字符串值指定偏移量上的位(bit)。<br>当偏移量 OFFSET 比字符串值的长度大，或者 key 不存在时，返回 0</p>
+<hr>
+<h4 id="GETBIT-key-offset-对-key-所储存的字符串值，获取指定偏移量上的位"><a href="#GETBIT-key-offset-对-key-所储存的字符串值，获取指定偏移量上的位" class="headerlink" title="GETBIT key offset(对 key 所储存的字符串值，获取指定偏移量上的位)"></a>GETBIT key offset(对 key 所储存的字符串值，获取指定偏移量上的位)</h4><p>用于对 key 所储存的字符串值，获取指定偏移量上的位(bit)。</p>
+<h6 id="命令-GETBIT-KEY-NAME-OFFSET-1"><a href="#命令-GETBIT-KEY-NAME-OFFSET-1" class="headerlink" title="命令:GETBIT KEY_NAME OFFSET"></a>命令:GETBIT KEY_NAME OFFSET</h6><h6 id="返回值-4"><a href="#返回值-4" class="headerlink" title="返回值"></a>返回值</h6><p>字符串值指定偏移量上的位(bit)。<br>当偏移量 OFFSET 比字符串值的长度大，或者 key 不存在时，返回 0 。</p>
+<hr>
+<h4 id="MGET-key1-key2-所有-一个或多个-给定-key-的值"><a href="#MGET-key1-key2-所有-一个或多个-给定-key-的值" class="headerlink" title="MGET key1 [key2..] (所有(一个或多个)给定 key 的值)"></a>MGET key1 [key2..] (所有(一个或多个)给定 key 的值)</h4><p>返回所有(一个或多个)给定 key 的值。 如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。</p>
+<h6 id="命令-MGET-KEY1-KEY2-KEYN"><a href="#命令-MGET-KEY1-KEY2-KEYN" class="headerlink" title="命令: MGET KEY1 KEY2 .. KEYN"></a>命令: MGET KEY1 KEY2 .. KEYN</h6><h6 id="返回值-5"><a href="#返回值-5" class="headerlink" title="返回值"></a>返回值</h6><p>一个包含所有给定 key 的值的列表。</p>
+<h6 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key1 &quot;hello&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; SET key2 &quot;world&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; MGET key1 key2 someOtherKey</span><br><span class="line">1) &quot;Hello&quot;</span><br><span class="line">2) &quot;World&quot;</span><br><span class="line">3) (nil)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="SETBIT-key-offset-value-设置或清除指定偏移量上的位-bit"><a href="#SETBIT-key-offset-value-设置或清除指定偏移量上的位-bit" class="headerlink" title="SETBIT key offset value(设置或清除指定偏移量上的位(bit))"></a>SETBIT key offset value(设置或清除指定偏移量上的位(bit))</h4><p>对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。</p>
+<h6 id="命令-Setbit-KEY-NAME-OFFSET"><a href="#命令-Setbit-KEY-NAME-OFFSET" class="headerlink" title="命令:Setbit KEY_NAME OFFSET"></a>命令:Setbit KEY_NAME OFFSET</h6><h6 id="返回值-6"><a href="#返回值-6" class="headerlink" title="返回值"></a>返回值</h6><p>指定偏移量原来储存的位。</p>
+<hr>
+<h4 id="SETEX-key-seconds-value-设置过期时间，秒"><a href="#SETEX-key-seconds-value-设置过期时间，秒" class="headerlink" title="SETEX key seconds value(设置过期时间，秒)"></a>SETEX key seconds value(设置过期时间，秒)</h4><p>为指定的 key 设置值及其过期时间。如果 key 已经存在， SETEX 命令将会替换旧的值。<br>命令：SETEX KEY_NAME TIMEOUT VALUE</p>
+<h6 id="返回值-7"><a href="#返回值-7" class="headerlink" title="返回值"></a>返回值</h6><p>设置成功时返回 OK 。</p>
+<h6 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SETEX mykey 60 redis</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; TTL mykey</span><br><span class="line">60</span><br><span class="line">redis 127.0.0.1:6379&gt; GET mykey</span><br><span class="line">&quot;redis</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="SETNX-key-value-key-不存在时设置-key-的值"><a href="#SETNX-key-value-key-不存在时设置-key-的值" class="headerlink" title="SETNX key value(key 不存在时设置 key 的值)"></a>SETNX key value(key 不存在时设置 key 的值)</h4><p>命令在指定的 key 不存在时，为 key 设置指定的值。</p>
+<h6 id="命令-SETNX-KEY-NAME-VALUE"><a href="#命令-SETNX-KEY-NAME-VALUE" class="headerlink" title="命令: SETNX KEY_NAME VALUE"></a>命令: SETNX KEY_NAME VALUE</h6><h6 id="返回值-8"><a href="#返回值-8" class="headerlink" title="返回值"></a>返回值</h6><p>设置成功，返回 1 。 设置失败，返回 0 。</p>
+<h6 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS job                <span class="comment"># job 不存在</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SETNX job <span class="string">&quot;programmer&quot;</span>    <span class="comment"># job 设置成功</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SETNX job <span class="string">&quot;code-farmer&quot;</span>   <span class="comment"># 尝试覆盖 job ，失败</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET job                   <span class="comment"># 没有被覆盖</span></span></span><br><span class="line">&quot;programmer&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="SETRANGE-key-offset-value-用-value-参数覆写给定-key-所储存的字符串值，从偏移量-offset-开始。"><a href="#SETRANGE-key-offset-value-用-value-参数覆写给定-key-所储存的字符串值，从偏移量-offset-开始。" class="headerlink" title="SETRANGE key offset value(用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。)"></a>SETRANGE key offset value(用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。)</h4><p>命令用指定的字符串覆盖给定 key 所储存的字符串值，覆盖的位置从偏移量 offset 开始。</p>
+<h6 id="命令：SETRANGE-KEY-NAME-OFFSET-VALUE"><a href="#命令：SETRANGE-KEY-NAME-OFFSET-VALUE" class="headerlink" title="命令：SETRANGE KEY_NAME OFFSET VALUE"></a>命令：SETRANGE KEY_NAME OFFSET VALUE</h6><h6 id="返回值-9"><a href="#返回值-9" class="headerlink" title="返回值"></a>返回值</h6><p>被修改后的字符串长度。</p>
+<h6 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key1 &quot;Hello World&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; SETRANGE key1 6 &quot;Redis&quot;</span><br><span class="line">(integer) 11</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key1</span><br><span class="line">&quot;Hello Redis&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="STRLEN-key-key-所储存的字符串值的长度"><a href="#STRLEN-key-key-所储存的字符串值的长度" class="headerlink" title="STRLEN key(key 所储存的字符串值的长度)"></a>STRLEN key(key 所储存的字符串值的长度)</h4><p>用于获取指定 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误。</p>
+<h6 id="命令：STRLEN-KEY-NAME"><a href="#命令：STRLEN-KEY-NAME" class="headerlink" title="命令：STRLEN KEY_NAME"></a>命令：STRLEN KEY_NAME</h6><h6 id="返回值-10"><a href="#返回值-10" class="headerlink" title="返回值"></a>返回值</h6><p>字符串值的长度。 当 key 不存在时，返回 0。</p>
+<h6 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h6><p>获取字符串的长度</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET mykey <span class="string">&quot;Hello world&quot;</span></span> </span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> STRLEN mykey <span class="comment">#获取字符串的长度</span></span></span><br><span class="line">(integer) 11</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> STRLEN nonexisting <span class="comment">#不存在的 key 长度为 0</span></span></span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="MSET-key-value-key-value-同时设置一个或多个-key-value-对"><a href="#MSET-key-value-key-value-同时设置一个或多个-key-value-对" class="headerlink" title="MSET key value key value . . . (同时设置一个或多个 key-value 对)"></a>MSET key value key value . . . (同时设置一个或多个 key-value 对)</h4><p>命令用于同时设置一个或多个 key-value 对。</p>
+<h6 id="命令：MSET-key1-value1-key2-value2-keyN-valueN"><a href="#命令：MSET-key1-value1-key2-value2-keyN-valueN" class="headerlink" title="命令：MSET key1 value1 key2 value2 .. keyN valueN"></a>命令：MSET key1 value1 key2 value2 .. keyN valueN</h6><h6 id="返回值-11"><a href="#返回值-11" class="headerlink" title="返回值"></a>返回值</h6><p>总是返回 OK 。</p>
+<h6 id="实例-7"><a href="#实例-7" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; MSET key1 &quot;Hello&quot; key2 &quot;World&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key2</span><br><span class="line">1) &quot;World&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="MSETNX-key-value-key-value-…-同时设置一个或多个对，当且仅当所有给定-key-都不存在。"><a href="#MSETNX-key-value-key-value-…-同时设置一个或多个对，当且仅当所有给定-key-都不存在。" class="headerlink" title="MSETNX key value key value …(同时设置一个或多个对，当且仅当所有给定 key 都不存在。)"></a>MSETNX key value key value …(同时设置一个或多个对，当且仅当所有给定 key 都不存在。)</h4><p>命令用于同时设置一个或多个 key-value 对。</p>
+<h6 id="命令：MSETNX-key1-value1-key2-value2-keyN-valueN"><a href="#命令：MSETNX-key1-value1-key2-value2-keyN-valueN" class="headerlink" title="命令：MSETNX key1 value1 key2 value2 .. keyN valueN"></a>命令：MSETNX key1 value1 key2 value2 .. keyN valueN</h6><h6 id="返回值-12"><a href="#返回值-12" class="headerlink" title="返回值"></a>返回值</h6><p>当所有 key 都成功设置，返回 1 。 如果所有给定 key 都设置失败(至少有一个 key 已经存在)，那么返回 0 。</p>
+<h6 id="实例-8"><a href="#实例-8" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">对不存在的 key 进行 MSETNX</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> MSETNX rmdbs <span class="string">&quot;MySQL&quot;</span> nosql <span class="string">&quot;MongoDB&quot;</span> key-value-store <span class="string">&quot;redis&quot;</span></span> </span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> MGET rmdbs nosql key-value-store</span> </span><br><span class="line">1) &quot;MySQL&quot;</span><br><span class="line">2) &quot;MongoDB&quot;</span><br><span class="line">3) &quot;redis&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> MSET 的给定 key 当中有已存在的 key</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> MSETNX rmdbs <span class="string">&quot;Sqlite&quot;</span> language <span class="string">&quot;python&quot;</span>  <span class="comment"># rmdbs 键已经存在，操作失败</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS language                       <span class="comment"># 因为 MSET 是原子性操作，language 没有被设置</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET rmdbs                             <span class="comment"># rmdbs 也没有被修改</span></span></span><br><span class="line">&quot;MySQL&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="PSETEX-key-milliseconds-value-设置过期时间，毫秒"><a href="#PSETEX-key-milliseconds-value-设置过期时间，毫秒" class="headerlink" title="PSETEX key milliseconds value(设置过期时间，毫秒)"></a>PSETEX key milliseconds value(设置过期时间，毫秒)</h4><p>命令以毫秒为单位设置 key 的生存时间。</p>
+<h6 id="命令：PSETEX-key1-EXPIRY-IN-MILLISECONDS-value1"><a href="#命令：PSETEX-key1-EXPIRY-IN-MILLISECONDS-value1" class="headerlink" title="命令：PSETEX key1 EXPIRY_IN_MILLISECONDS value1"></a>命令：PSETEX key1 EXPIRY_IN_MILLISECONDS value1</h6><h6 id="返回值-13"><a href="#返回值-13" class="headerlink" title="返回值"></a>返回值</h6><p>设置成功时返回 OK 。</p>
+<h6 id="实例-9"><a href="#实例-9" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; PSETEX mykey 1000 &quot;Hello&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; PTTL mykey</span><br><span class="line">999</span><br><span class="line">redis 127.0.0.1:6379&gt; GET mykey</span><br><span class="line">1) &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="INCR-key-将-key-中储存的数字值增一。"><a href="#INCR-key-将-key-中储存的数字值增一。" class="headerlink" title="INCR key(将 key 中储存的数字值增一。)"></a>INCR key(将 key 中储存的数字值增一。)</h4><p>Incr 命令将 key 中储存的数字值增一。<br>如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。<br>如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。<br>本操作的值限制在 64 位(bit)有符号数字表示之内。</p>
+<h6 id="命令：INCR-KEY-NAME"><a href="#命令：INCR-KEY-NAME" class="headerlink" title="命令：INCR KEY_NAME"></a>命令：INCR KEY_NAME</h6><h6 id="返回值-14"><a href="#返回值-14" class="headerlink" title="返回值"></a>返回值</h6><p>执行 INCR 命令之后 key 的值。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET page_view 20</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCR page_view</span></span><br><span class="line">(integer) 21</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET page_view    <span class="comment"># 数字值在 Redis 中以字符串的形式保存</span></span></span><br><span class="line">&quot;21&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="INCRBY-key-increment（储存的值加上给定的增量值）"><a href="#INCRBY-key-increment（储存的值加上给定的增量值）" class="headerlink" title="INCRBY key increment（储存的值加上给定的增量值）"></a>INCRBY key increment（储存的值加上给定的增量值）</h4><p>Incrby 命令将 key 中储存的数字加上指定的增量值。<br>如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCRBY 命令。<br>如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。<br>本操作的值限制在 64 位(bit)有符号数字表示之内。</p>
+<h6 id="命令：INCRBY-KEY-NAME-INCR-AMOUNT"><a href="#命令：INCRBY-KEY-NAME-INCR-AMOUNT" class="headerlink" title="命令：INCRBY KEY_NAME INCR_AMOUNT"></a>命令：INCRBY KEY_NAME INCR_AMOUNT</h6><h6 id="返回值-15"><a href="#返回值-15" class="headerlink" title="返回值"></a>返回值</h6><p>加上指定的增量值之后， key 的值。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> key 存在且是数字值</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET rank 50</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBY rank 20</span></span><br><span class="line">(integer) 70</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET rank</span></span><br><span class="line">&quot;70&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> key 不存在时</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS counter</span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBY counter 30</span></span><br><span class="line">(integer) 30</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET counter</span></span><br><span class="line">&quot;30&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> key 不是数字值时</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET book <span class="string">&quot;long long ago...&quot;</span></span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBY book 200</span></span><br><span class="line">(error) ERR value is not an integer or out of range</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="INCRBYFLOAT-key-increment-值加上给定的浮点增量值"><a href="#INCRBYFLOAT-key-increment-值加上给定的浮点增量值" class="headerlink" title="INCRBYFLOAT key increment(值加上给定的浮点增量值)"></a>INCRBYFLOAT key increment(值加上给定的浮点增量值)</h4><p>为 key 中所储存的值加上指定的浮点数增量值。<br>如果 key 不存在，那么 INCRBYFLOAT 会先将 key 的值设为 0 ，再执行加法操作。</p>
+<h6 id="命令：INCRBYFLOAT-KEY-NAME-INCR-AMOUNT"><a href="#命令：INCRBYFLOAT-KEY-NAME-INCR-AMOUNT" class="headerlink" title="命令：INCRBYFLOAT KEY_NAME INCR_AMOUNT"></a>命令：INCRBYFLOAT KEY_NAME INCR_AMOUNT</h6><h6 id="返回值-16"><a href="#返回值-16" class="headerlink" title="返回值"></a>返回值</h6><p>执行命令之后 key 的值。</p>
+<h6 id="实例-10"><a href="#实例-10" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 值和增量都不是指数符号</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET mykey 10.50</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBYFLOAT mykey 0.1</span></span><br><span class="line">&quot;10.6&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 值和增量都是指数符号</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET mykey 314e-2</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET mykey                <span class="comment"># 用 SET 设置的值可以是指数符号</span></span></span><br><span class="line">&quot;314e-2&quot;</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBYFLOAT mykey 0      <span class="comment"># 但执行 INCRBYFLOAT 之后格式会被改成非指数符号</span></span></span><br><span class="line">&quot;3.14&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以对整数类型执行</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET mykey 3</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBYFLOAT mykey 1.1</span></span><br><span class="line">&quot;4.1&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 后跟的 0 会被移除</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET mykey 3.0</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET mykey                                    <span class="comment"># SET 设置的值小数部分可以是 0</span></span></span><br><span class="line">&quot;3.0&quot;</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> INCRBYFLOAT mykey 1.000000000000000000000    <span class="comment"># 但 INCRBYFLOAT 会将无用的 0 忽略掉，有需要的话，将浮点变为整数</span></span></span><br><span class="line">&quot;4&quot;</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET mykey</span></span><br><span class="line">&quot;4&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="DECR-key-将-key-中储存的数字值减一"><a href="#DECR-key-将-key-中储存的数字值减一" class="headerlink" title="DECR key(将 key 中储存的数字值减一)"></a>DECR key(将 key 中储存的数字值减一)</h4><p>命令将 key 中储存的数字值减一。<br>如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 DECR 操作。<br>如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。<br>本操作的值限制在 64 位(bit)有符号数字表示之内。</p>
+<h6 id="命令：DECR-KEY-NAME"><a href="#命令：DECR-KEY-NAME" class="headerlink" title="命令：DECR KEY_NAME"></a>命令：DECR KEY_NAME</h6><h6 id="返回值-17"><a href="#返回值-17" class="headerlink" title="返回值"></a>返回值</h6><p>执行命令之后 key 的值。</p>
+<h6 id="实例-11"><a href="#实例-11" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 对存在的数字值 key 进行 DECR</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET failure_times 10</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DECR failure_times</span></span><br><span class="line">(integer) 9</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对不存在的 key 值进行 DECR</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS count</span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DECR count</span></span><br><span class="line">(integer) -1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对存在但不是数值的 key 进行 DECR</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET company YOUR_CODE_SUCKS.LLC</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DECR company</span></span><br><span class="line">(error) ERR value is not an integer or out of range</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="DECRBY-key-decrement-值减去给定的减量值"><a href="#DECRBY-key-decrement-值减去给定的减量值" class="headerlink" title="DECRBY key decrement(值减去给定的减量值)"></a>DECRBY key decrement(值减去给定的减量值)</h4><p>命令将 key 所储存的值减去指定的减量值。<br>如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 DECRBY 操作。<br>如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。<br>本操作的值限制在 64 位(bit)有符号数字表示之内。</p>
+<h6 id="命令：DECRBY-KEY-NAME-DECREMENT-AMOUNT"><a href="#命令：DECRBY-KEY-NAME-DECREMENT-AMOUNT" class="headerlink" title="命令：DECRBY KEY_NAME DECREMENT_AMOUNT"></a>命令：DECRBY KEY_NAME DECREMENT_AMOUNT</h6><h6 id="返回值-18"><a href="#返回值-18" class="headerlink" title="返回值"></a>返回值</h6><p>减去指定减量值之后， key 的值。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 对已存在的 key 进行 DECRBY</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> SET count 100</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DECRBY count 20</span></span><br><span class="line">(integer) 80</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对不存在的 key 进行DECRBY</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS pages</span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> DECRBY pages 10</span></span><br><span class="line">(integer) -10</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="APPEND-key-value-在原来值后添加字符串"><a href="#APPEND-key-value-在原来值后添加字符串" class="headerlink" title="APPEND key value(在原来值后添加字符串)"></a>APPEND key value(在原来值后添加字符串)</h4><p>用于为指定的 key 追加值。<br>如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。<br>如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。</p>
+<h6 id="命令-APPEND-KEY-NAME-NEW-VALUE"><a href="#命令-APPEND-KEY-NAME-NEW-VALUE" class="headerlink" title="命令: APPEND KEY_NAME NEW_VALUE"></a>命令: APPEND KEY_NAME NEW_VALUE</h6><h6 id="返回值-19"><a href="#返回值-19" class="headerlink" title="返回值"></a>返回值</h6><p>追加指定值之后， key 中字符串的长度。</p>
+<h6 id="实例-12"><a href="#实例-12" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 对不存在的 key 执行 APPEND</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> EXISTS myphone               <span class="comment"># 确保 myphone 不存在</span></span></span><br><span class="line">(integer) 0</span><br><span class="line"></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> APPEND myphone <span class="string">&quot;nokia&quot;</span>       <span class="comment"># 对不存在的 key 进行 APPEND ，等同于 SET myphone &quot;nokia&quot;</span></span></span><br><span class="line">(integer) 5                         # 字符长度</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对已存在的字符串进行 APPEND</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> APPEND myphone <span class="string">&quot; - 1110&quot;</span>     <span class="comment"># 长度从 5 个字符增加到 12 个字符</span></span></span><br><span class="line">(integer) 12</span><br><span class="line"></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> GET myphone</span></span><br><span class="line">&quot;nokia - 1110&quot;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Redis-Redis%E5%9F%BA%E7%A1%80-Redis%E5%91%BD%E4%BB%A4/" rel="tag"># Redis Redis基础 Redis命令</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%801-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="Redis-基础1-数据类型">
+      <i class="fa fa-chevron-left"></i> Redis-基础1-数据类型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/" rel="next" title="Redis-基础4-Hash命令">
+      Redis-基础4-Hash命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEkey%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">设置key值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-SET-KEY-NAME-VALUE"><span class="nav-number">1.0.1.</span> <span class="nav-text">命令:SET KEY_NAME VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Key%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">获取Key值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-GET-KEY-NAME"><span class="nav-number">2.0.1.</span> <span class="nav-text">命令:GET KEY_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GETRANGE-key-start-end-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">GETRANGE key start end (字符串值的子字符)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AGETRANGE-KEY-NAME-start-end"><span class="nav-number">3.0.1.</span> <span class="nav-text">命令：GETRANGE KEY_NAME start end</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GETSET-key-value-%E5%80%BC%E8%AE%BE%E4%B8%BA-value-%EF%BC%8C%E5%B9%B6%E8%BF%94%E5%9B%9E-key-%E7%9A%84%E6%97%A7%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">GETSET key value(值设为 value ，并返回 key 的旧值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-GETBIT-KEY-NAME-OFFSET"><span class="nav-number">4.0.1.</span> <span class="nav-text">命令:GETBIT KEY_NAME OFFSET</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GETBIT-key-offset-%E5%AF%B9-key-%E6%89%80%E5%82%A8%E5%AD%98%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E5%81%8F%E7%A7%BB%E9%87%8F%E4%B8%8A%E7%9A%84%E4%BD%8D"><span class="nav-number">5.</span> <span class="nav-text">GETBIT key offset(对 key 所储存的字符串值，获取指定偏移量上的位)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-GETBIT-KEY-NAME-OFFSET-1"><span class="nav-number">5.0.1.</span> <span class="nav-text">命令:GETBIT KEY_NAME OFFSET</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-4"><span class="nav-number">5.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MGET-key1-key2-%E6%89%80%E6%9C%89-%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA-%E7%BB%99%E5%AE%9A-key-%E7%9A%84%E5%80%BC"><span class="nav-number">6.</span> <span class="nav-text">MGET key1 [key2..] (所有(一个或多个)给定 key 的值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-MGET-KEY1-KEY2-KEYN"><span class="nav-number">6.0.1.</span> <span class="nav-text">命令: MGET KEY1 KEY2 .. KEYN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-5"><span class="nav-number">6.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="nav-number">6.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SETBIT-key-offset-value-%E8%AE%BE%E7%BD%AE%E6%88%96%E6%B8%85%E9%99%A4%E6%8C%87%E5%AE%9A%E5%81%8F%E7%A7%BB%E9%87%8F%E4%B8%8A%E7%9A%84%E4%BD%8D-bit"><span class="nav-number">7.</span> <span class="nav-text">SETBIT key offset value(设置或清除指定偏移量上的位(bit))</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-Setbit-KEY-NAME-OFFSET"><span class="nav-number">7.0.1.</span> <span class="nav-text">命令:Setbit KEY_NAME OFFSET</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-6"><span class="nav-number">7.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SETEX-key-seconds-value-%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%8C%E7%A7%92"><span class="nav-number">8.</span> <span class="nav-text">SETEX key seconds value(设置过期时间，秒)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-7"><span class="nav-number">8.0.1.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-3"><span class="nav-number">8.0.2.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SETNX-key-value-key-%E4%B8%8D%E5%AD%98%E5%9C%A8%E6%97%B6%E8%AE%BE%E7%BD%AE-key-%E7%9A%84%E5%80%BC"><span class="nav-number">9.</span> <span class="nav-text">SETNX key value(key 不存在时设置 key 的值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-SETNX-KEY-NAME-VALUE"><span class="nav-number">9.0.1.</span> <span class="nav-text">命令: SETNX KEY_NAME VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-8"><span class="nav-number">9.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-4"><span class="nav-number">9.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SETRANGE-key-offset-value-%E7%94%A8-value-%E5%8F%82%E6%95%B0%E8%A6%86%E5%86%99%E7%BB%99%E5%AE%9A-key-%E6%89%80%E5%82%A8%E5%AD%98%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%EF%BC%8C%E4%BB%8E%E5%81%8F%E7%A7%BB%E9%87%8F-offset-%E5%BC%80%E5%A7%8B%E3%80%82"><span class="nav-number">10.</span> <span class="nav-text">SETRANGE key offset value(用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9ASETRANGE-KEY-NAME-OFFSET-VALUE"><span class="nav-number">10.0.1.</span> <span class="nav-text">命令：SETRANGE KEY_NAME OFFSET VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-9"><span class="nav-number">10.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-5"><span class="nav-number">10.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#STRLEN-key-key-%E6%89%80%E5%82%A8%E5%AD%98%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%80%BC%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">11.</span> <span class="nav-text">STRLEN key(key 所储存的字符串值的长度)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9ASTRLEN-KEY-NAME"><span class="nav-number">11.0.1.</span> <span class="nav-text">命令：STRLEN KEY_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-10"><span class="nav-number">11.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-6"><span class="nav-number">11.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSET-key-value-key-value-%E5%90%8C%E6%97%B6%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA-key-value-%E5%AF%B9"><span class="nav-number">12.</span> <span class="nav-text">MSET key value key value . . . (同时设置一个或多个 key-value 对)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AMSET-key1-value1-key2-value2-keyN-valueN"><span class="nav-number">12.0.1.</span> <span class="nav-text">命令：MSET key1 value1 key2 value2 .. keyN valueN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-11"><span class="nav-number">12.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-7"><span class="nav-number">12.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSETNX-key-value-key-value-%E2%80%A6-%E5%90%8C%E6%97%B6%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA%E5%AF%B9%EF%BC%8C%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E6%89%80%E6%9C%89%E7%BB%99%E5%AE%9A-key-%E9%83%BD%E4%B8%8D%E5%AD%98%E5%9C%A8%E3%80%82"><span class="nav-number">13.</span> <span class="nav-text">MSETNX key value key value …(同时设置一个或多个对，当且仅当所有给定 key 都不存在。)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AMSETNX-key1-value1-key2-value2-keyN-valueN"><span class="nav-number">13.0.1.</span> <span class="nav-text">命令：MSETNX key1 value1 key2 value2 .. keyN valueN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-12"><span class="nav-number">13.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-8"><span class="nav-number">13.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PSETEX-key-milliseconds-value-%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%EF%BC%8C%E6%AF%AB%E7%A7%92"><span class="nav-number">14.</span> <span class="nav-text">PSETEX key milliseconds value(设置过期时间，毫秒)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9APSETEX-key1-EXPIRY-IN-MILLISECONDS-value1"><span class="nav-number">14.0.1.</span> <span class="nav-text">命令：PSETEX key1 EXPIRY_IN_MILLISECONDS value1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-13"><span class="nav-number">14.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-9"><span class="nav-number">14.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INCR-key-%E5%B0%86-key-%E4%B8%AD%E5%82%A8%E5%AD%98%E7%9A%84%E6%95%B0%E5%AD%97%E5%80%BC%E5%A2%9E%E4%B8%80%E3%80%82"><span class="nav-number">15.</span> <span class="nav-text">INCR key(将 key 中储存的数字值增一。)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AINCR-KEY-NAME"><span class="nav-number">15.0.1.</span> <span class="nav-text">命令：INCR KEY_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-14"><span class="nav-number">15.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INCRBY-key-increment%EF%BC%88%E5%82%A8%E5%AD%98%E7%9A%84%E5%80%BC%E5%8A%A0%E4%B8%8A%E7%BB%99%E5%AE%9A%E7%9A%84%E5%A2%9E%E9%87%8F%E5%80%BC%EF%BC%89"><span class="nav-number">16.</span> <span class="nav-text">INCRBY key increment（储存的值加上给定的增量值）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AINCRBY-KEY-NAME-INCR-AMOUNT"><span class="nav-number">16.0.1.</span> <span class="nav-text">命令：INCRBY KEY_NAME INCR_AMOUNT</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-15"><span class="nav-number">16.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INCRBYFLOAT-key-increment-%E5%80%BC%E5%8A%A0%E4%B8%8A%E7%BB%99%E5%AE%9A%E7%9A%84%E6%B5%AE%E7%82%B9%E5%A2%9E%E9%87%8F%E5%80%BC"><span class="nav-number">17.</span> <span class="nav-text">INCRBYFLOAT key increment(值加上给定的浮点增量值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AINCRBYFLOAT-KEY-NAME-INCR-AMOUNT"><span class="nav-number">17.0.1.</span> <span class="nav-text">命令：INCRBYFLOAT KEY_NAME INCR_AMOUNT</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-16"><span class="nav-number">17.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-10"><span class="nav-number">17.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DECR-key-%E5%B0%86-key-%E4%B8%AD%E5%82%A8%E5%AD%98%E7%9A%84%E6%95%B0%E5%AD%97%E5%80%BC%E5%87%8F%E4%B8%80"><span class="nav-number">18.</span> <span class="nav-text">DECR key(将 key 中储存的数字值减一)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9ADECR-KEY-NAME"><span class="nav-number">18.0.1.</span> <span class="nav-text">命令：DECR KEY_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-17"><span class="nav-number">18.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-11"><span class="nav-number">18.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DECRBY-key-decrement-%E5%80%BC%E5%87%8F%E5%8E%BB%E7%BB%99%E5%AE%9A%E7%9A%84%E5%87%8F%E9%87%8F%E5%80%BC"><span class="nav-number">19.</span> <span class="nav-text">DECRBY key decrement(值减去给定的减量值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9ADECRBY-KEY-NAME-DECREMENT-AMOUNT"><span class="nav-number">19.0.1.</span> <span class="nav-text">命令：DECRBY KEY_NAME DECREMENT_AMOUNT</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-18"><span class="nav-number">19.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APPEND-key-value-%E5%9C%A8%E5%8E%9F%E6%9D%A5%E5%80%BC%E5%90%8E%E6%B7%BB%E5%8A%A0%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">20.</span> <span class="nav-text">APPEND key value(在原来值后添加字符串)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-APPEND-KEY-NAME-NEW-VALUE"><span class="nav-number">20.0.1.</span> <span class="nav-text">命令: APPEND KEY_NAME NEW_VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-19"><span class="nav-number">20.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-12"><span class="nav-number">20.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mark_Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
