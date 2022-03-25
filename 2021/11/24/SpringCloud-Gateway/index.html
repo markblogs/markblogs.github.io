@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网关," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mark_Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Gateway(API网关)API 网关API网关作用就是把各个服务对外提供的API汇聚起来，让外界看起来是一个统一的接口。同时也可在网关中提供额外的功能。 总结：网关就是所有项目的一个统一入口。  网关组成网关 &#x3D; 路由转发 + 过滤器（编写额外功能）  路由转发 接收外界请求，通过网关的路由转发，转发到后端的服务上。 如果只有这个一个功能看起来和之前学习的Nginx反向代理服务器很像，外界访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud-Gateway">
+<meta property="og:url" content="http://example.com/2021/11/24/SpringCloud-Gateway/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="Gateway(API网关)API 网关API网关作用就是把各个服务对外提供的API汇聚起来，让外界看起来是一个统一的接口。同时也可在网关中提供额外的功能。 总结：网关就是所有项目的一个统一入口。  网关组成网关 &#x3D; 路由转发 + 过滤器（编写额外功能）  路由转发 接收外界请求，通过网关的路由转发，转发到后端的服务上。 如果只有这个一个功能看起来和之前学习的Nginx反向代理服务器很像，外界访问">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="article:published_time" content="2021-11-24T11:02:00.000Z">
+<meta property="article:modified_time" content="2021-11-25T08:58:08.845Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="网关">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/11/24/SpringCloud-Gateway/"/>
+
+
+
+
+
+  <title>SpringCloud-Gateway | Mark_Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mark_Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/SpringCloud-Gateway/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringCloud-Gateway</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-24T19:02:00+08:00">
+                2021-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E5%85%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">网关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Gateway-API网关"><a href="#Gateway-API网关" class="headerlink" title="Gateway(API网关)"></a>Gateway(API网关)</h4><h5 id="API-网关"><a href="#API-网关" class="headerlink" title="API 网关"></a>API 网关</h5><p>API网关作用就是把各个服务对外提供的API汇聚起来，让外界看起来是一个统一的接口。同时也可在网关中提供额外的功能。</p>
+<p><strong>总结：网关就是所有项目的一个统一入口。</strong></p>
+<hr>
+<h4 id="网关组成"><a href="#网关组成" class="headerlink" title="网关组成"></a>网关组成</h4><p><strong>网关 = 路由转发 + 过滤器（编写额外功能）</strong></p>
+<ul>
+<li><p>路由转发</p>
+<p>接收外界请求，通过网关的路由转发，转发到后端的服务上。</p>
+<p>如果只有这个一个功能看起来和之前学习的Nginx反向代理服务器很像，外界访问nginx，由nginx做负载均衡，后把请求转发到对应服务器上。</p>
+</li>
+<li><p>过滤器</p>
+<p>网关非常重要的功能就是过滤器。</p>
+<p>对于我们来说比较常用的功能有网关的容错、限流以及请求及相应的额外处理。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h4 id="Spring-Cloud-Gateway-介绍"><a href="#Spring-Cloud-Gateway-介绍" class="headerlink" title="Spring Cloud Gateway 介绍"></a>Spring Cloud Gateway 介绍</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>Spring Cloud Gateway是Spring Cloud 的二级子项目，提供了微服务网关功能，包含：权限安全、监控/指标等功能。</p>
+<h5 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h5><ul>
+<li><p>Route</p>
+<p>Route中文称为路由，Gateway里面的Route是主要学习内容，一个Gateway项目可以包含多个Route。</p>
+<p>一个路由包含ID、URI、Predicate集合、Filter集合。</p>
+</li>
+<li><p>Predicate</p>
+<p>谓词时学习Gateway比较重要的一点，简单点理解谓词就是一些附加条件和内容</p>
+</li>
+<li><p>Filter</p>
+<p>所有生效的Filter都是GatewayFilter的实例。在Gateway运行过程中Filter负责在代理服务“之前”或“之后”去做一些事情</p>
+</li>
+</ul>
+<h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><p><img src="/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
+<hr>
+<h4 id="Gateway-入门案例"><a href="#Gateway-入门案例" class="headerlink" title="Gateway 入门案例"></a>Gateway 入门案例</h4><ul>
+<li><h5 id="Predicate-功能介绍"><a href="#Predicate-功能介绍" class="headerlink" title="Predicate 功能介绍"></a>Predicate 功能介绍</h5></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>实例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Path</td>
+<td>- Path=/auth/**</td>
+<td>当请求的路径为auth开头的时，转发到 serverAuth 服务器上</td>
+</tr>
+<tr>
+<td>Before</td>
+<td>- Before=2021-11-20T17:53:00.000+08:00</td>
+<td>在某个时间之前的请求才会被转发到 <a href="http://localhost:9023服务器上">http://localhost:9023服务器上</a></td>
+</tr>
+<tr>
+<td>After</td>
+<td>- Before=2021-11-20T17:53:00.000+08:00</td>
+<td>在某个时间之后的请求才会被转发</td>
+</tr>
+<tr>
+<td>Between</td>
+<td>- Between=2021-11-20T17:53:00.000+08:00, 2021-11-20T18:10:00.000+08:00</td>
+<td>在某个时间段之间的才会被转发</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>- Cookie=cookiename, cookievalue</td>
+<td>路由匹配请求存在cookie名为cookiename，cookie内容匹配cookievalue的</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>- Header=X-Request-Id, \d+</td>
+<td>携带参数X-Request-Id或者满足\d+的请求头才会匹配</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>- Host=<a target="_blank" rel="noopener" href="http://www.hd123.com/">www.hd123.com</a></td>
+<td>当主机名为<a target="_blank" rel="noopener" href="http://www.hd123.com的时候直接转发到http//localhost:9023%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A">www.hd123.com的时候直接转发到http://localhost:9023服务器上</a></td>
+</tr>
+<tr>
+<td>Method</td>
+<td>- Method=GET</td>
+<td>只有GET方法才会匹配转发请求，还可以限定POST、PUT等请求方式</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>- Query=abc,jqk</td>
+<td>必须有查询名称为 abc。 值为 jqk 才进行转发</td>
+</tr>
+<tr>
+<td>RemoteAdd</td>
+<td>- RemoteAddr=127.0.0.1</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><h5 id="Filter-功能介绍"><a href="#Filter-功能介绍" class="headerlink" title="Filter 功能介绍"></a>Filter 功能介绍</h5></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>实例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AddRequestHeader</strong></td>
+<td>- AddRequestHeader=MyHeader,jqk</td>
+<td>添加请求头参数，参数和值之间使用逗号分隔</td>
+</tr>
+<tr>
+<td><strong>AddRequestParamete</strong></td>
+<td>- AddRequestParameter=name,bjsxt</td>
+<td>添加请求表单参数，多个参数需要有多个过滤器。</td>
+</tr>
+<tr>
+<td><strong>AddResponseHeader</strong></td>
+<td>- AddResponseHeader=MyHeader, jqk</td>
+<td>添加响应头</td>
+</tr>
+<tr>
+<td><strong>PrefixPath</strong></td>
+<td></td>
+<td>匹配所有前缀满足条件的URI</td>
+</tr>
+<tr>
+<td><strong>StripPrefix</strong></td>
+<td>- StripPrefix=1</td>
+<td>跳过路由uri中前几段后发送给下游</td>
+</tr>
+<tr>
+<td>FallbackHeadersent</td>
+<td></td>
+<td>可以添加降级时的异常信息</td>
+</tr>
+<tr>
+<td>CircuitBreakerment</td>
+<td></td>
+<td>实现熔断时使用，支持CircuitBreaker和Hystrix两种pt;</td>
+</tr>
+<tr>
+<td>FallbackHeadersent</td>
+<td></td>
+<td>可以添加降级时的异常信息</td>
+</tr>
+<tr>
+<td>DedupeResponseHeader</td>
+<td></td>
+<td>对指定响应头去重复</td>
+</tr>
+<tr>
+<td>RequestRateLimiter</td>
+<td></td>
+<td>限流过滤器。</td>
+</tr>
+<tr>
+<td>RedirectTo</td>
+<td></td>
+<td>重定向。有两个参数，status和url。其中status应该300系列重定向状态码</td>
+</tr>
+<tr>
+<td>RemoveRequestHeader</td>
+<td></td>
+<td>删除请求头参数</td>
+</tr>
+<tr>
+<td>RemoveResponseHeader</td>
+<td></td>
+<td>删除响应头参数</td>
+</tr>
+<tr>
+<td>RemoveRequestParameter</td>
+<td></td>
+<td>删除请求参数</td>
+</tr>
+<tr>
+<td>RewritePath</td>
+<td></td>
+<td>重写请求路径</td>
+</tr>
+<tr>
+<td>RewriteResponseHeader</td>
+<td></td>
+<td>重写响应头参数</td>
+</tr>
+<tr>
+<td>SaveSession</td>
+<td></td>
+<td>如果项目中使用Spring Security和Spring Session整合时，此属性特别重要</td>
+</tr>
+<tr>
+<td>SecureHeaders</td>
+<td></td>
+<td>具有权限验证时，建议的头信息内容</td>
+</tr>
+<tr>
+<td>SetPath</td>
+<td></td>
+<td>当前请求路径为/red/blue时会将/blue发送给下游。</td>
+</tr>
+<tr>
+<td>SetRequestHeader</td>
+<td></td>
+<td>替换请求参数头数。不是添加</td>
+</tr>
+<tr>
+<td>SetResponseHeader</td>
+<td></td>
+<td>替换响应头参数</td>
+</tr>
+<tr>
+<td>SetStatus</td>
+<td></td>
+<td>设置响应状态码</td>
+</tr>
+<tr>
+<td>Retry</td>
+<td></td>
+<td>设置重试次数</td>
+</tr>
+<tr>
+<td>RequestSize</td>
+<td></td>
+<td>请求最大大小。包含maxSize参数，可以有单位“KB”或“MB”默认为“B”</td>
+</tr>
+<tr>
+<td>ModifyRequestBody</td>
+<td></td>
+<td>修改请求内容</td>
+</tr>
+<tr>
+<td>ModifyResponseBody</td>
+<td></td>
+<td>修改响应体</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="gateway限流（基于redis的lua令牌桶算法）"><a href="#gateway限流（基于redis的lua令牌桶算法）" class="headerlink" title="gateway限流（基于redis的lua令牌桶算法）"></a>gateway限流（基于redis的lua令牌桶算法）</h4><ul>
+<li>令牌桶算法可以说是对漏桶算法的一种改进。</li>
+<li>在桶中放令牌，请求获取令牌后才能继续执行。如果桶中没有令牌，请求可以选择进行等待或者直接拒绝。</li>
+<li>由于桶中令牌是按照一定速率放置的，所以可以一定程度解决突发访问。如果桶中令牌最多有100个，qps最大为100</li>
+</ul>
+<p><img src="/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
+<p><strong>代码中配置限流key</strong></p>
+<p>just()方法参数表示根据什么进行限流。实例中是根据主机名进行限流。参数值影响Redis中key中红色部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbcComponet</span> <span class="keyword">implements</span> <span class="title">KeyResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;String&gt; <span class="title">resolve</span><span class="params">(ServerWebExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="网关配置文件"><a href="#网关配置文件" class="headerlink" title="网关配置文件"></a>网关配置文件</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 服务名</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">nacos</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">nacos</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">dee5dbc7-a29a-4bdc-a483-5fbdf7ebb5bc</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">nacos</span></span><br><span class="line">        <span class="attr">password:</span> <span class="string">nacos</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">dee5dbc7-a29a-4bdc-a483-5fbdf7ebb5bc</span></span><br><span class="line">        <span class="attr">prefix:</span> <span class="string">gateway</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">locator:</span></span><br><span class="line">          <span class="attr">enabled:</span> <span class="literal">false</span> <span class="comment">#开启从注册中心动态创建路由功能，利用微服务名进行路由</span></span><br><span class="line">          <span class="attr">lowerCaseServiceId:</span> <span class="literal">true</span> <span class="comment"># 开启大小写转换</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="comment"># - id: routeOrder</span></span><br><span class="line">        <span class="comment">#   uri: lb://serverOrder</span></span><br><span class="line">        <span class="comment">#   predicates:</span></span><br><span class="line">        <span class="comment">#       - Path=/auth/** #地址匹配</span></span><br><span class="line">        <span class="comment">#       - Weight=group,9</span></span><br><span class="line">        <span class="comment">#   filters:</span></span><br><span class="line">        <span class="comment">#    - StripPrefix=1 #去除前缀数量</span></span><br><span class="line">           </span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">routeAuth</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://serverAuth</span></span><br><span class="line">          <span class="comment">#uri: http://www.google.com</span></span><br><span class="line">          <span class="comment">#uri: http://www.baidu.com</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="comment">#PATH</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">Path=/auth/**</span> <span class="comment">#地址匹配</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">Weight=group,1</span></span><br><span class="line">              <span class="comment">#- Query=smile #只要请求中包含 smile 属性的参数即可匹配路由</span></span><br><span class="line">              <span class="comment">#- Query=keep, pu. #当请求中包含 keep 属性并且参数值是以 pu 开头的长度为三位的字符串才会进行匹配和路由。</span></span><br><span class="line">              <span class="comment">#- RemoteAddr=192.168.1.1/24 指定的ip才可以进行转发</span></span><br><span class="line">            <span class="comment">#DATE</span></span><br><span class="line">              <span class="comment">#- After=2021-11-20T17:53:00.000+08:00  #大于设定时间，路由才会匹配</span></span><br><span class="line">              <span class="comment">#- Before=2021-11-20T17:53:00.000+08:00 #小于设定时间，路由才会匹配</span></span><br><span class="line">              <span class="comment">#- Between=2021-11-20T17:53:00.000+08:00, 2021-11-20T18:10:00.000+08:00</span></span><br><span class="line">            <span class="comment">#COOKIE</span></span><br><span class="line">              <span class="comment">#- Cookie=cookiename, cookievalue #路由匹配请求存在cookie名为cookiename，cookie内容匹配cookievalue的</span></span><br><span class="line">            <span class="comment">#HEADER</span></span><br><span class="line">              <span class="comment">#- Header=X-Request-Id, \d+ #路由匹配存在名为X-Request-Id，内容为正则匹配的value(数字的header的请求)，将请求转发</span></span><br><span class="line">              <span class="comment">#- Host=**.baidu.com #路由匹配请求头中 host属性为 **.baidu.com  将请求转发</span></span><br><span class="line">              <span class="bullet">-</span> <span class="string">RemoteAddr=127.0.0.1</span> <span class="comment">#允许访问的客户端地址。</span></span><br><span class="line">            <span class="comment">#Method</span></span><br><span class="line">              <span class="comment">#- Method=GET,POST #指定的请求方法，才可以进行转发</span></span><br><span class="line">          <span class="attr">filters:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">StripPrefix=1</span> <span class="comment">#去除前缀数量</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">AddRequestHeader=MyHeader,</span> <span class="string">jqk</span> <span class="comment">#添加请求头参数，参数和值之间使用逗号分隔</span></span><br><span class="line">            <span class="comment">#- AddRequestParameter=name,bjsxt #添加请求表单参数，多个参数需要有多个过滤器。</span></span><br><span class="line">            <span class="comment">#- RemoveRequestHeader=X-Request-Foo #去掉请求头信息 X-Request-Foo</span></span><br><span class="line">            <span class="comment">#- RemoveResponseHeader=X-Request-Foo #去掉某个回执头信息：</span></span><br><span class="line"><span class="comment">#            - name: Hystrix # 熔断降级</span></span><br><span class="line"><span class="comment">#              args:</span></span><br><span class="line"><span class="comment">#                name: fallbackcmd</span></span><br><span class="line"><span class="comment">#                fallbackUri: forward:/fallback</span></span><br><span class="line"><span class="comment">#          - name: RequestRateLimiter #限流</span></span><br><span class="line"><span class="comment">#            args:</span></span><br><span class="line"><span class="comment">#              key-resolver: &#x27;#&#123;@abcComponet&#125;&#x27;</span></span><br><span class="line"><span class="comment">#              redis-rate-limiter.replenishRate: 10</span></span><br><span class="line"><span class="comment">#              redis-rate-limiter.burstCapacity: 3</span></span><br><span class="line"><span class="comment">#      default-filters:</span></span><br><span class="line"><span class="comment">#        - name: Hystrix</span></span><br><span class="line"><span class="comment">#          args:</span></span><br><span class="line"><span class="comment">#            name: fallbackcmd</span></span><br><span class="line"><span class="comment">#            fallbackUri: forward:/fallback</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="attr">redis:</span></span><br><span class="line">  <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="项目依赖"><a href="#项目依赖" class="headerlink" title="项目依赖"></a>项目依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>Hoxton.SR8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注意点：gateway 依赖会与 spring-boot-starter-web 冲突</span></span><br><span class="line"><span class="comment">gateway构建与Spring 5+，基于Spring boot 2.x响应式的、非阻塞式的API，同时，他支持webSockets和spring框架紧密集成</span></span><br><span class="line"><span class="comment">报错原因：启动时默认使用了spring-boot-starter-web的内置容器，不支持非阻塞 </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;/dependency&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.nacos<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>nacos-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 网关依赖 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 熔断器依赖 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--限流redis依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E5%85%B3/" rel="tag"># 网关</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/11/24/SpringCloud-Nacos/" rel="next" title="SpringCloud-Nacos">
+                <i class="fa fa-chevron-left"></i> SpringCloud-Nacos
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/03/23/DataX-2-%E5%AE%89%E8%A3%85/" rel="prev" title="DataX-2-安装">
+                DataX-2-安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gateway-API%E7%BD%91%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">Gateway(API网关)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#API-%E7%BD%91%E5%85%B3"><span class="nav-number">1.1.</span> <span class="nav-text">API 网关</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E5%85%B3%E7%BB%84%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">网关组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Gateway-%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">Spring Cloud Gateway 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-number">3.2.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.</span> <span class="nav-text">流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gateway-%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">Gateway 入门案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Predicate-%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.1.</span> <span class="nav-text">Predicate 功能介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Filter-%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.2.</span> <span class="nav-text">Filter 功能介绍</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gateway%E9%99%90%E6%B5%81%EF%BC%88%E5%9F%BA%E4%BA%8Eredis%E7%9A%84lua%E4%BB%A4%E7%89%8C%E6%A1%B6%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">gateway限流（基于redis的lua令牌桶算法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">网关配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">7.</span> <span class="nav-text">项目依赖</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

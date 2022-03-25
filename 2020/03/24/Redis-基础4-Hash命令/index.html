@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Redis Redis基础 Redis命令," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mark_Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="HDEL key field1 field2(删除一个或多个)命令用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略。 命令:HDEL KEY_NAME FIELD1.. FIELDN返回值被成功删除字段的数量，不包括被忽略的字段。 实例123456redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;(intege">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis-基础4-Hash命令">
+<meta property="og:url" content="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:description" content="HDEL key field1 field2(删除一个或多个)命令用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略。 命令:HDEL KEY_NAME FIELD1.. FIELDN返回值被成功删除字段的数量，不包括被忽略的字段。 实例123456redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;(intege">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-03-24T13:57:23.000Z">
+<meta property="article:modified_time" content="2021-11-10T13:01:41.590Z">
+<meta property="article:author" content="Mark_Xu">
+<meta property="article:tag" content="Redis Redis基础 Redis命令">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2020/03/24/Redis-基础4-Hash命令/"/>
+
+
+
+
+
+  <title>Redis-基础4-Hash命令 | Mark_Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mark_Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis-基础4-Hash命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T21:57:23+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="HDEL-key-field1-field2-删除一个或多个"><a href="#HDEL-key-field1-field2-删除一个或多个" class="headerlink" title="HDEL key field1 field2(删除一个或多个)"></a>HDEL key field1 field2(删除一个或多个)</h4><p>命令用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略。</p>
+<h6 id="命令-HDEL-KEY-NAME-FIELD1-FIELDN"><a href="#命令-HDEL-KEY-NAME-FIELD1-FIELDN" class="headerlink" title="命令:HDEL KEY_NAME FIELD1.. FIELDN"></a>命令:HDEL KEY_NAME FIELD1.. FIELDN</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>被成功删除字段的数量，不包括被忽略的字段。</p>
+<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HDEL myhash field1</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HDEL myhash field2</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<span id="more"></span>
+
+<h4 id="HEXISTS-key-field-是否存在"><a href="#HEXISTS-key-field-是否存在" class="headerlink" title="HEXISTS key field (是否存在)"></a>HEXISTS key field (是否存在)</h4><p>命令用于查看哈希表的指定字段是否存在。</p>
+<h6 id="命令-HEXISTS-KEY-NAME-FIELD-NAME"><a href="#命令-HEXISTS-KEY-NAME-FIELD-NAME" class="headerlink" title="命令:HEXISTS KEY_NAME FIELD_NAME"></a>命令:HEXISTS KEY_NAME FIELD_NAME</h6><h6 id="返回值-1"><a href="#返回值-1" class="headerlink" title="返回值"></a>返回值</h6><p>如果哈希表含有给定字段，返回 1 。 如果哈希表不含有给定字段，或 key 不存在，返回 0 。</p>
+<h6 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HEXISTS myhash field1</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HEXISTS myhash field2</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HGET-key-field-获取值"><a href="#HGET-key-field-获取值" class="headerlink" title="HGET key field (获取值)"></a>HGET key field (获取值)</h4><p>命令用于返回哈希表中指定字段的值。</p>
+<h6 id="命令-HGET-KEY-NAME-FIELD-NAME"><a href="#命令-HGET-KEY-NAME-FIELD-NAME" class="headerlink" title="命令:HGET KEY_NAME FIELD_NAME"></a>命令:HGET KEY_NAME FIELD_NAME</h6><h6 id="返回值-2"><a href="#返回值-2" class="headerlink" title="返回值"></a>返回值</h6><p>返回给定字段的值。如果给定的字段或 key 不存在时，返回 nil 。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 对不存在的键进行设置</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET site redis redis.com</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HGET site redis</span></span><br><span class="line">&quot;redis.com&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 字段不存在</span></span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HGET site mysql</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HGETALL-key-获取所有字段和值"><a href="#HGETALL-key-获取所有字段和值" class="headerlink" title="HGETALL key(获取所有字段和值)"></a>HGETALL key(获取所有字段和值)</h4><p>命令用于返回哈希表中，所有的字段和值。<br>在返回值里，紧跟每个字段名(field name)之后是字段的值(value)，所以返回值的长度是哈希表大小的两倍。</p>
+<h6 id="命令-HGETALL-KEY-NAME"><a href="#命令-HGETALL-KEY-NAME" class="headerlink" title="命令:HGETALL KEY_NAME"></a>命令:HGETALL KEY_NAME</h6><h6 id="返回值-3"><a href="#返回值-3" class="headerlink" title="返回值"></a>返回值</h6><p>以列表形式返回哈希表的字段及字段值。 若 key 不存在，返回空列表。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET myhash field1 <span class="string">&quot;Hello&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET myhash field2 <span class="string">&quot;World&quot;</span></span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HGETALL myhash</span></span><br><span class="line">1) &quot;field1&quot;</span><br><span class="line">2) &quot;Hello&quot;</span><br><span class="line">3) &quot;field2&quot;</span><br><span class="line">4) &quot;World&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HINCRBY-key-field-increment-字段的整数值加上增量-increment"><a href="#HINCRBY-key-field-increment-字段的整数值加上增量-increment" class="headerlink" title="HINCRBY key field increment (字段的整数值加上增量 increment)"></a>HINCRBY key field increment (字段的整数值加上增量 increment)</h4><p>命令用于为哈希表中的字段值加上指定增量值。<br>增量也可以为负数，相当于对指定字段进行减法操作。<br>如果哈希表的 key 不存在，一个新的哈希表被创建并执行 HINCRBY 命令。<br>如果指定的字段不存在，那么在执行命令前，字段的值被初始化为 0 。<br>对一个储存字符串值的字段执行 HINCRBY 命令将造成一个错误。<br>本操作的值被限制在 64 位(bit)有符号数字表示之内。</p>
+<h6 id="命令-HINCRBY-KEY-NAME-FIELD-NAME-INCR-BY-NUMBER"><a href="#命令-HINCRBY-KEY-NAME-FIELD-NAME-INCR-BY-NUMBER" class="headerlink" title="命令:HINCRBY KEY_NAME FIELD_NAME INCR_BY_NUMBER"></a>命令:HINCRBY KEY_NAME FIELD_NAME INCR_BY_NUMBER</h6><h6 id="返回值-4"><a href="#返回值-4" class="headerlink" title="返回值"></a>返回值</h6><p>执行 HINCRBY 命令之后，哈希表中字段的值。</p>
+<h6 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET myhash field 5</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBY myhash field 1</span></span><br><span class="line">(integer) 6</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBY myhash field -1</span></span><br><span class="line">(integer) 5</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBY myhash field -10</span></span><br><span class="line">(integer) -5</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HINCRBYFLOAT-key-field-increment-字段的浮点数值加上增量-increment"><a href="#HINCRBYFLOAT-key-field-increment-字段的浮点数值加上增量-increment" class="headerlink" title="HINCRBYFLOAT key field increment(字段的浮点数值加上增量 increment )"></a>HINCRBYFLOAT key field increment(字段的浮点数值加上增量 increment )</h4><p>命令用于为哈希表中的字段值加上指定浮点数增量值。<br>如果指定的字段不存在，那么在执行命令前，字段的值被初始化为 0 。</p>
+<h6 id="命令-HINCRBYFLOAT-key-field-increment"><a href="#命令-HINCRBYFLOAT-key-field-increment" class="headerlink" title="命令:HINCRBYFLOAT key field increment"></a>命令:HINCRBYFLOAT key field increment</h6><h6 id="返回值-5"><a href="#返回值-5" class="headerlink" title="返回值"></a>返回值</h6><p>执行 Hincrbyfloat 命令之后，哈希表中字段的值。</p>
+<h6 id="实例-3"><a href="#实例-3" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET mykey field 10.50</span></span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBYFLOAT mykey field 0.1</span></span><br><span class="line">&quot;10.6&quot;</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBYFLOAT mykey field -5</span></span><br><span class="line">&quot;5.6&quot;</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HSET mykey field 5.0e3</span></span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> HINCRBYFLOAT mykey field 2.0e2</span></span><br><span class="line">&quot;5200&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HKEYS-key（获取所有哈希表中的字段）"><a href="#HKEYS-key（获取所有哈希表中的字段）" class="headerlink" title="HKEYS key（获取所有哈希表中的字段）"></a>HKEYS key（获取所有哈希表中的字段）</h4><p>命令用于获取哈希表中的所有域（field）。</p>
+<h6 id="命令-HKEYS-key"><a href="#命令-HKEYS-key" class="headerlink" title="命令:HKEYS key"></a>命令:HKEYS key</h6><h6 id="返回值-6"><a href="#返回值-6" class="headerlink" title="返回值"></a>返回值</h6><p>包含哈希表中所有域（field）列表。 当 key 不存在时，返回一个空列表。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field2 &quot;bar&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HKEYS myhash</span><br><span class="line">1) &quot;field1&quot;</span><br><span class="line">2) &quot;field2&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HLEN-key-获取哈希表中字段的数量"><a href="#HLEN-key-获取哈希表中字段的数量" class="headerlink" title="HLEN key(获取哈希表中字段的数量)"></a>HLEN key(获取哈希表中字段的数量)</h4><p>命令用于获取哈希表中字段的数量。</p>
+<h6 id="命令：HLEN-key"><a href="#命令：HLEN-key" class="headerlink" title="命令：HLEN key"></a>命令：HLEN key</h6><h6 id="返回值-7"><a href="#返回值-7" class="headerlink" title="返回值"></a>返回值</h6><p>哈希表中字段的数量。 当 key 不存在时，返回 0 。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field2 &quot;bar&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HLEN myhash</span><br><span class="line">(integer) 2</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HMGET-key-field1-field2-获取所有给定字段的值"><a href="#HMGET-key-field1-field2-获取所有给定字段的值" class="headerlink" title="HMGET key field1 field2(获取所有给定字段的值)"></a>HMGET key field1 field2(获取所有给定字段的值)</h4><p>命令用于返回哈希表中，一个或多个给定字段的值。<br>如果指定的字段不存在于哈希表，那么返回一个 nil 值。</p>
+<h6 id="命令-HMGET-KEY-NAME-FIELD1…FIELDN"><a href="#命令-HMGET-KEY-NAME-FIELD1…FIELDN" class="headerlink" title="命令: HMGET KEY_NAME FIELD1…FIELDN"></a>命令: HMGET KEY_NAME FIELD1…FIELDN</h6><h6 id="返回值-8"><a href="#返回值-8" class="headerlink" title="返回值"></a>返回值</h6><p>一个包含多个给定字段关联值的表，表值的排列顺序和指定字段的请求顺序一样。</p>
+<h6 id="实例-4"><a href="#实例-4" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field2 &quot;bar&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HMGET myhash field1 field2 nofield</span><br><span class="line">1) &quot;foo&quot;</span><br><span class="line">2) &quot;bar&quot;</span><br><span class="line">3) (nil)</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HMSET-key-field1-value1-field2-value2-同时将多个-field-value-域-值-对设置到哈希表-key-中。"><a href="#HMSET-key-field1-value1-field2-value2-同时将多个-field-value-域-值-对设置到哈希表-key-中。" class="headerlink" title="HMSET key field1 value1 field2 value2 (同时将多个 field-value (域-值)对设置到哈希表 key 中。)"></a>HMSET key field1 value1 field2 value2 (同时将多个 field-value (域-值)对设置到哈希表 key 中。)</h4><p>命令用于为哈希表中的字段赋值 。<br>如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作。<br>如果字段已经存在于哈希表中，旧值将被覆盖。</p>
+<h6 id="命令：HSET-KEY-NAME-FIELD-VALUE"><a href="#命令：HSET-KEY-NAME-FIELD-VALUE" class="headerlink" title="命令：HSET KEY_NAME FIELD VALUE"></a>命令：HSET KEY_NAME FIELD VALUE</h6><h6 id="返回值-9"><a href="#返回值-9" class="headerlink" title="返回值"></a>返回值</h6><p>如果字段是哈希表中的一个新建字段，并且值设置成功，返回 1 。 如果哈希表中域字段已经存在且旧值已被新值覆盖，返回 0 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; HGET myhash field1</span><br><span class="line">&quot;foo&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET website google &quot;www.g.cn&quot;       # 设置一个新域</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt;HSET website google &quot;www.google.com&quot; # 覆盖一个旧域</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HSET-key-field-value（-key-中的字段-field-的值设为-value）"><a href="#HSET-key-field-value（-key-中的字段-field-的值设为-value）" class="headerlink" title="HSET key field value（ key 中的字段 field 的值设为 value）"></a>HSET key field value（ key 中的字段 field 的值设为 value）</h4><p>命令用于为哈希表中的字段赋值 。<br>如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作。<br>如果字段已经存在于哈希表中，旧值将被覆盖。</p>
+<h6 id="命令-HSET-KEY-NAME-FIELD-VALUE"><a href="#命令-HSET-KEY-NAME-FIELD-VALUE" class="headerlink" title="命令:HSET KEY_NAME FIELD VALUE"></a>命令:HSET KEY_NAME FIELD VALUE</h6><h6 id="返回值-10"><a href="#返回值-10" class="headerlink" title="返回值"></a>返回值</h6><p>如果字段是哈希表中的一个新建字段，并且值设置成功，返回 1 。 如果哈希表中域字段已经存在且旧值已被新值覆盖，返回 0 。</p>
+<h6 id="实例-5"><a href="#实例-5" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; HGET myhash field1</span><br><span class="line">&quot;foo&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET website google &quot;www.g.cn&quot;       # 设置一个新域</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt;HSET website google &quot;www.google.com&quot; # 覆盖一个旧域</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HSETNX-key-field-value-字段-field-不存在时，设置哈希表字段的值。"><a href="#HSETNX-key-field-value-字段-field-不存在时，设置哈希表字段的值。" class="headerlink" title="HSETNX key field value(字段 field 不存在时，设置哈希表字段的值。)"></a>HSETNX key field value(字段 field 不存在时，设置哈希表字段的值。)</h4><p>命令用于为哈希表中不存在的的字段赋值 。<br>如果哈希表不存在，一个新的哈希表被创建并进行 HSET 操作。<br>如果字段已经存在于哈希表中，操作无效。<br>如果 key 不存在，一个新哈希表被创建并执行 HSETNX 命令。</p>
+<h6 id="命令-HSETNX-KEY-NAME-FIELD-VALUE"><a href="#命令-HSETNX-KEY-NAME-FIELD-VALUE" class="headerlink" title="命令:HSETNX KEY_NAME FIELD VALUE"></a>命令:HSETNX KEY_NAME FIELD VALUE</h6><h6 id="返回值-11"><a href="#返回值-11" class="headerlink" title="返回值"></a>返回值</h6><p>设置成功，返回 1 。 如果给定字段已经存在且没有操作被执行，返回 0 。</p>
+<h6 id="实例-6"><a href="#实例-6" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSETNX myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSETNX myhash field1 &quot;bar&quot;</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; HGET myhash field1</span><br><span class="line">&quot;foo&quot;</span><br><span class="line">redis 127.0.0.1:6379&gt; HSETNX nosql key-value-store redis</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSETNX nosql key-value-store redis       # 操作无效， key-value-store 已存在</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="HVALS-key-获取哈希表中所有值"><a href="#HVALS-key-获取哈希表中所有值" class="headerlink" title="HVALS key(获取哈希表中所有值)"></a>HVALS key(获取哈希表中所有值)</h4><p>命令返回哈希表所有域(field)的值。</p>
+<h6 id="命令-HVALS-KEY-NAME-FIELD-VALUE"><a href="#命令-HVALS-KEY-NAME-FIELD-VALUE" class="headerlink" title="命令: HVALS KEY_NAME FIELD VALUE"></a>命令: HVALS KEY_NAME FIELD VALUE</h6><h6 id="返回值-12"><a href="#返回值-12" class="headerlink" title="返回值"></a>返回值</h6><p>一个包含哈希表中所有域(field)值的列表。 当 key 不存在时，返回一个空表。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field2 &quot;bar&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HVALS myhash</span><br><span class="line">1) &quot;foo&quot;</span><br><span class="line">2) &quot;bar&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 空哈希表/不存在的key</span></span><br><span class="line">redis 127.0.0.1:6379&gt; EXISTS not_exists</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; HVALS not_exists</span><br><span class="line">(empty list or set)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis-Redis%E5%9F%BA%E7%A1%80-Redis%E5%91%BD%E4%BB%A4/" rel="tag"># Redis Redis基础 Redis命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%803-List%E5%91%BD%E4%BB%A4/" rel="next" title="Redis-基础3-List命令">
+                <i class="fa fa-chevron-left"></i> Redis-基础3-List命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/25/Redis-%E5%9F%BA%E7%A1%805-Set%E5%91%BD%E4%BB%A4/" rel="prev" title="Redis-基础5-Set命令">
+                Redis-基础5-Set命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HDEL-key-field1-field2-%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA"><span class="nav-number">1.</span> <span class="nav-text">HDEL key field1 field2(删除一个或多个)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HDEL-KEY-NAME-FIELD1-FIELDN"><span class="nav-number">1.0.1.</span> <span class="nav-text">命令:HDEL KEY_NAME FIELD1.. FIELDN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HEXISTS-key-field-%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="nav-number">2.</span> <span class="nav-text">HEXISTS key field (是否存在)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HEXISTS-KEY-NAME-FIELD-NAME"><span class="nav-number">2.0.1.</span> <span class="nav-text">命令:HEXISTS KEY_NAME FIELD_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HGET-key-field-%E8%8E%B7%E5%8F%96%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">HGET key field (获取值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HGET-KEY-NAME-FIELD-NAME"><span class="nav-number">3.0.1.</span> <span class="nav-text">命令:HGET KEY_NAME FIELD_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HGETALL-key-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5%E5%92%8C%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">HGETALL key(获取所有字段和值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HGETALL-KEY-NAME"><span class="nav-number">4.0.1.</span> <span class="nav-text">命令:HGETALL KEY_NAME</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HINCRBY-key-field-increment-%E5%AD%97%E6%AE%B5%E7%9A%84%E6%95%B4%E6%95%B0%E5%80%BC%E5%8A%A0%E4%B8%8A%E5%A2%9E%E9%87%8F-increment"><span class="nav-number">5.</span> <span class="nav-text">HINCRBY key field increment (字段的整数值加上增量 increment)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HINCRBY-KEY-NAME-FIELD-NAME-INCR-BY-NUMBER"><span class="nav-number">5.0.1.</span> <span class="nav-text">命令:HINCRBY KEY_NAME FIELD_NAME INCR_BY_NUMBER</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-4"><span class="nav-number">5.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-2"><span class="nav-number">5.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HINCRBYFLOAT-key-field-increment-%E5%AD%97%E6%AE%B5%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E5%80%BC%E5%8A%A0%E4%B8%8A%E5%A2%9E%E9%87%8F-increment"><span class="nav-number">6.</span> <span class="nav-text">HINCRBYFLOAT key field increment(字段的浮点数值加上增量 increment )</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HINCRBYFLOAT-key-field-increment"><span class="nav-number">6.0.1.</span> <span class="nav-text">命令:HINCRBYFLOAT key field increment</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-5"><span class="nav-number">6.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-3"><span class="nav-number">6.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HKEYS-key%EF%BC%88%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">HKEYS key（获取所有哈希表中的字段）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HKEYS-key"><span class="nav-number">7.0.1.</span> <span class="nav-text">命令:HKEYS key</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-6"><span class="nav-number">7.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HLEN-key-%E8%8E%B7%E5%8F%96%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%AD%E5%AD%97%E6%AE%B5%E7%9A%84%E6%95%B0%E9%87%8F"><span class="nav-number">8.</span> <span class="nav-text">HLEN key(获取哈希表中字段的数量)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AHLEN-key"><span class="nav-number">8.0.1.</span> <span class="nav-text">命令：HLEN key</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-7"><span class="nav-number">8.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMGET-key-field1-field2-%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%BB%99%E5%AE%9A%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC"><span class="nav-number">9.</span> <span class="nav-text">HMGET key field1 field2(获取所有给定字段的值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HMGET-KEY-NAME-FIELD1%E2%80%A6FIELDN"><span class="nav-number">9.0.1.</span> <span class="nav-text">命令: HMGET KEY_NAME FIELD1…FIELDN</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-8"><span class="nav-number">9.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-4"><span class="nav-number">9.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMSET-key-field1-value1-field2-value2-%E5%90%8C%E6%97%B6%E5%B0%86%E5%A4%9A%E4%B8%AA-field-value-%E5%9F%9F-%E5%80%BC-%E5%AF%B9%E8%AE%BE%E7%BD%AE%E5%88%B0%E5%93%88%E5%B8%8C%E8%A1%A8-key-%E4%B8%AD%E3%80%82"><span class="nav-number">10.</span> <span class="nav-text">HMSET key field1 value1 field2 value2 (同时将多个 field-value (域-值)对设置到哈希表 key 中。)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9AHSET-KEY-NAME-FIELD-VALUE"><span class="nav-number">10.0.1.</span> <span class="nav-text">命令：HSET KEY_NAME FIELD VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-9"><span class="nav-number">10.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HSET-key-field-value%EF%BC%88-key-%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5-field-%E7%9A%84%E5%80%BC%E8%AE%BE%E4%B8%BA-value%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">HSET key field value（ key 中的字段 field 的值设为 value）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HSET-KEY-NAME-FIELD-VALUE"><span class="nav-number">11.0.1.</span> <span class="nav-text">命令:HSET KEY_NAME FIELD VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-10"><span class="nav-number">11.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-5"><span class="nav-number">11.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HSETNX-key-field-value-%E5%AD%97%E6%AE%B5-field-%E4%B8%8D%E5%AD%98%E5%9C%A8%E6%97%B6%EF%BC%8C%E8%AE%BE%E7%BD%AE%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC%E3%80%82"><span class="nav-number">12.</span> <span class="nav-text">HSETNX key field value(字段 field 不存在时，设置哈希表字段的值。)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HSETNX-KEY-NAME-FIELD-VALUE"><span class="nav-number">12.0.1.</span> <span class="nav-text">命令:HSETNX KEY_NAME FIELD VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-11"><span class="nav-number">12.0.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-6"><span class="nav-number">12.0.3.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HVALS-key-%E8%8E%B7%E5%8F%96%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%AD%E6%89%80%E6%9C%89%E5%80%BC"><span class="nav-number">13.</span> <span class="nav-text">HVALS key(获取哈希表中所有值)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4-HVALS-KEY-NAME-FIELD-VALUE"><span class="nav-number">13.0.1.</span> <span class="nav-text">命令: HVALS KEY_NAME FIELD VALUE</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC-12"><span class="nav-number">13.0.2.</span> <span class="nav-text">返回值</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mark_Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mark_Blog">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="Mark_Blog">
+<meta property="og:locale">
+<meta property="article:author" content="Mark_Xu">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/page/4/"/>
+
+
+
+
+
+  <title>Mark_Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mark_Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/" itemprop="url">Elaticsearch索引操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  PUT localhost:<span class="number">9200</span>/blog1</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch%E6%A3%80%E7%B4%A2%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch%E6%A3%80%E7%B4%A2%E8%AF%AD%E6%B3%95/" itemprop="url">es检索语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id><a href="#" class="headerlink" title></a></h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/" itemprop="url">正则表达式-常用案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="常用案例"><a href="#常用案例" class="headerlink" title="常用案例"></a>常用案例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 校验基本日期格式</span><br><span class="line"><span class="keyword">var</span>  reg1 = <span class="regexp">/^\d&#123;4&#125;(\-|\/|\.)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="keyword">var</span>  reg2 = <span class="regexp">/^(^(\d&#123;4&#125;|\d&#123;2&#125;)(\-|\/|\.)\d&#123;1,2&#125;\3\d&#123;1,2&#125;$)|(^\d&#123;4&#125;年\d&#123;1,2&#125;月\d&#123;1,2&#125;日$)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 校验密码强度</span><br><span class="line">密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在<span class="number">8</span>-<span class="number">10</span>之间。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 校验中文字符串仅能是中文。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[\\u4e00-\\u9fa5]&#123;0,&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> 由数字、<span class="number">26</span>个英文字母或下划线组成的字符串</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\w+$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> 校验E-Mail 地址   同密码一样，下面是E-mail地址合规性的正则检查语句。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 校验身份证号码</span><br><span class="line">下面是身份证号码的正则校验。<span class="number">15</span> 或 <span class="number">18</span>位。</span><br><span class="line"><span class="number">15</span>位： <span class="keyword">var</span> reg = <span class="regexp">/^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$/</span>;</span><br><span class="line"><span class="number">18</span>位：<span class="keyword">var</span>  reg = <span class="regexp">/^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span> 校验日期 “yyyy-mm-dd” 格式的日期校验，已考虑平闰年。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span> 校验金额金额校验，精确到<span class="number">2</span>位小数。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[0-9]+(.[0-9]&#123;2&#125;)?$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">9.</span> 校验手机号</span><br><span class="line"></span><br><span class="line">下面是国内 <span class="number">13</span>、<span class="number">15</span>、<span class="number">18</span>开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d&#123;8&#125;$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">10.</span> 判断IE的版本IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\\/[5-9]\\.0).*$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">11.</span> 校验IP-v4地址</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">12.</span> 校验IP-v6地址</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">13.</span> 检查URL的前缀</span><br><span class="line">应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。</span><br><span class="line">	<span class="keyword">if</span>(!s.match(<span class="regexp">/^[a-zA-Z]+:\/\//</span>)) &#123;</span><br><span class="line">		s = <span class="string">&#x27;http://&#x27;</span>+ s;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"><span class="number">14.</span> 提取URL链接</span><br><span class="line">下面的这个表达式可以筛选出一段文本中的URL。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(f|ht)&#123;1&#125;(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&amp;=]*)?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">15.</span> 文件路径及扩展名校验</span><br><span class="line">验证 windows下文件路径和扩展名（下面的例子中为.txt文件）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^([a-zA-Z]\\:|\\\\)\\\\([^\\]+\\)*[^\\/:*?&quot;&lt;&gt;|]+\\.txt(l)?$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">16.</span> 提取Color Hex Codes</span><br><span class="line">有时需要抽取网页中的颜色代码，可以使用下面的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^#([A-Fa-f0-9]&#123;6&#125;|[A-Fa-f0-9]&#123;3&#125;)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">17.</span> 提取网页图片假若你想提取网页中所有图片信息，可以利用下面的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\\&lt; *[img][^\\&gt;]*[src] *= *[\\&quot;\&#x27;]&#123;0,1&#125;([^\\&quot;\&#x27;\ &gt;]*)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">18.</span> 提取页面超链接 提取html中的超链接。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=&quot;https?:\/\/)((?!(?:(?:www\\.)?&#x27;.implode(&#x27;|(?:www\\.)?&#x27;, $follow_list).&#x27;))[^&quot; rel=&quot;external nofollow&quot; ]+)&quot;((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">19.</span> 查找CSS属性</span><br><span class="line">通过下面的表达式，可以搜索到相匹配的CSS属性。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\s*[a-zA-Z\\-]+\\s*[:]&#123;1&#125;\\s[a-zA-Z0-9\\s.#]+[;]&#123;1&#125;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">20.</span> 抽取注释</span><br><span class="line">如果你需要移除HMTL中的注释，可以使用如下的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;!--(.*?)--&gt;/</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"><span class="number">21</span> 只能为字母加数字组合</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reg =  <span class="regexp">/^[0-9a-zA-Z]+$/</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%80-6-%E5%88%97%E8%A1%A8%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%80-6-%E5%88%97%E8%A1%A8%E7%BB%91%E5%AE%9A/" itemprop="url">thymeleaf-基础=6-列表绑定</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:00:32+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thymeleaf/" itemprop="url" rel="index">
+                    <span itemprop="name">thymeleaf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="列表绑定"><a href="#列表绑定" class="headerlink" title="列表绑定"></a>列表绑定</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">&quot;emp:$&#123;emps&#125;&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;emp.id&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span>[[$&#123;emp.lastName&#125;]]<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;emp.email&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;emp.gender&#125;==0?&#x27;女&#x27;:&#x27;男&#x27;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;emp.department.departmentName&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;#dates.format(emp.birth, &#x27;yyyy-MM-dd HH:mm&#x27;)&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-sm btn-primary&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/emp/&#125;+$&#123;emp.id&#125;&quot;</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">th:attr</span>=<span class="string">&quot;del_uri=@&#123;/emp/&#125;+$&#123;emp.id&#125;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-sm btn-danger deleteBtn&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%805-%E6%A8%A1%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%805-%E6%A8%A1%E6%9D%BF/" itemprop="url">thymeleaf-基础5-模板</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:00:11+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/thymeleaf/" itemprop="url" rel="index">
+                    <span itemprop="name">thymeleaf</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="模板案例"><a href="#模板案例" class="headerlink" title="模板案例"></a>模板案例</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--topbar--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0&quot;</span> <span class="attr">th:fragment</span>=<span class="string">&quot;topbar&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;navbar-brand col-sm-3 col-md-2 mr-0&quot;</span> <span class="attr">href</span>=<span class="string">&quot;http://getbootstrap.com/docs/4.0/examples/dashboard/#&quot;</span>&gt;</span>[[$&#123;session.loginUser&#125;]]<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--sidebar--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;col-md-2 d-none d-md-block bg-light sidebar&quot;</span> <span class="attr">id</span>=<span class="string">&quot;sidebar&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sidebar-sticky&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;nav flex-column&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;nav-item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;nav-link active&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">th:class</span>=<span class="string">&quot;$&#123;activeUri==&#x27;main.html&#x27;?&#x27;nav-link active&#x27;:&#x27;nav-link&#x27;&#125;&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/main.html&#125;&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%805-%E6%A8%A1%E6%9D%BF/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-FormService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-Service-FormService/" itemprop="url">Activiti-Service-FormService</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:26:27+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="FormService"><a href="#FormService" class="headerlink" title="FormService"></a>FormService</h4><p>​    表单服务，读取和流程、任务相关的表单数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检索呈现表单以启动新流程实例所需的所有数据。</span></span><br><span class="line"><span class="function">StartFormData <span class="title">getStartFormData</span><span class="params">(String processDefinitionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由默认内置表单引擎生成的呈现表单，用于启动新流程实例。</span></span><br><span class="line"><span class="function">Object <span class="title">getRenderedStartForm</span><span class="params">(String processDefinitionId)</span></span>;	</span><br><span class="line"><span class="function">Object <span class="title">getRenderedStartForm</span><span class="params">(String processDefinitionId, String formEngineName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用在启动表单中作为属性输入的用户数据启动新流程实例。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">submitStartFormData</span><span class="params">(String processDefinitionId, Map&lt;String, String&gt; properties)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">submitStartFormData</span><span class="params">(String processDefinitionId, String businessKey, Map&lt;String, String&gt; properties)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索呈现表单以完成任务所需的所有数据。</span></span><br><span class="line"><span class="function">TaskFormData <span class="title">getTaskFormData</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由默认内置表单引擎生成的呈现表单，用于完成任务。</span></span><br><span class="line"><span class="function">Object <span class="title">getRenderedTaskForm</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"><span class="function">Object <span class="title">getRenderedTaskForm</span><span class="params">(String taskId, String formEngineName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用在任务表单中作为属性输入的用户数据完成任务。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">submitTaskFormData</span><span class="params">(String taskId, Map&lt;String, String&gt; properties)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将输入为属性的数据保存在任务表单中。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveFormData</span><span class="params">(String taskId, Map&lt;String, String&gt; properties)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索用户定义的对开始表单的引用。</span></span><br><span class="line"><span class="function">String <span class="title">getStartFormKey</span><span class="params">(String processDefinitionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索用户定义的对任务表单的引用。</span></span><br><span class="line"><span class="function">String <span class="title">getTaskFormKey</span><span class="params">(String processDefinitionId, String taskDefinitionKey)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-ManagementService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-Service-ManagementService/" itemprop="url">Activiti-Service-ManagementService</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:26:14+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="ManagementService"><a href="#ManagementService" class="headerlink" title="ManagementService"></a>ManagementService</h4><p>​    引擎管理服务，和具体业务无关，管理引擎。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取包含了Activiti数据库模式的&#123;表名、行计数&#125;项的映射。</span></span><br><span class="line"><span class="function">Map&lt;String, Long&gt; <span class="title">getTableCount</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取诸如任务、执行之类的Activiti实体的表名(包括任何已配置的前缀)。</span></span><br><span class="line"><span class="function">String <span class="title">getTableName</span><span class="params">(Class&lt;?&gt; activitiEntityClass)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取某个表的元数据(列名称、列类型等)。当没有表存在时，返回null。</span></span><br><span class="line"><span class="function">TableMetaData <span class="title">getTableMetaData</span><span class="params">(String tableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个&#123;@link TablePageQuery&#125;，可以用来获取包含表行数据的特定部分的&#123;@link TablePage&#125;。</span></span><br><span class="line"><span class="function">TablePageQuery <span class="title">createTablePageQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个新的JobQuery实现，该实现可用于动态查询作业。</span></span><br><span class="line"><span class="function">JobQuery <span class="title">createJobQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 强制同步执行某项工作(如:对于管理或测试)工作将被执行，即使流程定义和/或流程实例处于挂起状态。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">executeJob</span><span class="params">(String jobId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用提供的id删除作业。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteJob</span><span class="params">(String jobId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置工作已经离开的重试次数。每当JobExecutor无法执行任务时，这个值就会递减。当它达到零的时候，工作应该是死的，而不是重试。在这种情况下，这种方法可以用来增加重试次数。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setJobRetries</span><span class="params">(String jobId, <span class="keyword">int</span> retries)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回在最后执行给定id的作业时发生的异常的完整堆栈跟踪。当作业没有异常堆栈跟踪时返回null。</span></span><br><span class="line"><span class="function">String <span class="title">getJobExceptionStacktrace</span><span class="params">(String jobId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取属性列表。</span></span><br><span class="line"><span class="function">Map&lt;String, String&gt; <span class="title">getProperties</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对给定连接的编程模式更新，返回关于所发生事件的反馈。</span></span><br><span class="line"><span class="function">String <span class="title">databaseSchemaUpgrade</span><span class="params">(Connection connection, String catalog, String schema)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用默认的&#123;@link CommandConfig&#125;执行给定的命令。</span></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">executeCommand</span><span class="params">(Command&lt;T&gt; command)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用指定的&#123;@link CommandConfig&#125;执行给定的命令。</span></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">executeCommand</span><span class="params">(CommandConfig config, Command&lt;T&gt; command)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行&#123;@link CustomSqlExecution&#125;参数中包含的sql。</span></span><br><span class="line">&lt;MapperType, ResultType&gt; <span class="function">ResultType <span class="title">executeCustomSql</span><span class="params">(CustomSqlExecution&lt;MapperType, ResultType&gt; customSqlExecution)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回事件日志条目的列表，描述引擎处理的所有内容。注意，必须在流程引擎配置中特别启用事件日志记录。</span></span><br><span class="line"><span class="function">List&lt;EventLogEntry&gt; <span class="title">getEventLogEntries</span><span class="params">(Long startLogNr, Long pageSize)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回特定流程实例id的事件日志条目列表。注意，必须在流程引擎配置中特别启用事件日志记录。</span></span><br><span class="line"><span class="function">List&lt;EventLogEntry&gt; <span class="title">getEventLogEntriesByProcessInstanceId</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除EventLogEntry。通常只在测试中使用，因为删除日志条目会破坏保持日志的全部目的。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteEventLogEntry</span><span class="params">(<span class="keyword">long</span> logNr)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-IdentityService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-Service-IdentityService/" itemprop="url">Activiti-Service-IdentityService</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:25:57+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="IdentityService"><a href="#IdentityService" class="headerlink" title="IdentityService"></a>IdentityService</h4><p>​    身份服务，管理用户、组及其关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指定用户id创建一个用户</span></span><br><span class="line"><span class="function">User <span class="title">newUser</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保存新创建的用户</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveUser</span><span class="params">(User var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查询用户</span></span><br><span class="line"><span class="comment">/*	</span></span><br><span class="line"><span class="comment">		identityService.createUserQuery()			//返回用户查询</span></span><br><span class="line"><span class="comment">		        .userId(String var1)					//根据用户编号查询</span></span><br><span class="line"><span class="comment">		        .userFirstName(String var1)			//用户名称查询</span></span><br><span class="line"><span class="comment">		        .userFirstNameLike(String var1)			//用户名称模糊查询</span></span><br><span class="line"><span class="comment">		        .userLastName(String var1)			//用户姓氏查询</span></span><br><span class="line"><span class="comment">		        .userLastNameLike(String var1)			//用户姓氏模糊查询</span></span><br><span class="line"><span class="comment">		        .userFullNameLike(String var1)			//用户全名模糊查询</span></span><br><span class="line"><span class="comment">		        .userEmail(String var1)				//用户邮箱查询</span></span><br><span class="line"><span class="comment">		        .userEmailLike(String var1)			//用户邮箱模糊查询</span></span><br><span class="line"><span class="comment">		        .memberOfGroup(String var1)			//根据用户组查询用户</span></span><br><span class="line"><span class="comment">		        .potentialStarter(String var1)			//</span></span><br><span class="line"><span class="comment">		        .orderByUserId()					//根据用户编号排序</span></span><br><span class="line"><span class="comment">		        .orderByUserFirstName()				//根据用户名称排序</span></span><br><span class="line"><span class="comment">		        .orderByUserLastName()				//根据用户姓氏排序</span></span><br><span class="line"><span class="comment">		        .orderByUserEmail()				//根据用户邮箱排序</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="function">UserQuery <span class="title">createUserQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">		可以自定义查询语句</span></span><br><span class="line"><span class="comment">		.sql(&quot;select * from ACT_ID_USER&quot;) 只能映射ACT_ID_USER的数据，返回结果集无法映射其他查询</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="function">NativeUserQuery <span class="title">createNativeUserQuery</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//删除用户</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(String var1)</span></span>;</span><br><span class="line"><span class="comment">//创建用户组</span></span><br><span class="line"><span class="function">Group <span class="title">newGroup</span><span class="params">(String var1)</span></span>;</span><br><span class="line"><span class="comment">//创建用户组查询</span></span><br><span class="line"><span class="function">GroupQuery <span class="title">createGroupQuery</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">		可以自定义查询语句</span></span><br><span class="line"><span class="comment">		.sql(&quot;select * from ACT_ID_GROUP&quot;) 只能映射 ACT_ID_GROUP 的数据，返回结果集无法映射其他查询</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="function">NativeGroupQuery <span class="title">createNativeGroupQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保存用户组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveGroup</span><span class="params">(Group var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除用户组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteGroup</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建用户和用户组关系</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createMembership</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除用户和用户组关系</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteMembership</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//验证用户密码</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">checkPassword</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//认证用户的id</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAuthenticatedUserId</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为用户设置图片，头像</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setUserPicture</span><span class="params">(String var1, Picture var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取用户头像</span></span><br><span class="line"><span class="function">Picture <span class="title">getUserPicture</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置用户信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setUserInfo</span><span class="params">(String var1, String var2, String var3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取用户信息</span></span><br><span class="line"><span class="function">String <span class="title">getUserInfo</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过userId获取用户拓展信息</span></span><br><span class="line"><span class="function">List&lt;String&gt; <span class="title">getUserInfoKeys</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除用户自定义信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUserInfo</span><span class="params">(String var1, String var2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delUserAndGroupMemership</span><span class="params">()</span></span>&#123;</span><br><span class="line">   IdentityService identityService = activitiRule.getIdentityService();</span><br><span class="line">   <span class="comment">//删除用户和组关联</span></span><br><span class="line">   identityService.deleteMembership(<span class="string">&quot;henryyan&quot;</span>,<span class="string">&quot;deptLeader&quot;</span>);</span><br><span class="line">   <span class="comment">//删除组</span></span><br><span class="line">   identityService.deleteGroup(<span class="string">&quot;deptLeader&quot;</span>);</span><br><span class="line">   <span class="comment">//删除用户</span></span><br><span class="line">   identityService.deleteUser(<span class="string">&quot;henryyan&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userAndGroupMemership</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">   <span class="comment">//获取IdentityService</span></span><br><span class="line">   IdentityService identityService = activitiRule.getIdentityService();</span><br><span class="line">   <span class="comment">//创建组</span></span><br><span class="line">   Group group = identityService.newGroup(<span class="string">&quot;deptLeader&quot;</span>);</span><br><span class="line">   group.setName(<span class="string">&quot;部门领导&quot;</span>);</span><br><span class="line">   group.setType(<span class="string">&quot;assignment&quot;</span>);</span><br><span class="line">   <span class="comment">//保存组</span></span><br><span class="line">   identityService.saveGroup(group);</span><br><span class="line">   <span class="comment">//创建用户</span></span><br><span class="line">   User user = identityService.newUser(<span class="string">&quot;henryyan&quot;</span>);</span><br><span class="line">   user.setFirstName(<span class="string">&quot;Henry&quot;</span>);</span><br><span class="line">   user.setLastName(<span class="string">&quot;Yan&quot;</span>);</span><br><span class="line">   user.setEmail(<span class="string">&quot;henryyan@qq.com&quot;</span>);</span><br><span class="line">   <span class="comment">//保存用户</span></span><br><span class="line">   identityService.saveUser(user);</span><br><span class="line">   <span class="comment">//用户和组建立关联</span></span><br><span class="line">   identityService.createMembership(<span class="string">&quot;henryyan&quot;</span>,<span class="string">&quot;deptLeader&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-HistoryService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-Service-HistoryService/" itemprop="url">Activiti-Service-HistoryService</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:25:44+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="HistoryService"><a href="#HistoryService" class="headerlink" title="HistoryService"></a>HistoryService</h4><p>​    历史服务，管理所有历史数据    </p>
+<ul>
+<li><p>创建查询</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个新的编程查询来搜索&#123;@link HistoricProcessInstance&#125;。</span></span><br><span class="line"><span class="function">HistoricProcessInstanceQuery <span class="title">createHistoricProcessInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的编程查询来搜索&#123;@link HistoricActivityInstance&#125;。</span></span><br><span class="line"><span class="function">HistoricActivityInstanceQuery <span class="title">createHistoricActivityInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的编程查询来搜索&#123;@link HistoricTaskInstance&#125;。</span></span><br><span class="line"><span class="function">HistoricTaskInstanceQuery <span class="title">createHistoricTaskInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的编程查询来搜索&#123;@link HistoricDetail&#125;。</span></span><br><span class="line"><span class="function">HistoricDetailQuery <span class="title">createHistoricDetailQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个新的&#123;@link org. engine.query.NativeQuery &#125;过程定义。。</span></span><br><span class="line"><span class="function">NativeHistoricDetailQuery <span class="title">createNativeHistoricDetailQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的编程查询来搜索&#123;@link HistoricVariableInstance&#125;。</span></span><br><span class="line"><span class="function">HistoricVariableInstanceQuery <span class="title">createHistoricVariableInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个新的&#123;@link org. engine.query.NativeQuery &#125;过程定义。</span></span><br><span class="line"><span class="function">NativeHistoricVariableInstanceQuery <span class="title">createNativeHistoricVariableInstanceQuery</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>删除</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除历史任务实例。这对于那些动态创建的&#123;@link TaskService#newTask() dynamically created&#125;和&#123;@link TaskService#complete(String) completed&#125;的任务很有用。如果历史任务实例不存在，则不会抛出异常，方法返回正常。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteHistoricTaskInstance</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除历史流程实例。</span></span><br><span class="line">所有历史活动、历史任务和历史细节(变量更新、表单属性)也会被删除。</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteHistoricProcessInstance</span><span class="params">(String processInstanceId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>创建原生查询</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个原生查询，以通过SQL搜索&#123;@link HistoricProcessInstance&#125;。</span></span><br><span class="line"><span class="function">NativeHistoricProcessInstanceQuery <span class="title">createNativeHistoricProcessInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个原生查询，以通过SQL搜索&#123;@link HistoricTaskInstance&#125;。</span></span><br><span class="line"><span class="function">NativeHistoricTaskInstanceQuery <span class="title">createNativeHistoricTaskInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个原生查询，以通过SQL搜索&#123;@link HistoricActivityInstance&#125;</span></span><br><span class="line"><span class="function">NativeHistoricActivityInstanceQuery <span class="title">createNativeHistoricActivityInstanceQuery</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>检索</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检索与给定任务相关联的&#123;@link histordentitylink&#125;。这样的&#123;@link IdentityLink&#125;通知了一个特定的标识(如组或用户)与某个任务相关联(如作为候选人、受让人等)，即使任务已经完成，而不是只存在于活动任务的&#123;@link IdentityLink&#125;。</span></span><br><span class="line"><span class="function">List&lt;HistoricIdentityLink&gt; <span class="title">getHistoricIdentityLinksForTask</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索与给定流程实例相关联的&#123;@link histordentitylink&#125;。这样的&#123;@link IdentityLink&#125;通知了一个特定的标识(如组或用户)与某个流程实例相关联，即使该实例已完成，而不是只存在于活动实例的&#123;@link IdentityLink&#125;。</span></span><br><span class="line"><span class="function">List&lt;HistoricIdentityLink&gt; <span class="title">getHistoricIdentityLinksForProcessInstance</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//允许为一个流程实例检索&#123;@link ProcessInstanceHistoryLog&#125;。</span></span><br><span class="line"><span class="function">ProcessInstanceHistoryLogQuery <span class="title">createProcessInstanceHistoryLogQuery</span><span class="params">(String processInstanceId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-TaskService/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-Service-TaskService/" itemprop="url">Activiti-Service-TaskService</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:25:31+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="TaskService"><a href="#TaskService" class="headerlink" title="TaskService"></a>TaskService</h4><p>​    任务服务，管理（签收、办理、指派等）、查询任务。</p>
+<ul>
+<li><p>创建任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建与任何流程实例无关的新任务。</span></span><br><span class="line"><span class="function">Task <span class="title">newTask</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用用户定义的任务id创建一个新任务。</span></span><br><span class="line"><span class="function">Task <span class="title">newTask</span><span class="params">(String taskId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>存任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将给定的任务保存到持久数据存储中。</span></span><br><span class="line"><span class="comment">// 如果这个任务已经存在于持久化存储中，那么它将被更新。</span></span><br><span class="line"><span class="comment">// 在保存了新任务之后，传递给该方法的任务实例将使用新创建的任务的id进行更新。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveTask</span><span class="params">(Task task)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>删除任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除给定的任务，而不是删除与此任务相关的历史信息。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTask</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除给定的任务。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTask</span><span class="params">(String taskId, <span class="keyword">boolean</span> cascade)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTask</span><span class="params">(String taskId, String deleteReason)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除给定集合的所有任务，而不是删除与这些任务相关的历史信息。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTasks</span><span class="params">(Collection&lt;String&gt; taskIds)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除给定集合的所有任务	</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTasks</span><span class="params">(Collection&lt;String&gt; taskIds, <span class="keyword">boolean</span> cascade)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteTasks</span><span class="params">(Collection&lt;String&gt; taskIds, String deleteReason)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>任务操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明对任务的责任:给定的用户被指定为任务的受让人。</span></span><br><span class="line"><span class="comment">// 不检查用户是否被标识组件所知。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">claim</span><span class="params">(String taskId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为了取消任务，使用null用户的&#123;@link #claim&#125;的快捷方式。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unclaim</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当任务成功执行时调用。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">complete</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将任务委托给另一个用户。</span></span><br><span class="line"><span class="comment">// 这意味着设置了assignee并将委派状态设置为&#123;@link委派状态#PENDING&#125;。</span></span><br><span class="line"><span class="comment">// 如果没有设置所有者，则所有者将被设置为任务的当前受让人。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delegateTask</span><span class="params">(String taskId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标志着受让人完成了这项任务，并可以将其发回给所有者。</span></span><br><span class="line"><span class="comment">// 只有当这个任务是&#123;@link DelegationState#PENDING&#125;委托时才能调用。</span></span><br><span class="line"><span class="comment">// 在此方法返回后，&#123;@link Task# getdelegate state()将被设置为&#123;@link DelegationState#RESOLVED&#125;。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resolveTask</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标志着受让人完成了这项任务，提供了所需的变量，并且可以将其发回给所有者。</span></span><br><span class="line"><span class="comment">// // 只有当这个任务是&#123;@link DelegationState#PENDING&#125;委托时才能调用。</span></span><br><span class="line"><span class="comment">// 在此方法返回后，&#123;@link Task# getdelegate state()将被设置为&#123;@link DelegationState#RESOLVED&#125;。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">resolveTask</span><span class="params">(String taskId, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当任务成功执行时调用，</span></span><br><span class="line"><span class="comment">// 所需的任务参数由最终用户给出。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">complete</span><span class="params">(String taskId, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">complete</span><span class="params">(String taskId, Map&lt;String, Object&gt; variables, <span class="keyword">boolean</span> localScope)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将给定任务的受让人更改为给定的userId。</span></span><br><span class="line"><span class="comment">// 不检查用户是否被标识组件所知。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAssignee</span><span class="params">(String taskId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将此任务的所有权转移给另一个用户。</span></span><br><span class="line"><span class="comment">// 不检查用户是否被标识组件所知。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setOwner</span><span class="params">(String taskId, String userId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>检索</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检索与给定任务关联的&#123;@link IdentityLink&#125;。</span></span><br><span class="line"><span class="comment">// 这样的&#123;@link IdentityLink&#125;通知了一个特定的标识(如。组或用户)与某个任务相关联(如作为候选人,受让人,等等)。</span></span><br><span class="line"><span class="function">List&lt;IdentityLink&gt; <span class="title">getIdentityLinksForTask</span><span class="params">(String taskId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>候选（候选组，候选用户）的操作（添加与删除）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123;@link #addUserIdentityLink(String、String、String)&#125;的便利简写;型&#123; @link IdentityLinkType #CANDIDATE&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addCandidateUser</span><span class="params">(String taskId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #addGroupIdentityLink(String、String、String)&#125;的便利简写;型&#123; @link IdentityLinkType #CANDIDATE&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addCandidateGroup</span><span class="params">(String taskId, String groupId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 涉及到有任务的用户。身份链接的类型由给定的身份链接类型定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addUserIdentityLink</span><span class="params">(String taskId, String userId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 涉及到一个有任务的小组。标识链接的类型由给定的标识链接定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addGroupIdentityLink</span><span class="params">(String taskId, String groupId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #deleteUserIdentityLink(String、String、String)&#125;的便利简写;型&#123; @link IdentityLinkType #CANDIDATE&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteCandidateUser</span><span class="params">(String taskId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #deleteGroupIdentityLink(String、String、String)&#125;的便利简写;型&#123; @link IdentityLinkType #CANDIDATE&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteCandidateGroup</span><span class="params">(String taskId, String groupId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除用户与给定身份链接类型的任务之间的关联。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUserIdentityLink</span><span class="params">(String taskId, String userId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除一个组与给定身份链接类型的任务之间的关联。	</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteGroupIdentityLink</span><span class="params">(String taskId, String groupId, String identityLinkType)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>任务修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更改任务的优先级。权限:实际所有者/业务管理员。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setPriority</span><span class="params">(String taskId, <span class="keyword">int</span> priority)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更改任务的截止日期。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDueDate</span><span class="params">(String taskId, Date dueDate)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>任务查询</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回可用于动态查询任务的新&#123;@link TaskQuery&#125;。</span></span><br><span class="line"><span class="function">TaskQuery <span class="title">createTaskQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回任务的新&#123;@link NativeQuery&#125;。</span></span><br><span class="line"><span class="function">NativeTaskQuery <span class="title">createNativeTaskQuery</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>任务变量（添加，获取，检测，移除）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在任务上设置变量。如果变量不是已经存在，那么它将在最外层的范围内创建。这意味着在此任务与执行相关的情况下，流程实例。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariable</span><span class="params">(String taskId, String variableName, Object value)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariables</span><span class="params">(String taskId, Map&lt;String, ? extends Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在任务上设置变量。如果变量不是已经存在，那么它将在任务中创建。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariableLocal</span><span class="params">(String taskId, String variableName, Object value)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariablesLocal</span><span class="params">(String taskId, Map&lt;String, ? extends Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取任务范围内的变量和搜索，如果还有执行范围的话。</span></span><br><span class="line"><span class="function">Object <span class="title">getVariable</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">getVariable</span><span class="params">(String taskId, String variableName, Class&lt;T&gt; variableClass)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查任务是否有定义为给定名称的变量。</span></span><br><span class="line"><span class="function">Object <span class="title">getVariableLocal</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">getVariableLocal</span><span class="params">(String taskId, String variableName, Class&lt;T&gt; variableClass)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查任务是否具有给定名称的变量，在任务范围内，如果还有执行范围。</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasVariable</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查任务是否有定义为给定名称的变量，只有本地任务范围。</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasVariableLocal</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取任务范围内的所有变量和搜索，如果还有执行范围的话。如果您有很多变量，而且只需要一些变量，那么可以考虑使用&#123;@link #getVariables(String, Collection)&#125;来获得更好的性能。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariables</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有给定变量的值，并只在任务范围内搜索。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariables</span><span class="params">(String taskId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有变量并只在任务范围内搜索。如果您有许多任务局部变量，而且只需要一些，请考虑使用&#123;@link #getVariablesLocal(String, Collection)&#125;来获得更好的性能。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariablesLocal</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在任务上获取一个变量。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariablesLocal</span><span class="params">(String taskId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有变量并只在任务范围内搜索。</span></span><br><span class="line"><span class="function">List&lt;VariableInstance&gt; <span class="title">getVariableInstancesLocalByTaskIds</span><span class="params">(Set&lt;String&gt; taskIds)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从任务中移除变量。当变量不存在时，什么都不会发生。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariable</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从任务中移除给定集合中的所有变量。不存在的变量名完全被忽略。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariables</span><span class="params">(String taskId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从任务中移除变量(不考虑父作用域)。当变量不存在时，什么都不会发生。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariableLocal</span><span class="params">(String taskId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从任务中删除给定集合中的所有变量(不考虑父范围)。不存在的变量名完全被忽略。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariablesLocal</span><span class="params">(String taskId, Collection&lt;String&gt; variableNames)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向任务和/或流程实例添加注释。</span></span><br><span class="line"><span class="function">Comment <span class="title">addComment</span><span class="params">(String taskId, String processInstanceId, String message)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将注释添加到一个任务和/或具有自定义类型的流程实例。</span></span><br><span class="line"><span class="function">Comment <span class="title">addComment</span><span class="params">(String taskId, String processInstanceId, String type, String message)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回带有给定id的单个注释。如果给定id没有注释，则返回null。</span></span><br><span class="line"><span class="function">Comment <span class="title">getComment</span><span class="params">(String commentId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从提供的任务和/或流程实例中删除所有注释。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteComments</span><span class="params">(String taskId, String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的id删除单个注释。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteComment</span><span class="params">(String commentId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与给定任务相关的注释。</span></span><br><span class="line"><span class="function">List&lt;Comment&gt; <span class="title">getTaskComments</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与给定类型的给定任务相关的注释。</span></span><br><span class="line"><span class="function">List&lt;Comment&gt; <span class="title">getTaskComments</span><span class="params">(String taskId, String type)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给定类型的所有注释。</span></span><br><span class="line"><span class="function">List&lt;Comment&gt; <span class="title">getCommentsByType</span><span class="params">(String type)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 所有与给定任务相关的Event。</span></span><br><span class="line"><span class="function">List&lt;Event&gt; <span class="title">getTaskEvents</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回给定id的单个事件。如果给定id不存在事件，则返回null。</span></span><br><span class="line"><span class="function">Event <span class="title">getEvent</span><span class="params">(String eventId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与给定流程实例相关的注释。</span></span><br><span class="line"><span class="function">List&lt;Comment&gt; <span class="title">getProcessInstanceComments</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"><span class="function">List&lt;Comment&gt; <span class="title">getProcessInstanceComments</span><span class="params">(String processInstanceId, String type)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>附件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向任务和/或流程实例添加新的附件，并使用输入流提供内容。</span></span><br><span class="line"><span class="function">Attachment <span class="title">createAttachment</span><span class="params">(String attachmentType, String taskId, String processInstanceId, String attachmentName, String attachmentDescription, InputStream content)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向任务和/或流程实例添加新的附件，并使用url作为内容。</span></span><br><span class="line"><span class="function">Attachment <span class="title">createAttachment</span><span class="params">(String attachmentType, String taskId, String processInstanceId, String attachmentName, String attachmentDescription, String url)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新附件的名称和描述。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveAttachment</span><span class="params">(Attachment attachment)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索一个特定的附件</span></span><br><span class="line"><span class="function">Attachment <span class="title">getAttachment</span><span class="params">(String attachmentId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索特定附件的流内容。</span></span><br><span class="line"><span class="function">InputStream <span class="title">getAttachmentContent</span><span class="params">(String attachmentId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与任务相关的附件列表。</span></span><br><span class="line"><span class="function">List&lt;Attachment&gt; <span class="title">getTaskAttachments</span><span class="params">(String taskId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与流程实例相关联的附件列表。</span></span><br><span class="line"><span class="function">List&lt;Attachment&gt; <span class="title">getProcessInstanceAttachments</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除附件</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteAttachment</span><span class="params">(String attachmentId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>任务列表获取</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父任务的子任务列表。</span></span><br><span class="line"><span class="function">List&lt;Task&gt; <span class="title">getSubTasks</span><span class="params">(String parentTaskId)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+  </nav>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mark_Xu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
