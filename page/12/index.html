@@ -295,6 +295,232 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/28/jQuery-%E5%9F%BA%E7%A1%805-%E6%A0%B7%E5%BC%8F%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/28/jQuery-%E5%9F%BA%E7%A1%805-%E6%A0%B7%E5%BC%8F%E6%93%8D%E4%BD%9C/" itemprop="url">jQuery_基础5_样式操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-28T00:56:16+08:00">
+                2020-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="设置内容和属性"><a href="#设置内容和属性" class="headerlink" title="设置内容和属性"></a>设置内容和属性</h4><ul>
+<li><p>test(text)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置或返回所选元素的文本内容</span></span><br><span class="line">$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#test1&quot;</span>).text(<span class="function"><span class="keyword">function</span>(<span class="params">i,origText</span>)</span>&#123;</span><br><span class="line">	  <span class="keyword">return</span> <span class="string">&quot;旧文本: &quot;</span> + origText + <span class="string">&quot; 新文本: Hello world! (index: &quot;</span> + i + <span class="string">&quot;)&quot;</span>; </span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>tml(HTML)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置或返回所选元素的内容（包括 HTML 标记）</span></span><br><span class="line">$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#test2&quot;</span>).html(<span class="function"><span class="keyword">function</span>(<span class="params">i,origText</span>)</span>&#123;</span><br><span class="line">	  <span class="keyword">return</span> <span class="string">&quot;旧 html: &quot;</span> + origText + <span class="string">&quot; 新 html: Hello &lt;b&gt;world!&lt;/b&gt; (index: &quot;</span> + i + <span class="string">&quot;)&quot;</span>; </span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>val() 设置或返回表单字段的值</p>
+</li>
+<li><p>attr() </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方法用于获取属性值</span></span><br><span class="line"><span class="comment">&lt;p&gt;&lt;a href=&quot;#&quot; id=&quot;runoob&quot;&gt;&lt;/a&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;button&gt;显示 href 属性的值&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 示例1 - 获取属性</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	  $(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	    alert($(<span class="string">&quot;#runoob&quot;</span>).attr(<span class="string">&quot;href&quot;</span>));</span><br><span class="line">	  &#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例2 - 设置属性</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">	$(<span class="string">&quot;#runoob&quot;</span>).attr(&#123;</span><br><span class="line">		 <span class="string">&quot;href&quot;</span> : <span class="string">&quot;http://www.runoob.com/jquery&quot;</span>,</span><br><span class="line">		 <span class="string">&quot;title&quot;</span> : <span class="string">&quot;jQuery 教程&quot;</span> </span><br><span class="line">	&#125;); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h4><ul>
+<li><p>append()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 方法在被选元素的结尾插入内容（仍然该元素的内部）</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是另外一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;ol&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;List item 1&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;List item 2&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;List item 3&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;/ol&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn1&quot;&gt;添加文本&lt;/button&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn2&quot;&gt;添加列表项&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;p&quot;</span>).append(<span class="string">&quot; &lt;b&gt;追加文本&lt;/b&gt;。&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;ol&quot;</span>).append(<span class="string">&quot;&lt;li&gt;追加列表项&lt;/li&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>prepend</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方法在被选元素的开头插入内容</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是另外一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;ol&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;列表 1&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;列表 2&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;li&gt;列表 3&lt;/li&gt;</span></span><br><span class="line"><span class="comment">&lt;/ol&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn1&quot;&gt;添加文本&lt;/button&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn2&quot;&gt;添加列表项&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;p&quot;</span>).prepend(<span class="string">&quot;&lt;b&gt;在开头追加文本&lt;/b&gt;。 &quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;ol&quot;</span>).prepend(<span class="string">&quot;&lt;li&gt;在开头添加列表项&lt;/li&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>after()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方法在被选元素之后插入内容。</span></span><br><span class="line"><span class="comment">&lt;img src=&quot;/images/logo.png&quot; &gt;</span></span><br><span class="line"><span class="comment">&lt;br&gt;&lt;br&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn1&quot;&gt;之前插入&lt;/button&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn2&quot;&gt;之后插入&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;img&quot;</span>).before(<span class="string">&quot;&lt;b&gt;之前&lt;/b&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;img&quot;</span>).after(<span class="string">&quot;&lt;i&gt;之后&lt;/i&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>before()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">在被选元素之前插入内容。</span></span><br><span class="line"><span class="comment">&lt;img src=&quot;/images/logo.png&quot; &gt;</span></span><br><span class="line"><span class="comment">&lt;br&gt;&lt;br&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn1&quot;&gt;之前插入&lt;/button&gt;</span></span><br><span class="line"><span class="comment">&lt;button id=&quot;btn2&quot;&gt;之后插入&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;#btn1&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;img&quot;</span>).before(<span class="string">&quot;&lt;b&gt;之前&lt;/b&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	$(<span class="string">&quot;#btn2&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;img&quot;</span>).after(<span class="string">&quot;&lt;i&gt;之后&lt;/i&gt;&quot;</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+<hr>
+<h4 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h4><ul>
+<li><p>remove()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">删除被选元素及其子元素</span></span><br><span class="line"><span class="comment">&lt;div id=&quot;div1&quot; style=&quot;height:100px;width:300px;border:1px solid black;background-color:yellow;&quot;&gt;</span></span><br><span class="line"><span class="comment">这是 div 中的一些文本。</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是在 div 中的一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是在 div 中的另外一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;/div&gt;</span></span><br><span class="line"><span class="comment">&lt;br&gt;</span></span><br><span class="line"><span class="comment">&lt;button&gt;移除div元素&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">&quot;#div1&quot;</span>).remove();</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li><p>empty()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">删除被选元素的子元素。</span></span><br><span class="line"><span class="comment">&lt;div id=&quot;div1&quot; style=&quot;height:100px;width:300px;border:1px solid black;background-color:yellow;&quot;&gt;</span></span><br><span class="line"><span class="comment">这是 div 中的一些文本。</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是在 div 中的一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是在 div 中的另外一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;/div&gt;</span></span><br><span class="line"><span class="comment">&lt;br&gt;</span></span><br><span class="line"><span class="comment">&lt;button&gt;清空div元素&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;#div1&quot;</span>).empty();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+<hr>
+<h4 id="css方法"><a href="#css方法" class="headerlink" title="css方法"></a>css方法</h4><ul>
+<li><p>addClass()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方法向被选元素添加一个或多个类。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;style type=&quot;text/css&quot;&gt;</span></span><br><span class="line"><span class="comment">	.important</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		font-weight:bold;</span></span><br><span class="line"><span class="comment">		font-size:xx-large;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	.blue</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		color:blue;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&lt;/style&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+  <h1>标题 1</h1>
+  <h2>标题 2</h2>
+  <p>这是一个段落。</p>
+  <p>这是另外一个段落。</p>
+  <div>这是一些重要的文本!</div>
+  <br>
+  <button>为元素添加 class</button>
+  */
+
+  <script>
+  $(document).ready(function(){
+      $("button").click(function(){
+          $("h1,h2,p").addClass("blue");
+          $("div").addClass("important");
+      });
+  });
+  </script>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ​</span><br><span class="line"></span><br><span class="line">- removeClass()</span><br><span class="line"></span><br><span class="line">  ```javascript</span><br><span class="line">  /*</span><br><span class="line">  方法从被选元素移除一个或多个类。</span><br><span class="line">  &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">  .important</span><br><span class="line">  &#123;</span><br><span class="line">  	font-weight:bold;</span><br><span class="line">  	font-size:xx-large;</span><br><span class="line">  &#125;</span><br><span class="line">  .blue</span><br><span class="line">  &#123;</span><br><span class="line">  	color:blue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &lt;h1 class=&quot;blue&quot;&gt;标题 1&lt;/h1&gt;</span><br><span class="line">  &lt;h2 class=&quot;blue&quot;&gt;标题 2&lt;/h2&gt;</span><br><span class="line">  &lt;p class=&quot;blue&quot;&gt;这是一个段落。&lt;/p&gt;</span><br><span class="line">  &lt;p class=&quot;important&quot;&gt;这是另外一个段落。&lt;/p&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;button&gt;从元素中移除 class&lt;/button&gt;</span><br><span class="line">  */</span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  $(document).ready(function()&#123;</span><br><span class="line">    $(&quot;button&quot;).click(function()&#123;</span><br><span class="line">      $(&quot;h1,h2,p&quot;).removeClass(&quot;blue&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  ​</p>
+<ul>
+<li><p>css()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jQuery css() 方法</span></span><br><span class="line"><span class="comment">// css() 方法设置或返回被选元素的一个或多个样式属性。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 CSS 属性</span></span><br><span class="line"><span class="comment">// 如需返回指定的 CSS 属性的值，请使用如下语法：</span></span><br><span class="line">css(<span class="string">&quot;propertyname&quot;</span>);</span><br><span class="line"><span class="comment">// 下面的例子将返回首个匹配元素的 background-color 值：</span></span><br><span class="line">$(<span class="string">&quot;p&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置 CSS 属性</span></span><br><span class="line"><span class="comment">// 如需设置指定的 CSS 属性，请使用如下语法：</span></span><br><span class="line">css(<span class="string">&quot;propertyname&quot;</span>,<span class="string">&quot;value&quot;</span>);</span><br><span class="line"><span class="comment">// 下面的例子将为所有匹配元素设置 background-color 值：</span></span><br><span class="line">$(<span class="string">&quot;p&quot;</span>).css(<span class="string">&quot;background-color&quot;</span>,<span class="string">&quot;yellow&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置多个 CSS 属性</span></span><br><span class="line"><span class="comment">// 如需设置多个 CSS 属性，请使用如下语法：</span></span><br><span class="line">css(&#123;<span class="string">&quot;propertyname&quot;</span>:<span class="string">&quot;value&quot;</span>,<span class="string">&quot;propertyname&quot;</span>:<span class="string">&quot;value&quot;</span>,...&#125;);</span><br><span class="line"><span class="comment">// 下面的例子将为所有匹配元素设置 background-color 和 font-size：</span></span><br><span class="line">$(<span class="string">&quot;p&quot;</span>).css(&#123;<span class="string">&quot;background-color&quot;</span>:<span class="string">&quot;yellow&quot;</span>,<span class="string">&quot;font-size&quot;</span>:<span class="string">&quot;200%&quot;</span>&#125;);</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+<li><p>toggleClass()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">该方法对被选元素进行添加/删除类的切换操作：</span></span><br><span class="line"><span class="comment">&lt;style type=&quot;text/css&quot;&gt;</span></span><br><span class="line"><span class="comment">	.blue</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">	color:blue;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">&lt;/style&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;h1 class=&quot;blue&quot;&gt;标题 1&lt;/h1&gt;</span></span><br><span class="line"><span class="comment">&lt;h2 class=&quot;blue&quot;&gt;标题 2&lt;/h2&gt;</span></span><br><span class="line"><span class="comment">&lt;p class=&quot;blue&quot;&gt;这是一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;这是另外一个段落。&lt;/p&gt;</span></span><br><span class="line"><span class="comment">&lt;br&gt;</span></span><br><span class="line"><span class="comment">&lt;button&gt;切换 class&lt;/button&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;h1,h2,p&quot;</span>).toggleClass(<span class="string">&quot;blue&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/28/jQuery-%E5%9F%BA%E7%A1%804-%E5%B8%B8%E7%94%A8%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1689,154 +1915,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/31/Java%E9%9B%86%E5%90%88%E7%B1%BB5-Deque/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/31/Java%E9%9B%86%E5%90%88%E7%B1%BB5-Deque/" itemprop="url">Java集合类5-Deque</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-31T00:32:27+08:00">
-                2020-05-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E9%9B%86%E5%90%88/" itemprop="url" rel="index">
-                    <span itemprop="name">Java集合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque<E></E></h4><p>支持双端元素插入和移除的线性集合</p>
-<p>定义了访问deque两端元素的方法</p>
-<ul>
-<li>插入、删除、获取操作支持两种形式：快速失败 和 返回nul l或 true/false</li>
-<li>既具有FIFO特定又具有LIFO特点，既是队列有是栈</li>
-<li>不推荐插入null元素，null作为特定返回值标识队列为空</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1890,7 +1968,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-count">179</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

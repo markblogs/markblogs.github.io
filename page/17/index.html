@@ -295,6 +295,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/19/Spring%E6%B3%A8%E8%A7%A3-%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/19/Spring%E6%B3%A8%E8%A7%A3-%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3/" itemprop="url">Spring注解-缓存注解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-19T21:39:30+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring注解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Spring缓存功能注解：-Cacheable、-CachePut、-CacheEvict、-Caching"><a href="#Spring缓存功能注解：-Cacheable、-CachePut、-CacheEvict、-Caching" class="headerlink" title="Spring缓存功能注解：@Cacheable、@CachePut、@CacheEvict、@Caching"></a>Spring缓存功能注解：@Cacheable、@CachePut、@CacheEvict、@Caching</h4><hr>
+<h4 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable"></a>@Cacheable</h4><p>@Cacheable可以标记在一个方法上，也可以标记在一个类上。当标记在一个方法上时表示该方法是支持缓存的，当标记在一个类上时则表示该类所有的方法都是支持缓存的。对于一个支持缓存的方法，Spring会在其被调用后将其返回值缓存起来，以保证下次利用同样的参数来执行该方法时可以直接从缓存中获取结果，而不需要再次执行该方法。Spring在缓存方法的返回值时是以键值对进行缓存的，值就是方法的返回结果，至于键的话，Spring又支持两种策略，默认策略和自定义策略，这个稍后会进行说明。需要注意的是当一个支持缓存的方法在对象内部被调用时是不会触发缓存功能的。@Cacheable可以指定三个属性，value、key和condition。</p>
+<p>使用Spring Cache需要我们做两方面的事：<br>（1）声明某些方法使用缓存</p>
+<p>（2）配置Spring对Cache的支持</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/19/Spring%E6%B3%A8%E8%A7%A3-%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/19/Spring%E6%B3%A8%E8%A7%A3-Qualifier/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1618,155 +1767,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/25/Redis-%E5%9F%BA%E7%A1%805-Set%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/25/Redis-%E5%9F%BA%E7%A1%805-Set%E5%91%BD%E4%BB%A4/" itemprop="url">Redis-基础5-Set命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T09:18:39+08:00">
-                2020-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="SADD-key-member1-member2-（向集合添加一个或多个成员）"><a href="#SADD-key-member1-member2-（向集合添加一个或多个成员）" class="headerlink" title="SADD key member1 [member2]（向集合添加一个或多个成员）"></a>SADD key member1 [member2]（向集合添加一个或多个成员）</h4><p>命令将一个或多个成员元素加入到集合中，已经存在于集合的成员元素将被忽略。<br>假如集合 key 不存在，则创建一个只包含添加的元素作成员的集合。<br>当集合 key 不是集合类型时，返回一个错误。</p>
-<h6 id="命令-SADD-KEY-NAME-VALUE1-VALUEN"><a href="#命令-SADD-KEY-NAME-VALUE1-VALUEN" class="headerlink" title="命令: SADD KEY_NAME VALUE1..VALUEN"></a>命令: SADD KEY_NAME VALUE1..VALUEN</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>被添加到集合中的新元素的数量，不包括被忽略的元素。</p>
-<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SADD myset &quot;hello&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; SADD myset &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; SADD myset &quot;hello&quot;</span><br><span class="line">(integer) 0</span><br><span class="line">redis 127.0.0.1:6379&gt; SMEMBERS myset</span><br><span class="line">1) &quot;hello&quot;</span><br><span class="line">2) &quot;foo&quot;</span><br></pre></td></tr></table></figure>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/25/Redis-%E5%9F%BA%E7%A1%805-Set%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1820,7 +1820,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-count">179</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

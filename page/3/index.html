@@ -295,6 +295,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/vue-%E5%9F%BA%E7%A1%807-%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E6%94%B6%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/vue-%E5%9F%BA%E7%A1%807-%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E6%94%B6%E9%9B%86/" itemprop="url">vue-基础7-表单数据自动收集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:26:28+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="表单数据自动收集"><a href="#表单数据自动收集" class="headerlink" title="表单数据自动收集"></a>表单数据自动收集</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>自动收集保单数据<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">           1.自动收集表单数据</span></span><br><span class="line"><span class="comment">            使用 v-model （双向数据绑定）自动收集数据</span></span><br><span class="line"><span class="comment">            text/textarea</span></span><br><span class="line"><span class="comment">            checkbox</span></span><br><span class="line"><span class="comment">            radio</span></span><br><span class="line"><span class="comment">            select</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;xxx&quot;</span> @<span class="attr">submit.prevent</span>=<span class="string">&quot;handleSubmit&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h2</span>&gt;</span>1.自动收集表单数据<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;username&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>密码：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;pwd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>性别：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;female&quot;</span> <span class="attr">value</span>=<span class="string">&quot;female&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;sex&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">&quot;female&quot;</span>&gt;</span>女<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">id</span>=<span class="string">&quot;male&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;sex&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">&quot;male&quot;</span>&gt;</span>男<span class="tag">&lt;/<span class="name">lable</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>爱好：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;basket&quot;</span> <span class="attr">value</span>=<span class="string">&quot;basket&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;likes&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">&quot;basket&quot;</span>&gt;</span>篮球<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;foot&quot;</span> <span class="attr">value</span>=<span class="string">&quot;foot&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;likes&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">&quot;foot&quot;</span>&gt;</span>足球<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;pingpang&quot;</span> <span class="attr">value</span>=<span class="string">&quot;pingpang&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;likes&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">&quot;foot&quot;</span>&gt;</span>乒乓球<span class="tag">&lt;/<span class="name">lable</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>城市：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">v-model</span>=<span class="string">&quot;selectCityId&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span>未选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">:value</span>=<span class="string">&quot;city.id&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;(city,index) in allCitys&quot;</span> <span class="attr">:index</span>=<span class="string">&quot;index&quot;</span>&gt;</span>&#123;&#123;city.name&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span>&gt;</span>介绍：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;info&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue-master/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//创建Vue 实例</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">el</span>:<span class="string">&quot;#demo&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">username</span> : <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">pwd</span> : <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">sex</span> : <span class="string">&#x27;female&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">likes</span>:[<span class="string">&#x27;foot&#x27;</span>,<span class="string">&#x27;pingpang&#x27;</span>],</span></span><br><span class="line"><span class="javascript">                <span class="attr">allCitys</span>:[&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">name</span>:<span class="string">&#x27;北京&#x27;</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">name</span>:<span class="string">&#x27;上海&#x27;</span>&#125;,&#123;<span class="attr">id</span>:<span class="number">3</span>,<span class="attr">name</span>:<span class="string">&#x27;苏州&#x27;</span>&#125;],</span></span><br><span class="line"><span class="javascript">                <span class="attr">selectCityId</span> : <span class="string">&#x27;1&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">info</span>:<span class="string">&quot;测试文本信息&quot;</span></span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="javascript">                <span class="function"><span class="title">handleSubmit</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="built_in">this</span>.username,<span class="built_in">this</span>.pwd,<span class="built_in">this</span>.sex,<span class="built_in">this</span>.likes,<span class="built_in">this</span>.selectCityId,<span class="built_in">this</span>.info)</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;)</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/vue-%E5%9F%BA%E7%A1%806-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1449,152 +1592,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%804-%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%804-%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/" itemprop="url">Elaticsearch文档操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
-                2020-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
-                    <span itemprop="name">搜索引擎</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="修改文档document"><a href="#修改文档document" class="headerlink" title="修改文档document"></a>修改文档document</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#  POST	localhost:<span class="number">9200</span>/blog1/article/<span class="number">1</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;id&quot;</span>:<span class="number">1</span>,</span><br><span class="line">	<span class="attr">&quot;title&quot;</span>:<span class="string">&quot;【修改】ElasticSearch是一个基于Lucene的搜索服务器&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;content&quot;</span>:<span class="string">&quot;【修改】它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%804-%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1781,7 +1778,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-count">179</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
