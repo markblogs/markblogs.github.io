@@ -295,1869 +295,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/11/Activiti-%E5%9F%BA%E7%A1%801-%E8%A1%A8%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/11/Activiti-%E5%9F%BA%E7%A1%801-%E8%A1%A8%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T23:32:40+08:00">
-                2020-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Activiti表结构分析"><a href="#Activiti表结构分析" class="headerlink" title="Activiti表结构分析"></a>Activiti表结构分析</h4><p>Activiti 工作流总共包含 23 张数据表（现在是25张，新增了 ACT_EVT_LOG 和 ACT_PROCDEF_INFO ）</p>
-<p>表名规则：Activiti 使用到的表都是 ACT_ 开头的。表名的第二部分用两个字母表明表的用途。</p>
-<ul>
-<li><code>ACT_GE_ （GE）</code> 表示 general 全局通用数据及设置，各种情况都使用的数据。</li>
-<li><code>ACT_HI_ （HI）</code> 表示 history 历史数据表，包含着程执行的历史相关数据，如结束的流程实例，变量，任务，等等</li>
-<li><code>ACT_ID_ （ID）</code> 表示 identity 组织机构，用户记录，流程中使用到的用户和组。这些表包含标识的信息，如用户，用户组，等等。</li>
-<li><code>ACT_RE_ （RE）</code> 表示 repository 存储，包含的是静态信息，如，流程定义，流程的资源（图片，规则等）。</li>
-<li><code>ACT_RU_ （RU）</code> 表示 runtime 运行时，运行时的流程变量，用户任务，变量，职责（job）等运行时的数据。Activiti 只存储实例执行期间的运行时数据，当流程实例结束时，将删除这些记录。这就保证了这些运行时的表小且快。</li>
-</ul>
-<hr>
-<h4 id="表结构介绍及整理"><a href="#表结构介绍及整理" class="headerlink" title="表结构介绍及整理"></a>表结构介绍及整理</h4><ul>
-<li><p><strong>act_ge_bytearray</strong>(二进制数据表)</p>
-<p>表作用：存储二进制数据表，存储通用的流程定义和流程资源</p>
-<p>表应用场景：保存流程定义图片和xml、Serializable(序列化)的变量,即保存所有二进制数据，特别注意类路径部署时候，不要把svn等隐藏文件或者其他与流程无关的文件也一起部署到该表中，会造成一些错误（可能导致流程定义无法删除）</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th>取值说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td>主键ID</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-<td>Version(版本)</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td>部署的文件名称，如：leave.bpmn.png,leave.bpmn20.xml</td>
-</tr>
-<tr>
-<td>DEPLOYMENT_ID_</td>
-<td>部署ID</td>
-<td>nvarchar(64)</td>
-<td>部署表ID</td>
-</tr>
-<tr>
-<td>BYTES_</td>
-<td>部署文件</td>
-<td>varbinary(max)</td>
-<td>部署文件</td>
-</tr>
-<tr>
-<td>GENERATED_</td>
-<td>是否是引擎生成</td>
-<td>tinyint</td>
-<td>0为用户生成，1为activiti生成</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ge_property(属性数据表)</strong></p>
-<p>表作用：属性数据表。存储整个流程引擎级别的数据。</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>VALUE_</td>
-<td>值</td>
-<td>nvarchar(300)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_actinst(历史节点表)</strong></p>
-<p>表作用：历史活动信息。这里记录流程流转过的所有节点，与HI_TASKINST不同的是，taskinst只记录usertask内容</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>ACT_ID_</td>
-<td>节点ID</td>
-<td>nvarchar(225)</td>
-<td>节点定义ID</td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>任务实例ID</td>
-<td>nvarchar(64)</td>
-<td>任务实例ID 其他节点类型实例ID在这里为空</td>
-</tr>
-<tr>
-<td>CALL_PROC_INST_ID_</td>
-<td>调用外部的流程实例ID</td>
-<td>nvarchar(64)</td>
-<td>调用外部流程的流程实例ID</td>
-</tr>
-<tr>
-<td>ACT_NAME_</td>
-<td>节点名称</td>
-<td>nvarchar(225)</td>
-<td>节点定义名称</td>
-</tr>
-<tr>
-<td>ACT_TYPE_</td>
-<td>节点类型</td>
-<td>nvarchar(225)</td>
-<td>如startEvent、userTask</td>
-</tr>
-<tr>
-<td>ASSIGNEE_</td>
-<td>签收人</td>
-<td>nvarchar(64)</td>
-<td>节点签收人</td>
-</tr>
-<tr>
-<td>START_TIME_</td>
-<td>开始时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>END_TIME_</td>
-<td>结束时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>DURATION_</td>
-<td>耗时</td>
-<td>numeric(19,0)</td>
-<td>毫秒值</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_attachment(历史附件表)</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>integer</td>
-</tr>
-<tr>
-<td>USER_ID_</td>
-<td>用户ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>DESCRIPTION_</td>
-<td>描述</td>
-<td>nvarchar(4000)</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>任务实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>URL_</td>
-<td>附件地址</td>
-<td>nvarchar(4000)</td>
-</tr>
-<tr>
-<td>CONTENT_ID_</td>
-<td>字节表的ID</td>
-<td>nvarchar(64)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_comment( 历史意见表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-<td>类型：event（事件）comment（意见）</td>
-</tr>
-<tr>
-<td>TIME_</td>
-<td>时间</td>
-<td>datetime</td>
-<td>填写时间</td>
-</tr>
-<tr>
-<td>USER_ID_</td>
-<td>用户ID</td>
-<td>nvarchar(64)</td>
-<td>填写人</td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>节点任务ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>ACTION_</td>
-<td>行为类型</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>MESSAGE_</td>
-<td>基本内容</td>
-<td>nvarchar(4000)</td>
-<td>用于存放流程产生的信息，比如审批意见</td>
-</tr>
-<tr>
-<td>FULL_MSG_</td>
-<td>全部内容</td>
-<td>varbinary(max)</td>
-<td>附件地址</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_detail（历史详情表）</strong></p>
-<p>作用：流程中产生的变量详细，包括控制流程流转的变量，业务表单中填写的流程需要用到的变量等。</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>任务实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>ACT_INST_ID_</td>
-<td>节点实例ID</td>
-<td>nvarchar(64)</td>
-<td>CT_HI_ACTINST表的ID</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>VAR_TYPE_</td>
-<td>参数类型</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>TIME_</td>
-<td>时间戳</td>
-<td>datetime</td>
-<td>创建时间</td>
-</tr>
-<tr>
-<td>BYTEARRAY_ID_</td>
-<td>字节表ID</td>
-<td>nvarchar</td>
-<td>ACT_GE_BYTEARRAY表的ID</td>
-</tr>
-<tr>
-<td>DOUBLE_</td>
-<td>DOUBLE</td>
-<td>double precision</td>
-<td>存储变量类型为Double</td>
-</tr>
-<tr>
-<td>LONG_</td>
-<td>LONG</td>
-<td>numeric</td>
-<td>存储变量类型为long</td>
-</tr>
-<tr>
-<td>TEXT_</td>
-<td>TEXT</td>
-<td>nvarchar</td>
-<td>存储变量值类型为String</td>
-</tr>
-<tr>
-<td>TEXT2_</td>
-<td>TEXT2</td>
-<td>nvarchar</td>
-<td>此处存储的是JPA持久化对象时，才会有值。此值为对象ID</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_procinst(历史流程实例)</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>BUSINESS_KEY_</td>
-<td>业务主键</td>
-<td>nvarchar(225)</td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>START_TIME_</td>
-<td>开始时间</td>
-<td>datetime</td>
-</tr>
-<tr>
-<td>END_TIME_</td>
-<td>结束时间</td>
-<td>datetime</td>
-</tr>
-<tr>
-<td>DURATION_</td>
-<td>耗时</td>
-<td>numeric(19)</td>
-</tr>
-<tr>
-<td>START_USER_ID_</td>
-<td>开始用户</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>START_ACT_ID_</td>
-<td>开始节点ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>END_ACT_ID_</td>
-<td>结束节点ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>SUPER_PROCESS_INSTANCE_ID_</td>
-<td>父流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>DELETE_REASON_</td>
-<td>删除原因</td>
-<td>nvarchar(4000)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_taskinst（历史任务实例表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>TASK_DEF_KEY_</td>
-<td>节点定义ID</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>PARENT_TASK_ID_</td>
-<td>父节点实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>DESCRIPTION_</td>
-<td>描述</td>
-<td>nvarchar(4000)</td>
-<td></td>
-</tr>
-<tr>
-<td>OWNER_</td>
-<td>实际签收人 任务的拥有者</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>ASSIGNEE_</td>
-<td>签收人或被委托</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>START_TIME_</td>
-<td>开始时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>CLAIM_TIME_</td>
-<td>提醒时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>END_TIME_</td>
-<td>结束时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>DURATION_</td>
-<td>耗时</td>
-<td>numeric(19)</td>
-<td></td>
-</tr>
-<tr>
-<td>DELETE_REASON_</td>
-<td>删除原因</td>
-<td>nvarchar(4000)</td>
-<td>删除原因(completed,deleted)</td>
-</tr>
-<tr>
-<td>PRIORITY_</td>
-<td>优先级别</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>DUE_DATE_</td>
-<td>过期时间</td>
-<td>datetime</td>
-<td>过期时间，表明任务应在多长时间内完成</td>
-</tr>
-<tr>
-<td>FORM_KEY_</td>
-<td>节点定义的formkey</td>
-<td>nvarchar(255)</td>
-<td>desinger节点定义的form_key属性</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_varinst （历史变量表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>任务实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>VAR_TYPE_</td>
-<td>参数类型</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>BYTEARRAY_ID_</td>
-<td>字节表ID</td>
-<td>nvarchar(400)</td>
-<td>ACT_GE_BYTEARRAY表的主键</td>
-</tr>
-<tr>
-<td>DOUBLE_</td>
-<td>DOUBLE</td>
-<td>double precision</td>
-<td></td>
-</tr>
-<tr>
-<td>LONG_</td>
-<td>LONG</td>
-<td>numeric</td>
-<td></td>
-</tr>
-<tr>
-<td>TEXT_</td>
-<td></td>
-<td>varchar(4000)</td>
-<td></td>
-</tr>
-<tr>
-<td>TEXT2_</td>
-<td></td>
-<td>varchar(4000)</td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_hi_identitylink(历史流程人员表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>GROUP_ID_</td>
-<td>组ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>USER_ID_</td>
-<td>用户ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>节点实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-</tbody></table>
-<p>​</p>
-</li>
-<li><p><strong>act_id_group（用户组信息）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>D_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_id_info（用户扩展信息表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-</tr>
-<tr>
-<td>USER_ID_</td>
-<td>用户ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td></td>
-</tr>
-<tr>
-<td>KEY_</td>
-<td></td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>VALUE_</td>
-<td></td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>PASSWORD_</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Image</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>PARENT_ID_</td>
-<td></td>
-<td>nvarchar(255)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_id_membership( 用户与分组对应信息表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>USER_ID</td>
-<td>用户ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>GROUP_ID</td>
-<td>用户组ID</td>
-<td>nvarchar(64)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_id_user（用户信息表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-</tr>
-<tr>
-<td>FIRST_</td>
-<td>姓</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>LAST_</td>
-<td>名</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>EMAIL_</td>
-<td>EMAIL_</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>PWD_</td>
-<td>密码</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>PICTURE_ID_</td>
-<td>图片ID</td>
-<td>nvarchar(64)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_re_deployment（部署信息表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>部署名称</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>CATEGORY_</td>
-<td>分类</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>DEPLOY_TIME_</td>
-<td>部署时间</td>
-<td>datetime</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_re_model( 流程设计模型部署表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>KEY_</td>
-<td>KEY_</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>CATEGORY_</td>
-<td>分类</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>CREATE_TIME_</td>
-<td>创建时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>LAST_UPDATE_TIME_</td>
-<td>最新修改时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>VERSION_</td>
-<td>版本</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>META_INFO_</td>
-<td></td>
-<td>nvarchar(255)</td>
-<td>以json格式保存流程定义的信息</td>
-</tr>
-<tr>
-<td>DEPLOYMENT_ID_</td>
-<td>部署ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EDITOR_SOURCE_VALUE_ID_</td>
-<td></td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>EDITOR_SOURCE_EXTRA_VALUE_ID_</td>
-<td></td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_re_procdef (流程定义数据表 )</strong></p>
-<p>作用：业务流程定义数据表。</p>
-<p>数据关联：</p>
-<p>​    此表和 ACT_RE_DEPLOYMENT 是多对一的关系，即，一个部署的bar包里可能包含多个流程定义文件，每个流程定义文件都会有一条记录在 ACT_REPROCDEF 表内，每个流程定义的数据，都会对于 ACT_GE_BYTEARRAY 表内的一个资源文件和 PNG 图片文件。</p>
-<p>​    和 ACT_GE_BYTEARRAY 的关联是通过程序用ACT_GE_BYTEARRAY.NAME 与 ACT_RE_PROCDEF.NAME 完成的，在数据库表结构中没有体现。</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>CATEGORY_</td>
-<td>分类</td>
-<td>nvarchar(255)</td>
-<td>流程定义的Namespace就是类别</td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>KEY_</td>
-<td>定义的KEY</td>
-<td>nvarchar(255)</td>
-<td>流程定义ID</td>
-</tr>
-<tr>
-<td>VERSION_</td>
-<td>版本</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>DEPLOYMENT_ID_</td>
-<td>部署表ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>RESOURCE_NAME_</td>
-<td>bpmn文件名称</td>
-<td>nvarchar(4000)</td>
-<td>流程bpmn文件名称</td>
-</tr>
-<tr>
-<td>DGRM_RESOURCE_NAME_</td>
-<td>png图片名称</td>
-<td>nvarchar(4000)</td>
-<td>流程图片名称</td>
-</tr>
-<tr>
-<td>DESCRIPTION_</td>
-<td>描述</td>
-<td>nvarchar(4000)</td>
-<td></td>
-</tr>
-<tr>
-<td>HAS_START_FORM_KEY_</td>
-<td>是否存在开始节点formKey</td>
-<td>tinyint</td>
-<td>start节点是否存在formKey 0否 1是</td>
-</tr>
-<tr>
-<td>SUSPENSION_STATE_</td>
-<td>是否挂起</td>
-<td>tinyint</td>
-<td>1 激活 2挂起</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_event_subscr（事件表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>事件ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>EVENT_TYPE_</td>
-<td>事件类型</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>EVENT_NAME_</td>
-<td>事件名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>ACTIVITY_ID_</td>
-<td>活动实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>CONFIGURATION_</td>
-<td>配置</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>CREATED_</td>
-<td>是否创建</td>
-<td>datetime</td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_execution( 运行时流程执行实例表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td>int</td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>BUSINESS_KEY_</td>
-<td>业务主键ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>PARENT_ID_</td>
-<td>父节点实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>SUPER_EXEC_</td>
-<td>SUPER_EXEC_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>ACT_ID_</td>
-<td>节点实例ID</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>IS_ACTIVE_</td>
-<td>是否存活</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>IS_CONCURRENT_</td>
-<td>是否并行</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>IS_SCOPE_</td>
-<td>IS_SCOPE_</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>IS_EVENT_SCOPE_</td>
-<td>IS_EVENT_SCOPE_</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>SUSPENSION_STATE_</td>
-<td>是否挂起</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>CACHED_ENT_STATE_</td>
-<td></td>
-<td>int</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_identitylink( 运行时流程人员表 )</strong></p>
-<p>作用：任务参与者数据表。主要存储当前节点参与者的信息。</p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td>int</td>
-</tr>
-<tr>
-<td>GROUP_ID_</td>
-<td>组ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>USER_ID_</td>
-<td>用户ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>节点实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(255)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_job( 运行时定时任务数据表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>标识</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>版本</td>
-<td>int</td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>LOCK_EXP_TIME_</td>
-<td>锁定释放时间</td>
-<td>datetime</td>
-</tr>
-<tr>
-<td>LOCK_OWNER_</td>
-<td>挂起者</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>EXCLUSIVE_</td>
-<td></td>
-<td>bit</td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROCESS_INSTANCE_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>RETRIES_</td>
-<td></td>
-<td>int</td>
-</tr>
-<tr>
-<td>EXCEPTION_STACK_ID_</td>
-<td>异常信息ID</td>
-<td>nvarchar(64)</td>
-</tr>
-<tr>
-<td>EXCEPTION_MSG_</td>
-<td>异常信息</td>
-<td>nvarchar(4000)</td>
-</tr>
-<tr>
-<td>DUEDATE_</td>
-<td>到期时间</td>
-<td>datetime</td>
-</tr>
-<tr>
-<td>REPEAT_</td>
-<td>重复</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>HANDLER_TYPE_</td>
-<td>处理类型</td>
-<td>nvarchar(255)</td>
-</tr>
-<tr>
-<td>HANDLER_CFG_</td>
-<td></td>
-<td>nvarchar(4000)</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_task( 运行时任务节点表）</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_DEF_ID_</td>
-<td>流程定义ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>节点定义名称</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>PARENT_TASK_ID_</td>
-<td>父节点实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>DESCRIPTION_</td>
-<td>节点定义描述</td>
-<td>nvarchar(4000)</td>
-<td></td>
-</tr>
-<tr>
-<td>TASK_DEF_KEY_</td>
-<td>节点定义的KEY</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>OWNER_</td>
-<td>实际签收人</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>ASSIGNEE_</td>
-<td>签收人或委托人</td>
-<td>nvarchar(255)</td>
-<td>拥有者（一般情况下为空，只有在委托时才有值）</td>
-</tr>
-<tr>
-<td>DELEGATION_</td>
-<td>委托类型</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PRIORITY_</td>
-<td>优先级别</td>
-<td>int</td>
-<td>优先级别，默认为：50</td>
-</tr>
-<tr>
-<td>CREATE_TIME_</td>
-<td>创建时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>DUE_DATE_</td>
-<td>过期时间</td>
-<td>datetime</td>
-<td></td>
-</tr>
-<tr>
-<td>SUSPENSION_STATE_</td>
-<td>是否挂起</td>
-<td>int</td>
-<td>1代表激活 2代表挂起</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><strong>act_ru_variable( 运行时流程变量数据表 )</strong></p>
-<table>
-<thead>
-<tr>
-<th>字段名称</th>
-<th>字段描述</th>
-<th>数据类型</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ID_</td>
-<td>ID_</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>REV_</td>
-<td>乐观锁</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>TYPE_</td>
-<td>类型</td>
-<td>nvarchar(255)</td>
-<td></td>
-</tr>
-<tr>
-<td>NAME_</td>
-<td>名称</td>
-<td>nvarchar(255)</td>
-<td>变量名称</td>
-</tr>
-<tr>
-<td>EXECUTION_ID_</td>
-<td>执行实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>PROC_INST_ID_</td>
-<td>流程实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>TASK_ID_</td>
-<td>节点实例ID</td>
-<td>nvarchar(64)</td>
-<td></td>
-</tr>
-<tr>
-<td>BYTEARRAY_ID_</td>
-<td>字节表ID</td>
-<td>nvarchar(64)</td>
-<td>字节表的ID（ACT_GE_BYTEARRAY）</td>
-</tr>
-<tr>
-<td>DOUBLE_</td>
-<td></td>
-<td>float</td>
-<td></td>
-</tr>
-<tr>
-<td>LONG_</td>
-<td></td>
-<td>numeric(19)</td>
-<td></td>
-</tr>
-<tr>
-<td>TEXT_</td>
-<td></td>
-<td>nvarchar(4000)</td>
-<td></td>
-</tr>
-<tr>
-<td>TEXT2_</td>
-<td></td>
-<td>nvarchar(4000)</td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-<li><p>ACT_PROCDEF_INFO</p>
-</li>
-<li><p>ACT_EVT_LOG</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url">正则表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T21:29:01+08:00">
-                2020-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">正则表达式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h3><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。</p>
-<p>例如：</p>
-<ul>
-<li><strong>runoo+b</strong>，可以匹配 runoob、runooob、runoooooob 等，+ 号代表前面的字符必须至少出现一次（1次或多次）。</li>
-<li><strong>runoo*b</strong>，可以匹配 runob、runoob、runoooooob 等，* 号代表字符可以不出现，也可以出现一次或者多次（0次、或1次、或多次）。</li>
-<li><strong>colou?r</strong> 可以匹配 color 或者 colour，? 问号代表前面的字符最多只可以出现一次（0次、或1次）。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/11/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/10/Linux-Shell%E5%9F%BA%E7%A1%807-%E7%BB%93%E6%9D%9F%E5%BE%AA%E7%8E%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3319,6 +1456,295 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/28/Linux-Shell%E6%A1%88%E4%BE%8B-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/28/Linux-Shell%E6%A1%88%E4%BE%8B-1/" itemprop="url">Linux-Shell案例-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T22:48:22+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="检测磁盘空间"><a href="#检测磁盘空间" class="headerlink" title="检测磁盘空间"></a>检测磁盘空间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># Big_Users-在各个目录中查找大磁盘空间用户</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 脚本参数</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash">CHECK_DIRECTORIES=<span class="string">&quot; /var/log /home&quot;</span>  <span class="comment">#Directories to check</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">############## 主脚本 #################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash">DATE=$(date <span class="string">&#x27;+%m%d%y&#x27;</span>)               <span class="comment">#报告文件的日期</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">exec</span> &gt; disk_space_<span class="variable">$DATE</span>.rpt          <span class="comment">#创建文件标准输出</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">echo</span> <span class="string">&quot;Top Ten Disk Space Usage&quot;</span>      <span class="comment">#报告头</span></span></span><br><span class="line">echo &quot;for $CHECK_DIRECTORIES Directories&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="keyword">for</span> DIR_CHECK <span class="keyword">in</span> <span class="variable">$CHECK_DIRECTORIES</span>  <span class="comment">#循环 文件夹列表</span></span></span><br><span class="line">do</span><br><span class="line">  echo &quot;&quot;</span><br><span class="line">  echo &quot;The $DIR_CHECK Directory:&quot;   #文件夹头部</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 被用户使用前十的磁盘空间</span></span></span><br><span class="line">  du -S $DIR_CHECK 2&gt;/dev/null |</span><br><span class="line">  sort -rn |</span><br><span class="line">  sed &#x27;&#123;11,$D; =&#125;&#x27; |</span><br><span class="line">  sed &#x27;N; s/\n/ /&#x27; |</span><br><span class="line">  gawk &#x27;&#123;printf $1 &quot;:&quot; &quot;\t&quot; $2  &quot;\t&quot; $3 &quot;\n&quot;&#125;&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="keyword">done</span>                                 <span class="comment">#End of loop</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/26/Linux%E5%91%BD%E4%BB%A47-jdk%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/26/Linux%E5%91%BD%E4%BB%A47-jdk%E5%91%BD%E4%BB%A4/" itemprop="url">Linux命令7_jdk命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-26T02:24:17+08:00">
+                2020-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux命令</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Linux-Jdk命令shell"><a href="#Linux-Jdk命令shell" class="headerlink" title="Linux-Jdk命令shell"></a>Linux-Jdk命令shell</h4><p><strong>致敬龙哥付出，拷贝以备不时之需</strong></p>
+<p><em>Linux 环境操作 jar</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">APP_NAME=/home/workspace/xxx.jar</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">使用说明，用来提示输入参数</span></span><br><span class="line">usage() &#123;</span><br><span class="line">echo &quot;Usage: sh 执行脚本.sh [start|stop|restart|status]&quot;</span><br><span class="line">exit 1</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">检查程序是否在运行</span></span><br><span class="line">is_exist()&#123;</span><br><span class="line">pid=`ps -ef|grep $APP_NAME|grep -v grep|awk &#x27;&#123;print $2&#125;&#x27; `</span><br><span class="line"><span class="meta">#</span><span class="bash">如果不存在返回1，存在返回0</span></span><br><span class="line">if [ -z &quot;$&#123;pid&#125;&quot; ]; then</span><br><span class="line">return 1</span><br><span class="line">else</span><br><span class="line">return 0</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">启动方法</span></span><br><span class="line">start()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is already running. pid=$&#123;pid&#125; .&quot;</span><br><span class="line">else</span><br><span class="line">nohup /usr/local/src/jdk1.8.0_251/bin/java -Dfile.encoding=utf-8 -jar $APP_NAME --spring.profiles.active=test --server.port=8099  &gt;&gt; /home/workspace/logs/xxx.log 2&gt;&amp;1 &amp;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">停止方法</span></span><br><span class="line">stop()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">kill -9 $pid</span><br><span class="line">else</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is not running&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">输出运行状态</span></span><br><span class="line">status()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is running. Pid is $&#123;pid&#125;&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is NOT running.&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重启</span></span><br><span class="line">restart()&#123;</span><br><span class="line">stop</span><br><span class="line">start</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">根据输入参数，选择执行对应方法，不输入则执行使用说明</span></span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">&quot;start&quot;)</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">&quot;stop&quot;)</span><br><span class="line">stop</span><br><span class="line">;;</span><br><span class="line">&quot;status&quot;)</span><br><span class="line">status</span><br><span class="line">;;</span><br><span class="line">&quot;restart&quot;)</span><br><span class="line">restart</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">usage</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -3372,7 +1798,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-count">176</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
