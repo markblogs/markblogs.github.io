@@ -295,6 +295,434 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/" itemprop="url">Elaticsearch文档操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="集群配置"><a href="#集群配置" class="headerlink" title="集群配置"></a>集群配置</h4><p>修改elasticsearch-cluster\node*\config\elasticsearch.yml配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">节点1的配置信息：</span></span><br><span class="line"><span class="meta">#</span><span class="bash">集群名称，保证唯一</span></span><br><span class="line">cluster.name: my-elasticsearch</span><br><span class="line"><span class="meta">#</span><span class="bash">节点名称，必须不一样</span></span><br><span class="line">node.name: node-1</span><br><span class="line"><span class="meta">#</span><span class="bash">必须为本机的ip地址</span></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line"><span class="meta">#</span><span class="bash">服务端口号，在同一机器下必须不一样</span></span><br><span class="line">http.port: 9200</span><br><span class="line"><span class="meta">#</span><span class="bash">集群间通信端口号，在同一机器下必须不一样</span></span><br><span class="line">transport.tcp.port: 9300</span><br><span class="line"><span class="meta">#</span><span class="bash">设置集群自动发现机器ip集合</span></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1:9300&quot;,&quot;127.0.0.1:9301&quot;,&quot;127.0.0.1:9302&quot;]</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch%E6%A3%80%E7%B4%A2%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch%E6%A3%80%E7%B4%A2%E8%AF%AD%E6%B3%95/" itemprop="url">es检索语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id><a href="#" class="headerlink" title></a></h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/" itemprop="url">正则表达式-常用案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="常用案例"><a href="#常用案例" class="headerlink" title="常用案例"></a>常用案例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 校验基本日期格式</span><br><span class="line"><span class="keyword">var</span>  reg1 = <span class="regexp">/^\d&#123;4&#125;(\-|\/|\.)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="keyword">var</span>  reg2 = <span class="regexp">/^(^(\d&#123;4&#125;|\d&#123;2&#125;)(\-|\/|\.)\d&#123;1,2&#125;\3\d&#123;1,2&#125;$)|(^\d&#123;4&#125;年\d&#123;1,2&#125;月\d&#123;1,2&#125;日$)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 校验密码强度</span><br><span class="line">密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在<span class="number">8</span>-<span class="number">10</span>之间。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 校验中文字符串仅能是中文。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[\\u4e00-\\u9fa5]&#123;0,&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> 由数字、<span class="number">26</span>个英文字母或下划线组成的字符串</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\w+$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> 校验E-Mail 地址   同密码一样，下面是E-mail地址合规性的正则检查语句。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 校验身份证号码</span><br><span class="line">下面是身份证号码的正则校验。<span class="number">15</span> 或 <span class="number">18</span>位。</span><br><span class="line"><span class="number">15</span>位： <span class="keyword">var</span> reg = <span class="regexp">/^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$/</span>;</span><br><span class="line"><span class="number">18</span>位：<span class="keyword">var</span>  reg = <span class="regexp">/^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span> 校验日期 “yyyy-mm-dd” 格式的日期校验，已考虑平闰年。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span> 校验金额金额校验，精确到<span class="number">2</span>位小数。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[0-9]+(.[0-9]&#123;2&#125;)?$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">9.</span> 校验手机号</span><br><span class="line"></span><br><span class="line">下面是国内 <span class="number">13</span>、<span class="number">15</span>、<span class="number">18</span>开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d&#123;8&#125;$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">10.</span> 判断IE的版本IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\\/[5-9]\\.0).*$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">11.</span> 校验IP-v4地址</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">12.</span> 校验IP-v6地址</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">13.</span> 检查URL的前缀</span><br><span class="line">应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。</span><br><span class="line">	<span class="keyword">if</span>(!s.match(<span class="regexp">/^[a-zA-Z]+:\/\//</span>)) &#123;</span><br><span class="line">		s = <span class="string">&#x27;http://&#x27;</span>+ s;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"><span class="number">14.</span> 提取URL链接</span><br><span class="line">下面的这个表达式可以筛选出一段文本中的URL。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(f|ht)&#123;1&#125;(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&amp;=]*)?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">15.</span> 文件路径及扩展名校验</span><br><span class="line">验证 windows下文件路径和扩展名（下面的例子中为.txt文件）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^([a-zA-Z]\\:|\\\\)\\\\([^\\]+\\)*[^\\/:*?&quot;&lt;&gt;|]+\\.txt(l)?$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">16.</span> 提取Color Hex Codes</span><br><span class="line">有时需要抽取网页中的颜色代码，可以使用下面的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^#([A-Fa-f0-9]&#123;6&#125;|[A-Fa-f0-9]&#123;3&#125;)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">17.</span> 提取网页图片假若你想提取网页中所有图片信息，可以利用下面的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\\&lt; *[img][^\\&gt;]*[src] *= *[\\&quot;\&#x27;]&#123;0,1&#125;([^\\&quot;\&#x27;\ &gt;]*)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">18.</span> 提取页面超链接 提取html中的超链接。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=&quot;https?:\/\/)((?!(?:(?:www\\.)?&#x27;.implode(&#x27;|(?:www\\.)?&#x27;, $follow_list).&#x27;))[^&quot; rel=&quot;external nofollow&quot; ]+)&quot;((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">19.</span> 查找CSS属性</span><br><span class="line">通过下面的表达式，可以搜索到相匹配的CSS属性。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\s*[a-zA-Z\\-]+\\s*[:]&#123;1&#125;\\s[a-zA-Z0-9\\s.#]+[;]&#123;1&#125;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">20.</span> 抽取注释</span><br><span class="line">如果你需要移除HMTL中的注释，可以使用如下的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;!--(.*?)--&gt;/</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"><span class="number">21</span> 只能为字母加数字组合</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reg =  <span class="regexp">/^[0-9a-zA-Z]+$/</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/thymeleaf-%E5%9F%BA%E7%A1%80-6-%E5%88%97%E8%A1%A8%E7%BB%91%E5%AE%9A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1383,554 +1811,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-RuntimeService/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/12/Activiti-Service-RuntimeService/" itemprop="url">Activiti-Service-RuntimeService</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:25:16+08:00">
-                2020-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="RuntimeService"><a href="#RuntimeService" class="headerlink" title="RuntimeService"></a>RuntimeService</h4><p>运行服务，处理所有正在运行态的流程实例、任务等。</p>
-<ul>
-<li><p>启动流程实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用给定的键在流程定义的最新版本中启动一个新的流程实例。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKey</span><span class="params">(String processDefinitionKey)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKey</span><span class="params">(String processDefinitionKey, String businessKey)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKey</span><span class="params">(String processDefinitionKey, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKey</span><span class="params">(String processDefinitionKey, String businessKey, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类似于&#123; @link # startProcessInstanceByKey(String)&#125;,但是使用一个特定的租户标识符。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKeyAndTenantId</span><span class="params">(String processDefinitionKey, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKeyAndTenantId</span><span class="params">(String processDefinitionKey, String businessKey, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKeyAndTenantId</span><span class="params">(String processDefinitionKey, Map&lt;String, Object&gt; variables, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByKeyAndTenantId</span><span class="params">(String processDefinitionKey, String businessKey, Map&lt;String, Object&gt; variables, String tenantId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用给定的id在流程定义的精确指定版本中启动一个新的流程实例。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceById</span><span class="params">(String processDefinitionId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceById</span><span class="params">(String processDefinitionId, String businessKey)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceById</span><span class="params">(String processDefinitionId, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceById</span><span class="params">(String processDefinitionId, String businessKey, Map&lt;String, Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表示接收到消息的流程引擎并启动一个新的&#123;@link ProcessInstance&#125;。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessage</span><span class="params">(String messageName)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessage</span><span class="params">(String messageName, String businessKey)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessage</span><span class="params">(String messageName, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessage</span><span class="params">(String messageName, String businessKey, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类似于&#123; @link RuntimeService # startProcessInstanceByMessage(String)&#125;,但是有租户上下文。</span></span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessageAndTenantId</span><span class="params">(String messageName, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessageAndTenantId</span><span class="params">(String messageName, String businessKey, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessageAndTenantId</span><span class="params">(String messageName, Map&lt;String, Object&gt; processVariables, String tenantId)</span></span>;</span><br><span class="line"><span class="function">ProcessInstance <span class="title">startProcessInstanceByMessageAndTenantId</span><span class="params">(String messageName, String businessKey, Map&lt;String, Object&gt; processVariables, String tenantId)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>删除流程实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除现有的运行时流程实例。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteProcessInstance</span><span class="params">(String processInstanceId, String deleteReason)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>查找活动id</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查找在活动中等待的所有执行的活动id。</span></span><br><span class="line"><span class="comment">// 这是一个列表，因为单个活动可以多次活动。</span></span><br><span class="line"><span class="function">List&lt;String&gt; <span class="title">getActiveActivityIds</span><span class="params">(String executionId)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>添加外部触发器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将一个外部触发器发送到正在执行的活动实例中。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signal</span><span class="params">(String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signal</span><span class="params">(String executionId, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>更新业务秘钥</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更新提供的流程实例的业务密钥。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateBusinessKey</span><span class="params">(String processInstanceId, String businessKey)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>用户（用户组）的链接标识操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 涉及一个具有流程实例的用户。</span></span><br><span class="line"><span class="comment">// 身份链接的类型由给定的身份链接类型定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addUserIdentityLink</span><span class="params">(String processInstanceId, String userId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 涉及一个具有流程实例的用户组。</span></span><br><span class="line"><span class="comment">// 身份链接的类型由给定的身份链接类型定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addGroupIdentityLink</span><span class="params">(String processInstanceId, String groupId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #addUserIdentityLink(String、String、String)&#125;的便利简写;有一个类型&#123; @link IdentityLinkType #候选人&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addParticipantUser</span><span class="params">(String processInstanceId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #addGroupIdentityLink(String, String, String)&#125;的遍历简写</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addParticipantGroup</span><span class="params">(String processInstanceId, String groupId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #deleteUserIdentityLink(String, String, String)&#125;的遍历简写</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteParticipantUser</span><span class="params">(String processInstanceId, String userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;@link #deleteGroupIdentityLink(String, String, String)&#125;的遍历简写</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteParticipantGroup</span><span class="params">(String processInstanceId, String groupId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除用户与给定身份链接类型的流程实例之间的关联。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUserIdentityLink</span><span class="params">(String processInstanceId, String userId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除一个组与给定的标识链接类型的流程实例之间的关联。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteGroupIdentityLink</span><span class="params">(String processInstanceId, String groupId, String identityLinkType)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检索与给定流程实例关联的&#123;@link IdentityLink&#125;。</span></span><br><span class="line">这样的&#123;<span class="meta">@link</span> IdentityLink&#125;通知某个用户是如何参与流程实例的。</span><br><span class="line"><span class="function">List&lt;IdentityLink&gt; <span class="title">getIdentityLinksForProcessInstance</span><span class="params">(String instanceId)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>获取变量（所有变量（包含父范围的4个，不包含父范围的3个），给定变量（包含父范围的3个，不包含父范围的3个）单个变量（3个）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从给定的执行范围(包括父范围)可见的所有变量。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariables</span><span class="params">(String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从给定的执行范围(包括父范围)可见的所有变量。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstances</span><span class="params">(String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从给定的执行范围(包括父范围)可见的所有变量。</span></span><br><span class="line"><span class="function">List&lt;VariableInstance&gt; <span class="title">getVariableInstancesByExecutionIds</span><span class="params">(Set&lt;String&gt; executionIds)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从给定的执行范围(包括父范围)可见的所有变量。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstances</span><span class="params">(String executionId, String locale, <span class="keyword">boolean</span> withLocalizationFallback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在执行范围内定义的所有变量值，不考虑外部作用域。</span></span><br><span class="line"><span class="comment">// 如果您有许多任务局部变量，而且只需要一些，请考虑使用&#123;@link #getVariablesLocal(String, Collection)&#125;来获得更好的性能。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariablesLocal</span><span class="params">(String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在执行范围内定义的所有变量值，不考虑外部作用域。</span></span><br><span class="line"><span class="comment">// 如果您有许多任务局部变量,你只需要一些,考虑使用&#123; @link # getVariableInstancesLocal(String, Collection)&#125;获得更好的性能。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstancesLocal</span><span class="params">(String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstancesLocal</span><span class="params">(String executionId, String locale, <span class="keyword">boolean</span> withLocalizationFallback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 所有给定变量的变量值，将所有变量都考虑在内，从给定的执行范围(包括父作用域)可以看到。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariables</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 所有给定变量的变量值，将所有变量都考虑在内，从给定的执行范围(包括父作用域)可以看到。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstances</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 所有给定变量的变量值，将所有变量都考虑在内，从给定的执行范围(包括父作用域)可以看到。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstances</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames, String locale, <span class="keyword">boolean</span> withLocalizationFallback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给定变量的变量值只考虑给定的执行范围，而不考虑外部作用域。</span></span><br><span class="line"><span class="function">Map&lt;String, Object&gt; <span class="title">getVariablesLocal</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给定变量的变量值只考虑给定的执行范围，而不考虑外部作用域。</span></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstancesLocal</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Map&lt;String, VariableInstance&gt; <span class="title">getVariableInstancesLocal</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames, String locale, <span class="keyword">boolean</span> withLocalizationFallback)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量的值。</span></span><br><span class="line"><span class="function">VariableInstance <span class="title">getVariableInstance</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量的值。</span></span><br><span class="line">搜索变量是在给定的执行(包括父范围)可见的所有范围内完成的。</span><br><span class="line">当在给定的名称或值设置为<span class="keyword">null</span>时，没有发现变量值，返回<span class="keyword">null</span>。</span><br><span class="line"><span class="function">Object <span class="title">getVariable</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抛出ClassCastException时，不能将变量转换为给定的类。</span></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">getVariable</span><span class="params">(String executionId, String variableName, Class&lt;T&gt; variableClass)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>检测变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查该执行是否具有给定名称的变量集，在给定的执行(包括父作用域)可见的所有范围内搜索该变量。</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasVariable</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查这个执行是否有一个带有给定名称的本地变量集。</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasVariableLocal</span><span class="params">(String executionId, String variableName)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>获取执行的变量值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当变量为执行设置(而不是搜索父范围)时返回值。</span></span><br><span class="line"><span class="comment">// 当在给定的名称或值设置为null时，没有发现变量值，返回null。</span></span><br><span class="line"><span class="function">Object <span class="title">getVariableLocal</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">VariableInstance <span class="title">getVariableInstanceLocal</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">VariableInstance <span class="title">getVariableInstanceLocal</span><span class="params">(String executionId, String variableName, String locale, <span class="keyword">boolean</span> withLocalizationFallback)</span></span>;</span><br><span class="line"></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">getVariableLocal</span><span class="params">(String executionId, String variableName, Class&lt;T&gt; variableClass)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>变量更新创建（有更新，无创建）4个 删除4个</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariable</span><span class="params">(String executionId, String variableName, Object value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为执行更新或创建一个变量(不考虑父范围)。</span></span><br><span class="line"><span class="comment">// 如果变量不是已经存在，那么它将在给定的执行中创建。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariableLocal</span><span class="params">(String executionId, String variableName, Object value)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为执行(包括父范围)更新或创建给定的变量。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariables</span><span class="params">(String executionId, Map&lt;String, ? extends Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为执行更新或创建给定的变量(不考虑父范围)。</span></span><br><span class="line"><span class="comment">// 如果变量不是已经存在的，那么它将在给定的执行中创建。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setVariablesLocal</span><span class="params">(String executionId, Map&lt;String, ? extends Object&gt; variables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为执行移除一个变量。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariable</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为执行移除一个变量。（不考虑父范围）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariableLocal</span><span class="params">(String executionId, String variableName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariables</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeVariablesLocal</span><span class="params">(String executionId, Collection&lt;String&gt; variableNames)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>创建执行查询</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个新的&#123;@link ExecutionQuery&#125;实例，该实例可以用于查询执行和流程实例。</span></span><br><span class="line"><span class="function">ExecutionQuery <span class="title">createExecutionQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的&#123;@link NativeExecutionQuery&#125;，可以直接通过SQL查询&#123;@link Execution&#125;。</span></span><br><span class="line"><span class="function">NativeExecutionQuery <span class="title">createNativeExecutionQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的&#123;@link ProcessInstanceQuery&#125;实例，该实例可以用于查询流程实例。</span></span><br><span class="line"><span class="function">ProcessInstanceQuery <span class="title">createProcessInstanceQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的&#123;@link NativeProcessInstanceQuery &#125; &#123;@link ProcessInstance &#125;年代直接通过SQL查询</span></span><br><span class="line"><span class="function">NativeProcessInstanceQuery <span class="title">createNativeProcessInstanceQuery</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>流程实例（挂起1个，激活1个，通知11个）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用给定的id挂起流程实例。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessInstanceById</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的id激活流程实例。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessInstanceById</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通知流程引擎，接收到一个名为“signalName”的信号事件。</span></span><br><span class="line"><span class="comment">// 该方法将信号传递给等待信号的所有执行。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceived</span><span class="params">(String signalName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上 但有租户的上下文。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceivedWithTenantId</span><span class="params">(String signalName, String tenantId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通知流程引擎，接收到一个名为“signalName”的信号事件。</span></span><br><span class="line"><span class="comment">// 该方法将信号传递给等待信号的所有执行。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceivedAsync</span><span class="params">(String signalName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上 但有租户的上下文。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceivedAsyncWithTenantId</span><span class="params">(String signalName, String tenantId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通知流程引擎，接收到一个名为“signalName”的信号事件。</span></span><br><span class="line"><span class="comment">// 该方法将信号传递给等待信号的所有执行。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceived</span><span class="params">(String signalName, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上 但有租户的上下文。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceivedWithTenantId</span><span class="params">(String signalName, Map&lt;String, Object&gt; processVariables, String tenantId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通知流程引擎，接收到一个名为“signalName”的信号事件。</span></span><br><span class="line"><span class="comment">// 该方法将信号传递给单个执行，即由“executionId”引用的执行。</span></span><br><span class="line"><span class="comment">// 等待执行被同步通知。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceived</span><span class="params">(String signalName, String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceived</span><span class="params">(String signalName, String executionId, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//同上（异步）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signalEventReceivedAsync</span><span class="params">(String signalName, String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通知流程引擎，接收到名为“messageName”的消息事件，并与id“executionId”执行关联。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">messageEventReceived</span><span class="params">(String messageName, String executionId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">messageEventReceived</span><span class="params">(String messageName, String executionId, Map&lt;String, Object&gt; processVariables)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上异步</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">messageEventReceivedAsync</span><span class="params">(String messageName, String executionId)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>监听器（添加2个，移除1个，分派1个）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个事件监听器，它将被分派器通知所有事件。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEventListener</span><span class="params">(ActivitiEventListener listenerToAdd)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加一个事件监听器，它只会在事件发生时被通知，该事件类型在给定类型中。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEventListener</span><span class="params">(ActivitiEventListener listenerToAdd, ActivitiEventType... types)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从这个分派器中移除给定的侦听器。</span></span><br><span class="line"><span class="comment">// 侦听器将不再被通知，无论它在第一个位置注册的类型是什么。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeEventListener</span><span class="params">(ActivitiEventListener listenerToRemove)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将给定事件分派给注册的任何侦听器。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispatchEvent</span><span class="params">(ActivitiEvent event)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的id设置流程实例的名称。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setProcessInstanceName</span><span class="params">(String processInstanceId, String name)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有与给定流程实例相关的事件。</span></span><br><span class="line"><span class="function">List&lt;Event&gt; <span class="title">getProcessInstanceEvents</span><span class="params">(String processInstanceId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个ProcessInstanceBuilder</span></span><br><span class="line"><span class="function">ProcessInstanceBuilder <span class="title">createProcessInstanceBuilder</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-Service-RepositoryService/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/12/Activiti-Service-RepositoryService/" itemprop="url">Activiti-Service-RepositoryService</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T01:25:02+08:00">
-                2020-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="RepositoryService"><a href="#RepositoryService" class="headerlink" title="RepositoryService"></a>RepositoryService</h4><p>作用：流程仓库服务，管理流程仓库，比如部署、删除、读取流程资源</p>
-<ul>
-<li><p>创建部署</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">DeploymentBuilder <span class="title">createDeployment</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>删除部署</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除给定部署</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteDeployment</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将给定的部署和级联删除删除到流程实例、历史流程实例和作业</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteDeploymentCascade</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  将给定的部署和级联删除删除到流程实例、历史流程实例和作业</span></span><br><span class="line"><span class="comment">  var1：deploymentId</span></span><br><span class="line"><span class="comment">  var2：cascade</span></span><br><span class="line"><span class="comment">*/</span>		</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteDeployment</span><span class="params">(String var1, <span class="keyword">boolean</span> var2)</span></span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>设置部署    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  设置部署类别</span></span><br><span class="line"><span class="comment">  可以按类别查询部署；</span></span><br><span class="line"><span class="comment">  var1：deploymentId</span></span><br><span class="line"><span class="comment">  var2：category</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setDeploymentCategory</span><span class="params">(String var1, String var2)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>获取部署</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检索给定部署的部署资源列表，按字母顺序排列</span></span><br><span class="line"><span class="function">List&lt;String&gt; <span class="title">getDeploymentResourceNames</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过一个字节流提供对部署资源的访问。</span></span><br><span class="line"><span class="comment">// var1：deploymentId     var2：resourceName</span></span><br><span class="line"><span class="function">InputStream <span class="title">getResourceAsStream</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实验功能</span></span><br><span class="line"><span class="comment">// 更改部署的租户标识符，以匹配给定的租户标识符。</span></span><br><span class="line"><span class="comment">// 这一变化将波及任何相关实体:</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">changeDeploymentTenantId</span><span class="params">(String var1, String var2)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询过程定义	</span></span><br><span class="line"><span class="function">ProcessDefinitionQuery <span class="title">createProcessDefinitionQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为流程定义返回一个新的  org.activiti.engine.query.NativeQuery</span></span><br><span class="line"><span class="function">NativeProcessDefinitionQuery <span class="title">createNativeProcessDefinitionQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询部署。</span></span><br><span class="line"><span class="function">DeploymentQuery <span class="title">createDeploymentQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回一个新的部署  org.activiti.engine.query.NativeQuery</span></span><br><span class="line"><span class="function">NativeDeploymentQuery <span class="title">createNativeDeploymentQuery</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>暂停流程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用给定Id暂停流程定义	</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionById</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为给定id暂停流程定义</span></span><br><span class="line"><span class="comment">// var1：processDefinitionId	var2：suspendProcessInstances 	var3：suspensionDate</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionById</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的键(= id in the bpmn20.xml file)挂起所有的进程定义</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionByKey</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的键(= id in the bpmn20.xml file)挂起所有的进程定义</span></span><br><span class="line"><span class="comment">// var1: processDefinitionKey	var1：suspendProcessInstances	var3：suspensionDate</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionByKey</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只适用于给定的租户标识符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionByKey</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只适用于给定的租户标识符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">suspendProcessDefinitionByKey</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3, String var4)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>激活流程    </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用给定的id激活流程定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionById</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的id激活流程定义。</span></span><br><span class="line"><span class="comment">// var1: processDefinitionId	var2：activateProcessInstances	var3：activationDate</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionById</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的key(=id in the bpmn20.xml file)激活流程定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionByKey</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用给定的key(=id in the bpmn20.xml file)激活流程定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionByKey</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionByKey</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">activateProcessDefinitionByKey</span><span class="params">(String var1, <span class="keyword">boolean</span> var2, Date var3, String var4)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>设置流程定义类别</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置流程定义的类别。</span></span><br><span class="line"><span class="comment">// 流程定义可以查询类别:看到&#123; @link ProcessDefinitionQuery #processDefinitionCategory(String)&#125;。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setProcessDefinitionCategory</span><span class="params">(String var1, String var2)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>访问已部署流程</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提供对已部署过程模型的访问，例如，一个BPMN 2.0 XML文件，通过一个字节流。</span></span><br><span class="line"><span class="function">InputStream <span class="title">getProcessModel</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供对已部署流程图的访问，例如PNG图像，通过一个字节流。</span></span><br><span class="line"><span class="function">InputStream <span class="title">getProcessDiagram</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回&#123;@link ProcessDefinition&#125;，包括所有BPMN信息，如附加属性(如文档)。</span></span><br><span class="line"><span class="function">ProcessDefinition <span class="title">getProcessDefinition</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用提供的流程定义id返回与流程定义对应的&#123;@link BpmnModel&#125;。</span></span><br><span class="line"><span class="function">BpmnModel <span class="title">getBpmnModel</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>检测流程状态</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查流程定义是否被挂起。</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isProcessDefinitionSuspended</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在流程关系图中提供元素的位置和维度，如&#123;@link RepositoryService#getProcessDiagram(String)&#125;所提供的</span></span><br><span class="line"><span class="function">DiagramLayout <span class="title">getProcessDiagramLayout</span><span class="params">(String var1)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>模型的增删改查</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个新的model，他的模型是暂时的，必须使用&#123;@link #saveModel(模型)&#125;来保存。</span></span><br><span class="line"><span class="function">Model <span class="title">newModel</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存模型。</span></span><br><span class="line"><span class="comment">// 如果模型已经存在，那么模型就会被更新，否则就会创建一个新的模型。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">saveModel</span><span class="params">(Model var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除model</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteModel</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为模型保存模型编辑器源。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addModelEditorSource</span><span class="params">(String var1, <span class="keyword">byte</span>[] var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为模型保存模型编辑器源。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addModelEditorSourceExtra</span><span class="params">(String var1, <span class="keyword">byte</span>[] var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建查询模型</span></span><br><span class="line"><span class="function">ModelQuery <span class="title">createModelQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 为流程定义返回一个新 org.activiti.engine.query.NativeQuery</span></span><br><span class="line"><span class="function">NativeModelQuery <span class="title">createNativeModelQuery</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询Model</span></span><br><span class="line"><span class="function">Model <span class="title">getModel</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以字节数组的形式返回模型编辑器源。</span></span><br><span class="line"><span class="keyword">byte</span>[] getModelEditorSource(String var1);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以字节数组的形式返回模型编辑器源。</span></span><br><span class="line"><span class="keyword">byte</span>[] getModelEditorSourceExtra(String var1);</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-<li><p>授权用户</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//授权候选用户进行流程定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addCandidateStarterUser</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//授权候选用户组进行流程定义。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addCandidateStarterGroup</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除候选用户对流程定义的授权。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteCandidateStarterUser</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除候选用户组对流程定义的授权。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteCandidateStarterGroup</span><span class="params">(String var1, String var2)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">检索与给定进程定义关联的&#123;@link IdentityLink&#125;。</span></span><br><span class="line"><span class="comment">这样的&#123;@link IdentityLink&#125;通知了一个特定的标识(如。</span></span><br><span class="line"><span class="comment">组或用户)被授权用于特定的流程定义。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">List&lt;IdentityLink&gt; <span class="title">getIdentityLinksForProcessDefinition</span><span class="params">(String var1)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据对Activiti引擎执行流程定义的规则，验证给定的流程定义。</span></span><br><span class="line"><span class="function">List&lt;ValidationError&gt; <span class="title">validateProcess</span><span class="params">(BpmnModel var1)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-7%E7%9B%91%E5%90%AC%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-7%E7%9B%91%E5%90%AC%E5%99%A8/" itemprop="url">Activiti-基础2-7监听器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T00:36:56+08:00">
-                2020-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1984,7 +1864,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">178</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1995,7 +1875,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2006,7 +1886,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -295,6 +295,457 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%803-List%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%803-List%E5%91%BD%E4%BB%A4/" itemprop="url">Redis-基础3-List命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T21:57:23+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="BLPOP-key1-key2-timeout-移出并获取列表的第一个元素"><a href="#BLPOP-key1-key2-timeout-移出并获取列表的第一个元素" class="headerlink" title="BLPOP key1 [key2 ] timeout (移出并获取列表的第一个元素)"></a>BLPOP key1 [key2 ] timeout (移出并获取列表的第一个元素)</h4><p>命令移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</p>
+<h6 id="命令BLPOP-LIST1-LIST2-LISTN-TIMEOUT"><a href="#命令BLPOP-LIST1-LIST2-LISTN-TIMEOUT" class="headerlink" title="命令BLPOP LIST1 LIST2 .. LISTN TIMEOUT"></a>命令BLPOP LIST1 LIST2 .. LISTN TIMEOUT</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>如果列表为空，返回一个 nil 。<br>否则，返回一个含有两个元素的列表，第一个元素是被弹出元素所属的 key ，第二个元素是被弹出元素的值。<br><strong>实例</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; BLPOP list1 100</span><br><span class="line">在以上实例中，操作会被阻塞，如果指定的列表 key list1 存在数据则会返回第一个元素，否则在等待100秒后会返回 nil 。</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%803-List%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/" itemprop="url">Redis-基础4-Hash命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T21:57:23+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="HDEL-key-field1-field2-删除一个或多个"><a href="#HDEL-key-field1-field2-删除一个或多个" class="headerlink" title="HDEL key field1 field2(删除一个或多个)"></a>HDEL key field1 field2(删除一个或多个)</h4><p>命令用于删除哈希表 key 中的一个或多个指定字段，不存在的字段将被忽略。</p>
+<h6 id="命令-HDEL-KEY-NAME-FIELD1-FIELDN"><a href="#命令-HDEL-KEY-NAME-FIELD1-FIELDN" class="headerlink" title="命令:HDEL KEY_NAME FIELD1.. FIELDN"></a>命令:HDEL KEY_NAME FIELD1.. FIELDN</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>被成功删除字段的数量，不包括被忽略的字段。</p>
+<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET myhash field1 &quot;foo&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HDEL myhash field1</span><br><span class="line">(integer) 1</span><br><span class="line">redis 127.0.0.1:6379&gt; HDEL myhash field2</span><br><span class="line">(integer) 0</span><br></pre></td></tr></table></figure>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%804-Hash%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/" itemprop="url">Redis-基础2-String命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:23:11+08:00">
+                2020-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="设置key值"><a href="#设置key值" class="headerlink" title="设置key值"></a>设置key值</h4><p>命令用于设置给定 key 的值。如果 key 已经存储其他值， SET 就覆写旧值，且无视类型。</p>
+<h6 id="命令-SET-KEY-NAME-VALUE"><a href="#命令-SET-KEY-NAME-VALUE" class="headerlink" title="命令:SET KEY_NAME VALUE"></a>命令:SET KEY_NAME VALUE</h6><h6 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h6><p>在 Redis 2.6.12 以前版本， SET 命令总是返回 OK 。<br>从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。</p>
+<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>1）对不存在的键进行设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key &quot;value&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key</span><br><span class="line">&quot;value&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2)对已存在的键进行设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key &quot;new-value&quot;</span><br><span class="line">OK</span><br><span class="line">redis 127.0.0.1:6379&gt; GET key</span><br><span class="line">&quot;new-value&quot;</span><br></pre></td></tr></table></figure>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/24/Redis-%E5%9F%BA%E7%A1%802-String%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/24/Redis-%E5%9F%BA%E7%A1%801-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1094,7 +1545,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">178</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1105,7 +1556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1116,7 +1567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

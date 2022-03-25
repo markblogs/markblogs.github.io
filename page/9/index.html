@@ -295,6 +295,466 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/" itemprop="url">websocket-入门4-生命周期灯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T13:59:21+08:00">
+                2020-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/websocket/" itemprop="url" rel="index">
+                    <span itemprop="name">websocket</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>案例：生命周期灯</p>
+<p>案例简介：</p>
+<ul>
+<li><p>websocket没有连接时 红灯</p>
+<p><img src="/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/1.png" alt="没有连接"></p>
+</li>
+<li><p>连接成功并可以发送消息时 绿灯亮</p>
+<p><img src="/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/2.png" alt="连接成功、发送消息成功"></p>
+</li>
+<li><p>发送错误消息（会导致连接断开，先调用了@OnClose注解方法，判断消息不和规范抛出异常调用@OnError注解方法，之后调用@Onclose注解方法） 黄灯亮</p>
+<p><img src="/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/3.png" alt="连接关闭"></p>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%81%AF/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/12/websocket-%E5%85%A5%E9%97%A83-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AB%AF%E7%82%B9%E5%88%9B%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A83-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AB%AF%E7%82%B9%E5%88%9B%E5%BB%BA/" itemprop="url">websocket-入门3-服务端端点创建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T13:26:00+08:00">
+                2020-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/websocket/" itemprop="url" rel="index">
+                    <span itemprop="name">websocket</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="服务端端点创建"><a href="#服务端端点创建" class="headerlink" title="服务端端点创建"></a>服务端端点创建</h4><p>WebSocket 服务端主要为 客户端开放端点（相当于接口的概念）</p>
+<p>WebSocket 开放端点有两种方式 </p>
+<ul>
+<li>注解式开放端点</li>
+<li>编程式开放端点</li>
+</ul>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A83-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%AB%AF%E7%82%B9%E5%88%9B%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/12/websocket-%E5%85%A5%E9%97%A82-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A82-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%80%E4%BB%8B/" itemprop="url">websocket-入门2-客户端简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T10:02:57+08:00">
+                2020-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/websocket/" itemprop="url" rel="index">
+                    <span itemprop="name">websocket</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p>WebSocket()构造函器会返回一个 WebSocket 对象</p>
+<p>语法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var aWebSocket = new WebSocket(url [, protocols]);</span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">url   </span></span><br><span class="line"><span class="comment">	要连接的URL；这应该是WebSocket服务器将响应的URL。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">protocols </span></span><br><span class="line"><span class="comment">	可选	一个协议字符串或者一个包含协议字符串的数组。这些字符串用于指定子协议，这样单个服务器可以实现多个WebSocket子协议（例如，您可能希望一台服务器能够根据指定的协议（protocol）处理不同类型的交互）。如果不指定协议字符串，则假定为空字符串。</span></span><br><span class="line"><span class="comment">--!&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/12/websocket-%E5%85%A5%E9%97%A82-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AE%80%E4%BB%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/12/kafka-%E5%85%A5%E9%97%A83-%E6%B6%88%E8%B4%B9%E8%80%85%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1383,452 +1843,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/09/Nginx-%E5%9F%BA%E7%A1%802-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/09/Nginx-%E5%9F%BA%E7%A1%802-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" itemprop="url">Nginx-基础2-基础命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-09T22:26:27+08:00">
-                2020-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
-<li><p>基础命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> nginx帮助命令</span></span><br><span class="line">nginx -h</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询nginx进程</span></span><br><span class="line">ps -ef | grep nginx</span><br><span class="line">cat nginx.pid #此文件保持nginx主进程id</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死所有nginx进程</span></span><br><span class="line">killall nginx </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询nginx版本</span></span><br><span class="line">nginx -v</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> nginx指定文件</span></span><br><span class="line">nginx -c</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置文件两种方式</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置正确性并退出</span></span><br><span class="line">nginx -t</span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置只显示错误</span></span><br><span class="line">nginx -q</span><br></pre></td></tr></table></figure></li>
-<li><p>关闭命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 快速关闭两个命令</span></span><br><span class="line">./nginx -g stop</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 平缓关闭</span></span><br><span class="line">./nginx -s quit</span><br></pre></td></tr></table></figure></li>
-<li><p>重启命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#重启Nginx</span><br><span class="line">nginx -s reopen </span><br><span class="line"></span><br><span class="line">#重新加载Nginx配置文件，然后以优雅的方式重启Nginx</span><br><span class="line">nginx -s reload </span><br></pre></td></tr></table></figure></li>
-<li><p>平滑升级操作命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#Nginx就支持平滑升级的方式，可以不间断提供服务。</span><br><span class="line">#我第一次安装Nginx的时候故意安装了一个低版本的，这次来测试一下平滑升级。</span><br><span class="line">#已安装版本： nginx-1.8.0</span><br><span class="line">#新版本Nginx： nginx-1.9.9</span><br><span class="line"></span><br><span class="line"># 第一步 下载最新Nginx上传到服务器并解压</span><br><span class="line">[root@localhost ~]# cd /usr/local/software/</span><br><span class="line">[root@localhost software]# tar -zxvf nginx-1.9.9.tar.gz</span><br><span class="line"></span><br><span class="line"># 第二步 编译</span><br><span class="line">[root@localhost local]# cd /usr/local/software/nginx-1.9.9</span><br><span class="line">[root@localhost nginx-1.9.9]# ./configure –prefix=/usr/local/nginx</span><br><span class="line">[root@10.10.90.97 ~]# ./configure –prefix=/usr/local/nginx –with-http_stub_status_module</span><br><span class="line">[root@localhost nginx-1.9.9]# make</span><br><span class="line">#注意千万不要执行 make install ，因为会将原来的Nginx文件全部替换，达不到平滑升级的效果。</span><br><span class="line"></span><br><span class="line"># 第三步 备份旧版本Nginx的可执行文件</span><br><span class="line">[root@localhost objs]# cd /usr/local/nginx/sbin/</span><br><span class="line">[root@localhost sbin]# ls</span><br><span class="line">nginx</span><br><span class="line">[root@localhost sbin]# cp nginx nginx.old</span><br><span class="line">[root@localhost sbin]# ls</span><br><span class="line">nginx nginx.old</span><br><span class="line"></span><br><span class="line"># 第四步 替换Nginx可执行文件</span><br><span class="line">将新版本解压后文件夹objs里的nginx可执行文件，替换掉老版本sbin文件夹下的nginx可执行文件。</span><br><span class="line">[root@localhost nginx-1.9.9]# cp -rfp /usr/local/software/nginx-1.9.9/objs/nginx /usr/local/nginx/sbin/</span><br><span class="line">cp：是否覆盖”/usr/local/nginx/sbin/nginx”？ y</span><br><span class="line"></span><br><span class="line"># 第五步 查看是否升级成功</span><br><span class="line">[root@localhost nginx-1.9.9]# cd /usr/local/nginx/sbin/</span><br><span class="line">[root@localhost sbin]# ./nginx -v</span><br><span class="line">nginx version: nginx/1.9.9</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/" itemprop="url">Nginx-基础1-简介及安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-07T19:32:17+08:00">
-                2020-07-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="什么是-Nginx"><a href="#什么是-Nginx" class="headerlink" title="什么是 Nginx ?"></a>什么是 Nginx ?</h4><p>​    高性能的 HTTP 和反向代理的web 服务器。特点：占有内存少，并发能力强。</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/" itemprop="url">Java-异常处理-受检-非受检</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T23:16:54+08:00">
-                2020-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">Java异常</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="异常的结构"><a href="#异常的结构" class="headerlink" title="异常的结构"></a>异常的结构</h4><p>所有异常都有共同的祖先 <strong>Throwable</strong> (可抛出)，</p>
-<p>Throwable：有两个重要的子类：<strong>Exception</strong>（异常） 和 <strong>Error</strong>（异常），二者都是 Java 异常处理的重要子类，各自都包含大量的子类，异常和错误的区别是：异常能被程序本身处理，错误无法处理</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1882,7 +1896,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">178</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1893,7 +1907,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1904,7 +1918,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

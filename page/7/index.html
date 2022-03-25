@@ -295,6 +295,445 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/28/Linux-Shell%E6%A1%88%E4%BE%8B-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/28/Linux-Shell%E6%A1%88%E4%BE%8B-1/" itemprop="url">Linux-Shell案例-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T22:48:22+08:00">
+                2020-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="检测磁盘空间"><a href="#检测磁盘空间" class="headerlink" title="检测磁盘空间"></a>检测磁盘空间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># Big_Users-在各个目录中查找大磁盘空间用户</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##############################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 脚本参数</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash">CHECK_DIRECTORIES=<span class="string">&quot; /var/log /home&quot;</span>  <span class="comment">#Directories to check</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">############## 主脚本 #################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash">DATE=$(date <span class="string">&#x27;+%m%d%y&#x27;</span>)               <span class="comment">#报告文件的日期</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">exec</span> &gt; disk_space_<span class="variable">$DATE</span>.rpt          <span class="comment">#创建文件标准输出</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">echo</span> <span class="string">&quot;Top Ten Disk Space Usage&quot;</span>      <span class="comment">#报告头</span></span></span><br><span class="line">echo &quot;for $CHECK_DIRECTORIES Directories&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="keyword">for</span> DIR_CHECK <span class="keyword">in</span> <span class="variable">$CHECK_DIRECTORIES</span>  <span class="comment">#循环 文件夹列表</span></span></span><br><span class="line">do</span><br><span class="line">  echo &quot;&quot;</span><br><span class="line">  echo &quot;The $DIR_CHECK Directory:&quot;   #文件夹头部</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 被用户使用前十的磁盘空间</span></span></span><br><span class="line">  du -S $DIR_CHECK 2&gt;/dev/null |</span><br><span class="line">  sort -rn |</span><br><span class="line">  sed &#x27;&#123;11,$D; =&#125;&#x27; |</span><br><span class="line">  sed &#x27;N; s/\n/ /&#x27; |</span><br><span class="line">  gawk &#x27;&#123;printf $1 &quot;:&quot; &quot;\t&quot; $2  &quot;\t&quot; $3 &quot;\n&quot;&#125;&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="keyword">done</span>                                 <span class="comment">#End of loop</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/26/Linux%E5%91%BD%E4%BB%A47-jdk%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/26/Linux%E5%91%BD%E4%BB%A47-jdk%E5%91%BD%E4%BB%A4/" itemprop="url">Linux命令7_jdk命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-26T02:24:17+08:00">
+                2020-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux命令</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Linux-Jdk命令shell"><a href="#Linux-Jdk命令shell" class="headerlink" title="Linux-Jdk命令shell"></a>Linux-Jdk命令shell</h4><p><strong>致敬龙哥付出，拷贝以备不时之需</strong></p>
+<p><em>Linux 环境操作 jar</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">APP_NAME=/home/workspace/xxx.jar</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">使用说明，用来提示输入参数</span></span><br><span class="line">usage() &#123;</span><br><span class="line">echo &quot;Usage: sh 执行脚本.sh [start|stop|restart|status]&quot;</span><br><span class="line">exit 1</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">检查程序是否在运行</span></span><br><span class="line">is_exist()&#123;</span><br><span class="line">pid=`ps -ef|grep $APP_NAME|grep -v grep|awk &#x27;&#123;print $2&#125;&#x27; `</span><br><span class="line"><span class="meta">#</span><span class="bash">如果不存在返回1，存在返回0</span></span><br><span class="line">if [ -z &quot;$&#123;pid&#125;&quot; ]; then</span><br><span class="line">return 1</span><br><span class="line">else</span><br><span class="line">return 0</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">启动方法</span></span><br><span class="line">start()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is already running. pid=$&#123;pid&#125; .&quot;</span><br><span class="line">else</span><br><span class="line">nohup /usr/local/src/jdk1.8.0_251/bin/java -Dfile.encoding=utf-8 -jar $APP_NAME --spring.profiles.active=test --server.port=8099  &gt;&gt; /home/workspace/logs/xxx.log 2&gt;&amp;1 &amp;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">停止方法</span></span><br><span class="line">stop()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">kill -9 $pid</span><br><span class="line">else</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is not running&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">输出运行状态</span></span><br><span class="line">status()&#123;</span><br><span class="line">is_exist</span><br><span class="line">if [ $? -eq &quot;0&quot; ]; then</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is running. Pid is $&#123;pid&#125;&quot;</span><br><span class="line">else</span><br><span class="line">echo &quot;$&#123;APP_NAME&#125; is NOT running.&quot;</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重启</span></span><br><span class="line">restart()&#123;</span><br><span class="line">stop</span><br><span class="line">start</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">根据输入参数，选择执行对应方法，不输入则执行使用说明</span></span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">&quot;start&quot;)</span><br><span class="line">start</span><br><span class="line">;;</span><br><span class="line">&quot;stop&quot;)</span><br><span class="line">stop</span><br><span class="line">;;</span><br><span class="line">&quot;status&quot;)</span><br><span class="line">status</span><br><span class="line">;;</span><br><span class="line">&quot;restart&quot;)</span><br><span class="line">restart</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">usage</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/26/Linux%E5%91%BD%E4%BB%A47-supervisorctl%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/26/Linux%E5%91%BD%E4%BB%A47-supervisorctl%E5%91%BD%E4%BB%A4/" itemprop="url">Linux命令7_supervisorctl命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-26T02:24:17+08:00">
+                2020-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux命令</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Supervisorctl命令"><a href="#Supervisorctl命令" class="headerlink" title="Supervisorctl命令"></a>Supervisorctl命令</h4><p>Supervisor 是用Python开发的一套通用的进程管理程序</p>
+<hr>
+<h4 id="Supervisorctl常用命令"><a href="#Supervisorctl常用命令" class="headerlink" title="Supervisorctl常用命令"></a>Supervisorctl常用命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum 安装</span></span><br><span class="line">yum install -y supervisor</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 supervisorctl 版本</span></span><br><span class="line">supervisorctl -v</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置开机自启</span></span><br><span class="line">systemctl enable supervisord</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 supervisord</span></span><br><span class="line">systemctl start supervisord</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止 supervisord</span></span><br><span class="line">systemctl stop supervisord</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 supervisord 运行状态</span></span><br><span class="line">systemctl status supervisord</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化 supervisord 配置文件地址</span></span><br><span class="line">/etc/supervisord.conf</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启 supervisord 配置的进程</span></span><br><span class="line">supervisorctl start jar_test</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止 supervisord 配置的进程</span></span><br><span class="line">supervisorctl stop jar_test</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 supervisord 配置进程日志命令</span></span><br><span class="line">supervisorctl tail -f jar_test</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改配置文件执行两条命令</span></span><br><span class="line">supervisorctl reread</span><br><span class="line">supervisorctl upadte</span><br></pre></td></tr></table></figure>
+
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/26/Linux%E5%91%BD%E4%BB%A47-supervisorctl%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/26/Jenkins-%E9%85%8D%E7%BD%AE2-%E9%9B%86%E6%88%90github/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1417,483 +1856,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/23/Nginx-%E8%BF%9B%E9%98%B62-%E9%87%8D%E5%86%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/23/Nginx-%E8%BF%9B%E9%98%B62-%E9%87%8D%E5%86%99/" itemprop="url">Nginx-进阶2-重写</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-23T20:21:44+08:00">
-                2020-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="nginx-重写"><a href="#nginx-重写" class="headerlink" title="nginx  重写"></a>nginx  重写</h4><p><strong>rewrite可以写在server段、location段和if段。语法：</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite regexp replacement [flag]</span><br></pre></td></tr></table></figure>
-
-<p>flag是标记。有4种标记，它们的作用如下表。</p>
-<table>
-<thead>
-<tr>
-<th>flag</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>last</td>
-<td>停止处理当前上下文中的其他重写模块，并为重写后的 uri 再次进行上下文匹配</td>
-</tr>
-<tr>
-<td>break</td>
-<td>和 break 指令一样，都是停止处理当前上下文中的其他重写模块指令</td>
-</tr>
-<tr>
-<td>redirect</td>
-<td>返回临时重定向状态码302，当 replacemetn 部分不是以 <code>http://</code>  或者 <code>https://</code> 或者 <code>$schema</code> 变量表示使用的什么协议</td>
-</tr>
-<tr>
-<td>permanent</td>
-<td>返回永久重定向状态码301</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/23/Nginx-%E8%BF%9B%E9%98%B62-%E9%87%8D%E5%86%99/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/13/Linux%E5%91%BD%E4%BB%A46-crontab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/13/Linux%E5%91%BD%E4%BB%A46-crontab/" itemprop="url">Linux命令6-crontab</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T23:40:23+08:00">
-                2020-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux命令</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>用于设置周期性被执行的命令。该命令从标准输入设备读取命令，并将其存放于 <code>crontab</code> 文件中，以供之后读取和执行。crontab 储存的指令被守护进程激活，cron常常在后台运行，每一分钟检查是否有预订的作业要执行。这类作业一般称为 cron jobs。</p>
-<hr>
-<h4 id="crontab-基础命令"><a href="#crontab-基础命令" class="headerlink" title="crontab 基础命令"></a>crontab 基础命令</h4><ul>
-<li><p>服务状态查看</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond staus</span><br></pre></td></tr></table></figure></li>
-<li><p>开启服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond start</span><br></pre></td></tr></table></figure></li>
-<li><p>关闭服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond stop</span><br></pre></td></tr></table></figure></li>
-<li><p>重启服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond restart</span><br></pre></td></tr></table></figure></li>
-<li><p>重新载入配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond reload</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/13/Linux%E5%91%BD%E4%BB%A46-crontab/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/13/Nginx-%E5%9F%BA%E7%A1%804-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/13/Nginx-%E5%9F%BA%E7%A1%804-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BC%98%E5%8C%96/" itemprop="url">Nginx-基础4-负载均衡和反向代理的配置和优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-13T23:24:38+08:00">
-                2020-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="完整反向代理示例"><a href="#完整反向代理示例" class="headerlink" title="完整反向代理示例"></a>完整反向代理示例</h4><p>当后端 Web 服务器上有多个基于域名的虚拟主机时，要通过添加 Header 头信息 Host，用于指定请求域名，这样后端Web服务器才能识别该反向代理请求的是哪一个虚拟服务器来处理。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用的用户和组</span></span><br><span class="line">user www www;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定工作衍生进程数（一般等于CPU的总核数或总核数两倍，例如两个四核CPU,则总核数为8）</span></span><br><span class="line">worker_processes 10;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定错误日志的存放路径，错误日志记录级别可选项为：【 debug | info | notice | warn | error | crit 】</span></span><br><span class="line">error_log /data1/logs/nginx_error.log crit;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 主进程id 存放位置</span></span><br><span class="line">pid /usr/local/webserver/nginx/nginx.pid;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定文件描述符数量</span></span><br><span class="line">worker_rlimit_nofile 51200;</span><br><span class="line"></span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">	#</span><span class="bash"> 使用的网络 I/O 模型，Linux 系统推荐使用epoll 模型，</span></span><br><span class="line">	use epoll;</span><br><span class="line"><span class="meta">	#</span><span class="bash"> 允许的连接数</span></span><br><span class="line">	worker_connections 51200;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line">	include mime.types;</span><br><span class="line">	default_type application/octet-stream;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 设置使用的字符集，如果一个网站有多种字符集，请不要随意设置，应让程序员在HTML 代码中通过 META 标签设置</span></span><br><span class="line"><span class="meta">	#</span><span class="bash">charset utf-8;</span></span><br><span class="line"></span><br><span class="line">	server_names_hash_bucket_size 128;</span><br><span class="line">	client_header_buffer_size 32k;</span><br><span class="line">	large_client_header_buffers 4 32k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 设置客户端能够上传的文件大小</span></span><br><span class="line">	client_max_boby_size 8m;</span><br><span class="line"></span><br><span class="line">	sendfile on;</span><br><span class="line">	tcp_onpush on;</span><br><span class="line"></span><br><span class="line">	keepalive_timeout 60;</span><br><span class="line"></span><br><span class="line">	tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">	fastcgi_connect_timeout 300;</span><br><span class="line">	fastcgi_sent_timeout 300;</span><br><span class="line">	fastcgi_read_timeout 300;</span><br><span class="line">	fastcgi_buffer_size 64k;</span><br><span class="line">	fastcgi_buffers 4 64k;</span><br><span class="line">	fastcgi_busy_buffers_size 128k;</span><br><span class="line">	fastcgi_temp_file_write_size 128k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 开启gzip压缩</span></span><br><span class="line">	gzip on;</span><br><span class="line">	gzip_min_length 1k;</span><br><span class="line">	gzip_buffers 4 16k;</span><br><span class="line">	gzip_http_version 1.1;</span><br><span class="line">	gzip_comp_level 2;</span><br><span class="line">	gzip_types text/plain application/x-javascript text/css application/xml;</span><br><span class="line">	gzip_vary on;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash">limit_zone crawler <span class="variable">$binary_remote_addr</span> 10m;</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 允许客户端请求的最大单个文件字节数</span></span><br><span class="line">	client_max_body_size 300m;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 缓冲区代理缓冲用户端请求的最大字节数，可以理解为先保存到本地再传给用户</span></span><br><span class="line">	client_body_buffer_size 128k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 跟后端服务器连接超时时间，发起握手等候响应的超时时间</span></span><br><span class="line">	proxy_connect_timeout 600;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 连接成功后，等待后端服务器响应时间，其实已经进入后端的派对之中等候处理</span></span><br><span class="line">	proxy_read_timeout 600;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 后端服务器数据回传时间，就是在规定时间内后端服务器必须传完所有数据</span></span><br><span class="line">	proxy_send_timeout 600;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 代理请求缓存区，这个缓存区间会保存用户的头信息以供Nginx 进行规则处理，一般只能保存下头信息即可</span></span><br><span class="line">	proxy_buffer_size 16k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 告诉Nginx 保存单个用的几个 Buffer 最大用多大空间</span></span><br><span class="line">	proxy_buffers 4 32k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 如果系统很忙的时候可以申请更大的 proxy_buffers 官方推荐*2</span></span><br><span class="line">	proxy_busy_buffers_size 64k;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> proxy 缓存临时文件大小</span></span><br><span class="line">	proxy_temp_file_write_size 64k;</span><br><span class="line"></span><br><span class="line">	upstream php_server_pool &#123;</span><br><span class="line">		server  192.168.1.10:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">		server  192.168.1.11:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">		server  192.168.1.12:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">	upstream message_server_pool &#123;</span><br><span class="line"><span class="meta">		#</span><span class="bash"> ip_hash 指令无法保证后端服务器负载均衡，将某个客户端请求通过哈希算法定位到同一个后端服务器</span></span><br><span class="line">		server  192.168.1.13:3245;</span><br><span class="line"><span class="meta">		#</span><span class="bash"> down 摘除此负载均衡服务器</span> </span><br><span class="line"><span class="meta">		#</span><span class="bash"> backup backup 服务器在所有 非backup 服务器全部冗机或繁忙的时候才启动</span></span><br><span class="line">		server  192.168.1.14:3245 down;</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">	upstream bbs_server_pool &#123;</span><br><span class="line">		server  192.168.1.15:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">		server  192.168.1.16:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">		server  192.168.1.17:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">		server  192.168.1.18:80 weight=4 max_fails=2 fail_timeout=30s;</span><br><span class="line">	&#125;	</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 第一个虚拟主机，反向代理php_server_pool 这组服务</span></span><br><span class="line">	server</span><br><span class="line">	&#123;</span><br><span class="line">		listen 80;</span><br><span class="line">		server_name www.yourdomain.com</span><br><span class="line"></span><br><span class="line">		location /</span><br><span class="line">		&#123;</span><br><span class="line"><span class="meta">			#</span><span class="bash"> 如果这台服务器返回 502、504、执行超时等错误，自动将请求转发到 upstream 负载均衡池中另一台服务，实现故障转移</span></span><br><span class="line">			proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line">			proxy_pass http://php_server_pool;</span><br><span class="line">			proxy_set_header Host www.yourdomain.com;</span><br><span class="line">			proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		access_log /data1/logs/www.yourdomain.com_access.log; </span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 第二个虚拟主机，反向代理php_server_pool 这组服务</span></span><br><span class="line">	server</span><br><span class="line">	&#123;</span><br><span class="line">		listen 80;</span><br><span class="line">		server_name www1.yourdomain.com</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">		#</span><span class="bash"> 访问 http://www1.yourdomain.com/message/***地址，反向代理 message_server_pool 这组服务器</span></span><br><span class="line">		location /message/</span><br><span class="line">		&#123;</span><br><span class="line">			proxy_pass http://message_server_pool;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">		&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">		#</span><span class="bash"> 访问 除/message/之外的 http://www1.yourdomain.com/***地址 ，反向代理 php_server_pool 这组服务器</span></span><br><span class="line">		location /</span><br><span class="line">		&#123;</span><br><span class="line"><span class="meta">			#</span><span class="bash"> 如果这台服务器返回 502、504、执行超时等错误，自动将请求转发到 upstream 负载均衡池中另一台服务，实现故障转移</span></span><br><span class="line">			proxy_pass http://php_server_pool;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		access_log /data1/logs/message.yourdomain.com_access.log; </span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">	#</span><span class="bash"> 第三个虚拟主机</span></span><br><span class="line">	server</span><br><span class="line">	&#123;</span><br><span class="line">		listen 80;</span><br><span class="line">		server_name bbs.yourdomain.com *.bbs.yourdomain.com</span><br><span class="line"></span><br><span class="line">		location /</span><br><span class="line">		&#123;</span><br><span class="line">			proxy_pass http://bbs_server_pool;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		access_log off; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1947,7 +1909,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">178</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1958,7 +1920,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1969,7 +1931,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

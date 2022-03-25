@@ -295,6 +295,452 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/09/Nginx-%E5%9F%BA%E7%A1%802-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/09/Nginx-%E5%9F%BA%E7%A1%802-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" itemprop="url">Nginx-基础2-基础命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-09T22:26:27+08:00">
+                2020-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
+<li><p>基础命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> nginx帮助命令</span></span><br><span class="line">nginx -h</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询nginx进程</span></span><br><span class="line">ps -ef | grep nginx</span><br><span class="line">cat nginx.pid #此文件保持nginx主进程id</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀死所有nginx进程</span></span><br><span class="line">killall nginx </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询nginx版本</span></span><br><span class="line">nginx -v</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> nginx指定文件</span></span><br><span class="line">nginx -c</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置文件两种方式</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置正确性并退出</span></span><br><span class="line">nginx -t</span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试配置只显示错误</span></span><br><span class="line">nginx -q</span><br></pre></td></tr></table></figure></li>
+<li><p>关闭命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 快速关闭两个命令</span></span><br><span class="line">./nginx -g stop</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 平缓关闭</span></span><br><span class="line">./nginx -s quit</span><br></pre></td></tr></table></figure></li>
+<li><p>重启命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#重启Nginx</span><br><span class="line">nginx -s reopen </span><br><span class="line"></span><br><span class="line">#重新加载Nginx配置文件，然后以优雅的方式重启Nginx</span><br><span class="line">nginx -s reload </span><br></pre></td></tr></table></figure></li>
+<li><p>平滑升级操作命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#Nginx就支持平滑升级的方式，可以不间断提供服务。</span><br><span class="line">#我第一次安装Nginx的时候故意安装了一个低版本的，这次来测试一下平滑升级。</span><br><span class="line">#已安装版本： nginx-1.8.0</span><br><span class="line">#新版本Nginx： nginx-1.9.9</span><br><span class="line"></span><br><span class="line"># 第一步 下载最新Nginx上传到服务器并解压</span><br><span class="line">[root@localhost ~]# cd /usr/local/software/</span><br><span class="line">[root@localhost software]# tar -zxvf nginx-1.9.9.tar.gz</span><br><span class="line"></span><br><span class="line"># 第二步 编译</span><br><span class="line">[root@localhost local]# cd /usr/local/software/nginx-1.9.9</span><br><span class="line">[root@localhost nginx-1.9.9]# ./configure –prefix=/usr/local/nginx</span><br><span class="line">[root@10.10.90.97 ~]# ./configure –prefix=/usr/local/nginx –with-http_stub_status_module</span><br><span class="line">[root@localhost nginx-1.9.9]# make</span><br><span class="line">#注意千万不要执行 make install ，因为会将原来的Nginx文件全部替换，达不到平滑升级的效果。</span><br><span class="line"></span><br><span class="line"># 第三步 备份旧版本Nginx的可执行文件</span><br><span class="line">[root@localhost objs]# cd /usr/local/nginx/sbin/</span><br><span class="line">[root@localhost sbin]# ls</span><br><span class="line">nginx</span><br><span class="line">[root@localhost sbin]# cp nginx nginx.old</span><br><span class="line">[root@localhost sbin]# ls</span><br><span class="line">nginx nginx.old</span><br><span class="line"></span><br><span class="line"># 第四步 替换Nginx可执行文件</span><br><span class="line">将新版本解压后文件夹objs里的nginx可执行文件，替换掉老版本sbin文件夹下的nginx可执行文件。</span><br><span class="line">[root@localhost nginx-1.9.9]# cp -rfp /usr/local/software/nginx-1.9.9/objs/nginx /usr/local/nginx/sbin/</span><br><span class="line">cp：是否覆盖”/usr/local/nginx/sbin/nginx”？ y</span><br><span class="line"></span><br><span class="line"># 第五步 查看是否升级成功</span><br><span class="line">[root@localhost nginx-1.9.9]# cd /usr/local/nginx/sbin/</span><br><span class="line">[root@localhost sbin]# ./nginx -v</span><br><span class="line">nginx version: nginx/1.9.9</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/" itemprop="url">Nginx-基础1-简介及安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-07T19:32:17+08:00">
+                2020-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="什么是-Nginx"><a href="#什么是-Nginx" class="headerlink" title="什么是 Nginx ?"></a>什么是 Nginx ?</h4><p>​    高性能的 HTTP 和反向代理的web 服务器。特点：占有内存少，并发能力强。</p>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/07/Nginx-%E5%9F%BA%E7%A1%801-%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/" itemprop="url">Java-异常处理-受检-非受检</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T23:16:54+08:00">
+                2020-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">Java异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="异常的结构"><a href="#异常的结构" class="headerlink" title="异常的结构"></a>异常的结构</h4><p>所有异常都有共同的祖先 <strong>Throwable</strong> (可抛出)，</p>
+<p>Throwable：有两个重要的子类：<strong>Exception</strong>（异常） 和 <strong>Error</strong>（异常），二者都是 Java 异常处理的重要子类，各自都包含大量的子类，异常和错误的区别是：异常能被程序本身处理，错误无法处理</p>
+<hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/05/Java-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-%E5%8F%97%E6%A3%80-%E9%9D%9E%E5%8F%97%E6%A3%80/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/05/Spring%E6%B3%A8%E8%A7%A3-Transactional/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1304,452 +1750,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/04/Docker-%E5%9F%BA%E7%A1%806-DockerFile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/04/Docker-%E5%9F%BA%E7%A1%806-DockerFile/" itemprop="url">Docker-基础6-DockerFile</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-04T21:50:51+08:00">
-                2020-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">容器技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="Docker-执行-DockerFile-的大致流程"><a href="#Docker-执行-DockerFile-的大致流程" class="headerlink" title="Docker 执行 DockerFile 的大致流程"></a>Docker 执行 DockerFile 的大致流程</h4><ul>
-<li>docker 从基础镜像运行一个容器</li>
-<li>执行一条指令并对容器做出修改</li>
-<li>执行类似 docker commit 的操作提交一个新的镜像层</li>
-<li>docker 再基于刚提交的镜像运行一个新容器</li>
-<li>执行 dockerfile 中的下一条指令直到所有指令都执行完成</li>
-</ul>
-<p>DockerFile 面向开发，Docker镜像称为交付标准，Docker 容器则涉及部署与运维，三者缺一不可，合力充当Docker体系的基石。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/04/Docker-%E5%9F%BA%E7%A1%806-DockerFile/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/30/Docker-%E5%9F%BA%E7%A1%805-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/30/Docker-%E5%9F%BA%E7%A1%805-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/" itemprop="url">Docker_基础5_容器数据卷</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-30T21:55:45+08:00">
-                2020-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">容器技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="什么是容器数据卷"><a href="#什么是容器数据卷" class="headerlink" title="什么是容器数据卷"></a>什么是容器数据卷</h4><p>​    卷就是目录或文件，存在一个或多个容器中，由docker挂载到容器，但不属于联合文件系统，因此能够绕过Union File System 提供一些用于持续存储或共享数据的特性：</p>
-<p>​    卷的设计目的就是数据持久化，完全独立于容器的生存周期，因此Docker不会在容器删除时删除其挂载的数据卷。</p>
-<p>​    主要目的：数据持久化、容器之间数据共享、宿主机和容器之间数据共享</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/30/Docker-%E5%9F%BA%E7%A1%805-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/28/Docker-%E5%9F%BA%E7%A1%804-%E9%95%9C%E5%83%8Fcommit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/28/Docker-%E5%9F%BA%E7%A1%804-%E9%95%9C%E5%83%8Fcommit/" itemprop="url">Docker-基础4-镜像commit</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-28T17:48:11+08:00">
-                2020-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">容器技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="提交定制容器"><a href="#提交定制容器" class="headerlink" title="提交定制容器"></a>提交定制容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">sudo docker commit 镜像ID 容器名称</span></span><br><span class="line"><span class="meta">$</span><span class="bash">sudo docker commit -m=<span class="string">&quot;A new custom image&quot;</span> --author=<span class="string">&quot;mark&quot;</span> 87ea023e7c05 ubuntu/Second:webserver</span></span><br><span class="line">	参数说明</span><br><span class="line">		-a, --author 作者</span><br><span class="line">		-m, --message 提交描述</span><br><span class="line">		-p, --pause      提交期间暂停容器</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>本地镜像提交到云服务</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1803,7 +1803,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">178</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1814,7 +1814,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1825,7 +1825,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
