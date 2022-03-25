@@ -295,147 +295,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/vue-%E5%9F%BA%E7%A1%804-%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/13/vue-%E5%9F%BA%E7%A1%804-%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/" itemprop="url">vue-基础4-条件渲染</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:25:42+08:00">
-                2020-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/vue-%E5%9F%BA%E7%A1%803-class%E4%B8%8Estyle%E7%BB%91%E5%AE%9A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1158,7 +1017,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1177,7 +1036,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/" itemprop="url">Elaticsearch文档操作</a></h1>
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/" itemprop="url">Elaticsearch索引操作</a></h1>
         
 
         <div class="post-meta">
@@ -1250,12 +1109,14 @@
 
       
         
-          
-            <h4 id="集群配置"><a href="#集群配置" class="headerlink" title="集群配置"></a>集群配置</h4><p>修改elasticsearch-cluster\node*\config\elasticsearch.yml配置文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">节点1的配置信息：</span></span><br><span class="line"><span class="meta">#</span><span class="bash">集群名称，保证唯一</span></span><br><span class="line">cluster.name: my-elasticsearch</span><br><span class="line"><span class="meta">#</span><span class="bash">节点名称，必须不一样</span></span><br><span class="line">node.name: node-1</span><br><span class="line"><span class="meta">#</span><span class="bash">必须为本机的ip地址</span></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line"><span class="meta">#</span><span class="bash">服务端口号，在同一机器下必须不一样</span></span><br><span class="line">http.port: 9200</span><br><span class="line"><span class="meta">#</span><span class="bash">集群间通信端口号，在同一机器下必须不一样</span></span><br><span class="line">transport.tcp.port: 9300</span><br><span class="line"><span class="meta">#</span><span class="bash">设置集群自动发现机器ip集合</span></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1:9300&quot;,&quot;127.0.0.1:9301&quot;,&quot;127.0.0.1:9302&quot;]</span><br></pre></td></tr></table></figure>
-
-
-          
+          <h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  PUT localhost:<span class="number">9200</span>/blog1</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1448,152 +1309,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/" itemprop="url">Elaticsearch索引操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
-                2020-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
-                    <span itemprop="name">搜索引擎</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  PUT localhost:<span class="number">9200</span>/blog1</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%803-%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch%E6%A3%80%E7%B4%A2%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1722,6 +1437,293 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/ElesticSearch-%E5%9F%BA%E7%A1%805-%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/" itemprop="url">Elaticsearch文档操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索引擎</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="集群配置"><a href="#集群配置" class="headerlink" title="集群配置"></a>集群配置</h4><p>修改elasticsearch-cluster\node*\config\elasticsearch.yml配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">节点1的配置信息：</span></span><br><span class="line"><span class="meta">#</span><span class="bash">集群名称，保证唯一</span></span><br><span class="line">cluster.name: my-elasticsearch</span><br><span class="line"><span class="meta">#</span><span class="bash">节点名称，必须不一样</span></span><br><span class="line">node.name: node-1</span><br><span class="line"><span class="meta">#</span><span class="bash">必须为本机的ip地址</span></span><br><span class="line">network.host: 127.0.0.1</span><br><span class="line"><span class="meta">#</span><span class="bash">服务端口号，在同一机器下必须不一样</span></span><br><span class="line">http.port: 9200</span><br><span class="line"><span class="meta">#</span><span class="bash">集群间通信端口号，在同一机器下必须不一样</span></span><br><span class="line">transport.tcp.port: 9300</span><br><span class="line"><span class="meta">#</span><span class="bash">设置集群自动发现机器ip集合</span></span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;127.0.0.1:9300&quot;,&quot;127.0.0.1:9301&quot;,&quot;127.0.0.1:9302&quot;]</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B/" itemprop="url">正则表达式-常用案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-13T21:08:34+08:00">
+                2020-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="常用案例"><a href="#常用案例" class="headerlink" title="常用案例"></a>常用案例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 校验基本日期格式</span><br><span class="line"><span class="keyword">var</span>  reg1 = <span class="regexp">/^\d&#123;4&#125;(\-|\/|\.)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="keyword">var</span>  reg2 = <span class="regexp">/^(^(\d&#123;4&#125;|\d&#123;2&#125;)(\-|\/|\.)\d&#123;1,2&#125;\3\d&#123;1,2&#125;$)|(^\d&#123;4&#125;年\d&#123;1,2&#125;月\d&#123;1,2&#125;日$)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 校验密码强度</span><br><span class="line">密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在<span class="number">8</span>-<span class="number">10</span>之间。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,10&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 校验中文字符串仅能是中文。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[\\u4e00-\\u9fa5]&#123;0,&#125;$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span> 由数字、<span class="number">26</span>个英文字母或下划线组成的字符串</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\w+$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span> 校验E-Mail 地址   同密码一样，下面是E-mail地址合规性的正则检查语句。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+(?:\\.[\\w!#$%&amp;&#x27;*+/=?^_`&#123;|&#125;~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span> 校验身份证号码</span><br><span class="line">下面是身份证号码的正则校验。<span class="number">15</span> 或 <span class="number">18</span>位。</span><br><span class="line"><span class="number">15</span>位： <span class="keyword">var</span> reg = <span class="regexp">/^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$/</span>;</span><br><span class="line"><span class="number">18</span>位：<span class="keyword">var</span>  reg = <span class="regexp">/^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;([0-9]|X)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">7.</span> 校验日期 “yyyy-mm-dd” 格式的日期校验，已考虑平闰年。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">8.</span> 校验金额金额校验，精确到<span class="number">2</span>位小数。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^[0-9]+(.[0-9]&#123;2&#125;)?$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">9.</span> 校验手机号</span><br><span class="line"></span><br><span class="line">下面是国内 <span class="number">13</span>、<span class="number">15</span>、<span class="number">18</span>开头的手机号正则表达式。（可根据目前国内收集号扩展前两位开头号码）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d&#123;8&#125;$/</span>;</span><br><span class="line">	</span><br><span class="line"><span class="number">10.</span> 判断IE的版本IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\\/[5-9]\\.0).*$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">11.</span> 校验IP-v4地址</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">12.</span> 校验IP-v6地址</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7,7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">13.</span> 检查URL的前缀</span><br><span class="line">应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。</span><br><span class="line">	<span class="keyword">if</span>(!s.match(<span class="regexp">/^[a-zA-Z]+:\/\//</span>)) &#123;</span><br><span class="line">		s = <span class="string">&#x27;http://&#x27;</span>+ s;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"><span class="number">14.</span> 提取URL链接</span><br><span class="line">下面的这个表达式可以筛选出一段文本中的URL。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(f|ht)&#123;1&#125;(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&amp;=]*)?/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">15.</span> 文件路径及扩展名校验</span><br><span class="line">验证 windows下文件路径和扩展名（下面的例子中为.txt文件）</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^([a-zA-Z]\\:|\\\\)\\\\([^\\]+\\)*[^\\/:*?&quot;&lt;&gt;|]+\\.txt(l)?$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">16.</span> 提取Color Hex Codes</span><br><span class="line">有时需要抽取网页中的颜色代码，可以使用下面的表达式。</span><br><span class="line"><span class="keyword">var</span>  reg = <span class="regexp">/^#([A-Fa-f0-9]&#123;6&#125;|[A-Fa-f0-9]&#123;3&#125;)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">17.</span> 提取网页图片假若你想提取网页中所有图片信息，可以利用下面的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\\&lt; *[img][^\\&gt;]*[src] *= *[\\&quot;\&#x27;]&#123;0,1&#125;([^\\&quot;\&#x27;\ &gt;]*)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">18.</span> 提取页面超链接 提取html中的超链接。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=&quot;https?:\/\/)((?!(?:(?:www\\.)?&#x27;.implode(&#x27;|(?:www\\.)?&#x27;, $follow_list).&#x27;))[^&quot; rel=&quot;external nofollow&quot; ]+)&quot;((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">19.</span> 查找CSS属性</span><br><span class="line">通过下面的表达式，可以搜索到相匹配的CSS属性。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\\s*[a-zA-Z\\-]+\\s*[:]&#123;1&#125;\\s[a-zA-Z0-9\\s.#]+[;]&#123;1&#125;/</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">20.</span> 抽取注释</span><br><span class="line">如果你需要移除HMTL中的注释，可以使用如下的表达式。</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;!--(.*?)--&gt;/</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"><span class="number">21</span> 只能为字母加数字组合</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> reg =  <span class="regexp">/^[0-9a-zA-Z]+$/</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1775,7 +1777,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">176</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1786,7 +1788,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1797,7 +1799,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
