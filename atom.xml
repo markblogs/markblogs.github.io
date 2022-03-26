@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-25T19:00:36.370Z</updated>
+  <updated>2022-03-26T16:05:16.662Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DataX-3-使用</title>
+    <title>DataX-web-4-使用</title>
     <link href="http://example.com/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/"/>
     <id>http://example.com/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/</id>
     <published>2022-03-25T18:47:34.000Z</published>
-    <updated>2022-03-25T19:00:36.370Z</updated>
+    <updated>2022-03-26T16:05:16.662Z</updated>
     
     <content type="html"><![CDATA[<h4 id="DataX-3-使用"><a href="#DataX-3-使用" class="headerlink" title="DataX-3-使用"></a>DataX-3-使用</h4><ul><li><h5 id="登录："><a href="#登录：" class="headerlink" title="登录："></a>登录：</h5><ul><li><p>用户名：admin</p></li><li><p>密码：123456</p><p><img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E4%B8%80%E6%AD%A5%E7%99%BB%E5%BD%95.png" alt="登录"></p><span id="more"></span></li></ul></li></ul><ul><li><h5 id="添加项目"><a href="#添加项目" class="headerlink" title="添加项目"></a>添加项目</h5><p>​    <img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E4%BA%8C%E6%AD%A5%E6%B7%BB%E5%8A%A0%E9%A1%B9%E7%9B%AE.png" alt="添加项目"></p></li><li><h5 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源"></a>添加数据源</h5><p>​    <img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E6%BA%90.png" alt="添加数据源"></p></li><li><h5 id="添加Datax任务模板"><a href="#添加Datax任务模板" class="headerlink" title="添加Datax任务模板"></a>添加Datax任务模板</h5><p>​    <img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E5%9B%9B%E6%AD%A5%E6%B7%BB%E5%8A%A0Datax%E4%BB%BB%E5%8A%A1%E6%A8%A1%E6%9D%BF.png" alt="添加Datax任务模板"></p></li><li><h5 id="任务构建"><a href="#任务构建" class="headerlink" title="任务构建"></a>任务构建</h5><p>​    <img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E4%BA%94%E6%AD%A5%E4%BB%BB%E5%8A%A1%E6%9E%84%E5%BB%BA.png" alt="任务构建"></p></li><li><h5 id="任务执行及日志查看"><a href="#任务执行及日志查看" class="headerlink" title="任务执行及日志查看"></a>任务执行及日志查看</h5><p>​    <img src="/2022/03/26/DataX-web-4-%E4%BD%BF%E7%94%A8/%E7%AC%AC%E5%85%AD%E6%AD%A5%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E5%8F%8A%E6%97%A5%E5%BF%97%E6%9F%A5%E7%9C%8B" alt="任务执行及日志查看"></p></li></ul>]]></content>
     
