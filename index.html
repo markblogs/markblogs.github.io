@@ -1696,7 +1696,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B65-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9E%B6%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B66-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E5%B7%A5%E5%8E%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1715,7 +1715,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B65-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9E%B6%E6%9E%84/" itemprop="url">线程池架构及介绍</a></h1>
+                <a class="post-title-link" href="/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B66-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E5%B7%A5%E5%8E%82/" itemprop="url">自定义线程池工厂</a></h1>
         
 
         <div class="post-meta">
@@ -1788,16 +1788,10 @@
 
       
         
-          <h4 id="线程池架构-多线程编程分支"><a href="#线程池架构-多线程编程分支" class="headerlink" title="线程池架构 - 多线程编程分支"></a>线程池架构 - 多线程编程分支</h4><h5 id="Executor-gt-ExecutorService-gt-AbstractExecutorService-gt-ThreadPoolExecutor"><a href="#Executor-gt-ExecutorService-gt-AbstractExecutorService-gt-ThreadPoolExecutor" class="headerlink" title="Executor -&gt;  ExecutorService  -&gt;  AbstractExecutorService  -&gt; ThreadPoolExecutor"></a>Executor -&gt;  ExecutorService  -&gt;  AbstractExecutorService  -&gt; ThreadPoolExecutor</h5><ul>
-<li><strong>Executor</strong>，又称为执行器，它可以执行已经提交的<strong>Runnable接口类型</strong>的<strong>任务</strong>。</li>
-<li><strong>ExecutorService接口</strong>是<strong>Executor接口</strong>的一种实现，是一种更加广泛的接口（言外之意，也是方法类，只不过更完善了）。</li>
-<li><strong>AbstractExecutorService</strong> 实现了 <strong>ExecutorService</strong> 定义的执行任务的方法，比如 submit，invokeAll，invokeAny 等。<strong>AbstractExecutorService</strong> 提供了一个 newTaskFor 方法用于构建 RunnableFuture 对象。执行任务方法返回的跟踪任务执行结果的对象都是通过 newTaskFor 来构建的。如果有需要可以通过自定义 newTaskFor 来构建所需的 RunnableFuture。 </li>
-<li><strong>ThreadPoolExecutor类</strong>提供了一个可扩展的线程池的实现。</li>
-</ul>
-<hr>
+          <h4 id="自定义线程池工厂"><a href="#自定义线程池工厂" class="headerlink" title="自定义线程池工厂"></a>自定义线程池工厂</h4><p>目的：在现有的线程池工厂中维护自定义属性，使其线程输出更个性，从而更直观的发现问题，更方便的监控线程池。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B65-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%9E%B6%E6%9E%84/#more" rel="contents">
+            <a class="btn" href="/2021/03/08/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B-%E8%BF%9B%E9%98%B66-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E5%B7%A5%E5%8E%82/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

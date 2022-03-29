@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-1%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-1%E5%90%AF%E5%8A%A8%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-1%E7%BB%93%E6%9D%9F%E4%BA%8B%E4%BB%B6/" itemprop="url">Activiti-基础2-1事件</a></h1>
+                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-1%E5%90%AF%E5%8A%A8%E4%BA%8B%E4%BB%B6/" itemprop="url">Activiti-基础2-1事件</a></h1>
         
 
         <div class="post-meta">
@@ -388,33 +388,24 @@
       
         
           
-            <h4 id="结束事件分为三种类型"><a href="#结束事件分为三种类型" class="headerlink" title="结束事件分为三种类型"></a>结束事件分为三种类型</h4><ul>
-<li><p>空结束事件</p>
-</li>
-<li><p>异常结束事件</p>
-</li>
-<li><p>终止结束事件</p>
-</li>
-<li><p>取消结束事件</p>
-</li>
+            <h4 id="启动事件分为三种类型"><a href="#启动事件分为三种类型" class="headerlink" title="启动事件分为三种类型"></a>启动事件分为三种类型</h4><ul>
+<li>空启动事件 </li>
+<li>定时启动事件</li>
+<li>异常启动事件</li>
+<li>消息启动事件</li>
 </ul>
 <hr>
-<h4 id="空结束事件"><a href="#空结束事件" class="headerlink" title="空结束事件"></a>空结束事件</h4><p>对应XML描述</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;end&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--空启动事件的属性 </span></span><br><span class="line"><span class="comment">	空结束事件不抛出任何结果</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="空启动事件"><a href="#空启动事件" class="headerlink" title="空启动事件"></a>空启动事件</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Start Event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--空启动事件的属性 </span></span><br><span class="line"><span class="comment">	1：activiti:formKey		可以用来指定空启动事件关联的表单文件</span></span><br><span class="line"><span class="comment">	2：activiti:initiator		可以用来记录启动流程人的Id，也可以是用户的名称，启动流程之后此属性指定的变量就会自动设置为当前人的名称。 </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">activiti:formKey</span>=<span class="string">&quot;apply.form&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">activiti:initiator</span>=<span class="string">&quot;startUserId&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="异常结束事件"><a href="#异常结束事件" class="headerlink" title="异常结束事件"></a>异常结束事件</h4><p>对应XML描述</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;end&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;<span class="name">errorEventDefinition</span> <span class="attr">errorRef</span>=<span class="string">&quot;AIA-001&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">errorEventDefinition</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;/<span class="name">endEvent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--异常结束事件 </span></span><br><span class="line"><span class="comment">	异常结束事件可以定义需要抛出的错误代码</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="定时启动事件"><a href="#定时启动事件" class="headerlink" title="定时启动事件"></a>定时启动事件</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;timerStartEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Timer start event for report process&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">timerEventDefinition</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">timeCycle</span>&gt;</span>R1/2012-02-01T00:00/PMIM<span class="tag">&lt;/<span class="name">timeCycle</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">timerEventDefinition</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--定时启动事件的定时属性 </span></span><br><span class="line"><span class="comment">	1：timeDate		一次性定时启动，具体到一个日期，用 ISO 860 格式设定		&lt;timeDate&gt;2012-12-12T00:00:00&lt;/timeDate&gt;</span></span><br><span class="line"><span class="comment">	2：timeDuration	设置多长时间后启动	&lt;timeDuration&gt;PT10M&lt;/timeDuration&gt;  上个任务完成10分钟后启动</span></span><br><span class="line"><span class="comment">	3：timeCycle	周期性启动，设置循环间隔，用 ISO 860 格式设定	&lt;timeCycle&gt;R3/PT10M&lt;/timeCycle&gt;  循环3次，每次间隔10小时--&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="终止结束事件"><a href="#终止结束事件" class="headerlink" title="终止结束事件"></a>终止结束事件</h4><p>对应XML描述</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;end&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;<span class="name">terminateEventDefinition</span>&gt;</span><span class="tag">&lt;/<span class="name">terminateEventDefinition</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;/<span class="name">endEvent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--终止结束事件 </span></span><br><span class="line"><span class="comment">	终止一个流程实例的执行，结束整个流程实例</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
-
+<p>异常启动事件</p>
 <hr>
-<h4 id="取消结束事件"><a href="#取消结束事件" class="headerlink" title="取消结束事件"></a>取消结束事件</h4><p>注意：可以取消一个 <strong>事务子流程</strong> 的执行，也<strong>只能在子流程</strong>中使用</p>
-<p>对应XML描述</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;end&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;<span class="name">cancelEventDefinition</span>/&gt;</span>		</span><br><span class="line"><span class="tag">&lt;/<span class="name">endEvent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--取消结束事件 </span></span><br><span class="line"><span class="comment">	取消结束事件，可以取消一个 事务子流程 的执行，也只能在子流程中使用</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
-
+<p>消息启动事件</p>
 
           
         
