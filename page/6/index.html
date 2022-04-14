@@ -295,6 +295,529 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-4%E7%BD%91%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-4%E7%BD%91%E5%85%B3/" itemprop="url">Activiti-基础2-4网关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T00:36:06+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="网关分为四种类型"><a href="#网关分为四种类型" class="headerlink" title="网关分为四种类型"></a>网关分为四种类型</h4><ul>
+<li>排他网关</li>
+<li>并行网关</li>
+<li>包容网关</li>
+<li>时间网关</li>
+</ul>
+<hr>
+<h4 id="排他网关"><a href="#排他网关" class="headerlink" title="排他网关"></a>排他网关</h4><p>​    在图形界面定义网关条件时  必须加上 ${}</p>
+<p>​    当所有的条件都不满足时，排他网关会默认执行 exclusiveGateway 的 default 属性指定的条件顺序流。</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">exclusiveGateway</span> <span class="attr">id</span>=<span class="string">&quot;exclusiveGateway1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Exclusive Gateway&quot;</span> <span class="attr">default</span>=<span class="string">&quot;flow2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclusiveGateway</span>&gt;</span></span><br><span class="line">//任务定义</span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;任务一&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask2&quot;</span> <span class="attr">name</span>=<span class="string">&quot;任务二&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;任务三&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line">//顺序流  开始 -&gt; 网关		</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;startevent1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;exclusivegateway1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//顺序流 网关 -&gt; 任务1(条件 type==1)</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow2&quot;</span> <span class="attr">name</span>=<span class="string">&quot;$&#123;type==1&#125;&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;exclusiveGateway1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask1&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">			$&#123; TYPE == 1&#125;</span><br><span class="line">			]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//顺序流 网关 -&gt; 任务1(条件 type==2)</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;$&#123;type==2&#125;&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;exclusiveGateway1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask2&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">			$&#123; TYPE == 2&#125;</span><br><span class="line">			]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//顺序流 网关 -&gt; 任务1(条件 type==3)</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;$&#123;type==3&#125;&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;exclusiveGateway1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask3&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">			$&#123; TYPE == 3&#125;</span><br><span class="line">			]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="并行网关"><a href="#并行网关" class="headerlink" title="并行网关"></a>并行网关</h4><p>​    并行网关用来对并发的任务进行流程建模，它能把单条线路任务拆分成多个路径并行执行或将多条线路合并。</p>
+<p>并行网关的功能取决于输入、输出顺序流    </p>
+<p>​    拆分：并行执行所有的输出顺序流，并且为每一条顺序流创建一个并行执行的线路<br>​    合并：所有从并行网关拆分并执行完成的线路均在此等候，直到所有的线路都执行完成才继续向下执行    </p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parallelGateway</span> <span class="attr">id</span>=<span class="string">&quot;fork&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Parallel Gateway Fork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">parallelGateway</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//启动事件</span><br><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Start Event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br><span class="line">//结束事件</span><br><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;endEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">//并行网关定义</span><br><span class="line"><span class="tag">&lt;<span class="name">parallelGateway</span> <span class="attr">id</span>=<span class="string">&quot;fork&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Parallel Gateway Fork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">parallelGateway</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">parallelGateway</span> <span class="attr">id</span>=<span class="string">&quot;join&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Parallel Gateway Join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">parallelGateway</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//任务定义</span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;请假申请&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask2&quot;</span> <span class="attr">name</span>=<span class="string">&quot;部门领导审批&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;人事审批&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;考勤归档&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//顺序流定义</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow1&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow2&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;fork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow3&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;fork&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow4&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;fork&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow5&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask2&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow6&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask3&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow7&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;join&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow8&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask4&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;endEvent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">开始 -&gt;请假申请 -&gt; fork网关 =》部门领导审批/人事审批 =》join网关 -&gt;考勤归档 -&gt; 结束</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="包容网关"><a href="#包容网关" class="headerlink" title="包容网关"></a>包容网关</h4><p>​    包容网关融合了排他网关和并行网关的新特性，排他网关允许在每条线路上设置条件，并行网关可以同时执行多条线路，包容网关既可以同时执行多条线路，又允许在网关上设置条件。</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">inclusiveGateway</span> <span class="attr">id</span>=<span class="string">&quot;inclusiveGateway1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Inclusive Gateway Fork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">inclusiveGateway</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//启动事件</span><br><span class="line"><span class="tag">&lt;<span class="name">startEvent</span> <span class="attr">id</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Start Event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">startEvent</span>&gt;</span></span><br><span class="line">//结束事件</span><br><span class="line"><span class="tag">&lt;<span class="name">endEvent</span> <span class="attr">id</span>=<span class="string">&quot;endEvent&quot;</span> <span class="attr">name</span>=<span class="string">&quot;my end event&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">//包容网关定义</span><br><span class="line"><span class="tag">&lt;<span class="name">inclusiveGateway</span> <span class="attr">id</span>=<span class="string">&quot;isFork&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Inclusive Gateway Fork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">inclusiveGateway</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">inclusiveGateway</span> <span class="attr">id</span>=<span class="string">&quot;isJoin&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Inclusive Gateway Join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">inclusiveGateway</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//任务定义</span><br><span class="line">//任务定义</span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;请假申请&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask2&quot;</span> <span class="attr">name</span>=<span class="string">&quot;部门领导审批&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask3&quot;</span> <span class="attr">name</span>=<span class="string">&quot;人事审批&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;usertask4&quot;</span> <span class="attr">name</span>=<span class="string">&quot;考勤归档&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//顺序流定义</span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow1&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;startEvent&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow2&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask1&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;isFork&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow3&quot;</span>  <span class="attr">name</span>=<span class="string">&quot;需要部门领导审批？&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;isFork&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask2&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">&lt;![CDATA[</span><br><span class="line">$&#123; leader == true&#125;</span><br><span class="line">]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow4&quot;</span>   <span class="attr">name</span>=<span class="string">&quot;需要人事审批？&quot;</span> <span class="attr">sourceRef</span>=<span class="string">&quot;isFork&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask3&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">&lt;![CDATA[</span><br><span class="line">$&#123; hr == true&#125;</span><br><span class="line">]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow5&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask2&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow6&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask3&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;join&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow7&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;join&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;usertask4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">squenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow8&quot;</span>  <span class="attr">sourceRef</span>=<span class="string">&quot;usertask4&quot;</span> <span class="attr">targetRef</span>=<span class="string">&quot;endEvent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">squenceFlow</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-3%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-3%E4%BB%BB%E5%8A%A1/" itemprop="url">Activiti-基础2-3任务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T00:35:41+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="顺序流分为11种类型"><a href="#顺序流分为11种类型" class="headerlink" title="顺序流分为11种类型"></a>顺序流分为11种类型</h4><ul>
+<li>用户任务</li>
+<li>脚本任务</li>
+<li>Java Service</li>
+<li>Web Service</li>
+<li>业务规则任务</li>
+<li>邮件任务</li>
+<li>Camel任务</li>
+<li>Mule任务</li>
+<li>手动任务</li>
+<li>接受任务</li>
+<li>Shell任务</li>
+</ul>
+<hr>
+<h4 id="用户任务"><a href="#用户任务" class="headerlink" title="用户任务"></a>用户任务</h4><p>​    用户任务需要人来参与，因为它需要被人为触发</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;leaderAudit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;领导审批&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">humanPerformer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">formalExpression</span>&gt;</span></span><br><span class="line">        user(henryyan),group(leader),manager</span><br><span class="line">      <span class="tag">&lt;/<span class="name">formalExpression</span>&gt;</span>				</span><br><span class="line">    <span class="tag">&lt;/<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">humanPerformer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line">			</span><br><span class="line"><span class="tag">&lt;<span class="name">userTask</span> <span class="attr">id</span>=<span class="string">&quot;leaderAudit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;领导审批&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">potentialOwner</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">formalExpression</span>&gt;</span></span><br><span class="line">        user(henryyan),group(leader),manager</span><br><span class="line">      <span class="tag">&lt;/<span class="name">formalExpression</span>&gt;</span>				</span><br><span class="line">    <span class="tag">&lt;/<span class="name">resourceAssignmentExpression</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">potentialOwner</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">userTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 用户任务的属性 </span></span><br><span class="line"><span class="comment">  	humanPerformer：标签定义表示把这个任务分配给一个人。</span></span><br><span class="line"><span class="comment">	potentialOwner：标签来描述一个潜在用户、组集合。这个用户任务同时分配给用户 henryyan、组 leader 和 组 manager</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="脚本任务"><a href="#脚本任务" class="headerlink" title="脚本任务"></a>脚本任务</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;initvars&quot;</span> <span class="attr">name</span>=<span class="string">&quot;初始化变量&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;groovy&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    &lt;![CDATA[</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">     def name = &quot;HenryYan&quot;;</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">     execution.setVariable(&quot;name&quot;,&quot;name&quot;);			</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    ]]&gt;</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">  </span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;printvars&quot;</span> <span class="attr">name</span>=<span class="string">&quot;输出脚本&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;groovy&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    &lt;![CDATA[</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">     out:println name;		</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    ]]&gt;</span></span></span><br><span class="line"><span class="xml"><span class="handlebars">  </span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">scriptTask</span>	<span class="attr">id</span>=<span class="string">&quot;scripttask1&quot;</span> <span class="attr">name</span>=<span class="string">&quot;初始化变量&quot;</span>  <span class="attr">scriptFormat</span>=<span class="string">&quot;juel&quot;</span> <span class="attr">activiti:resultvariable</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">scriptTask</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 脚本任务的属性 </span></span><br><span class="line"><span class="comment">	指定的变量名称需要在脚本中预定义才能使用</span></span><br><span class="line"><span class="comment">  	scriptFormat	用来指定符合 JSR-223 规范的脚本语言的类型		</span></span><br><span class="line"><span class="comment">	activiti:resultvariable	Activiti在原BPM 2.0 规范中的脚本任务基础上进行了扩展，可以把脚本处理的结果保存到一个变量中</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Java-Service-任务"><a href="#Java-Service-任务" class="headerlink" title="Java Service 任务"></a>Java Service 任务</h4><p>​    Java Service 任务允许定义一个实现了指定接口的Java类，或者执行一个表达式，还可以像脚本一样把结果保存到变量中</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:class</span>=<span class="string">&quot;me.kafeitu.activiti.JavaServiceDelegate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:class		实现了 JavaDelegate 或 Activity_Behavior 的 Java 类</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:class</span>=<span class="string">&quot;me.kafeitu.activiti.JavaServiceDelegate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:expression	可以使用UEL定义需要执行的任务内容，例如计算公式、调用Bean对象的方法；并且在执行任务的时候可以使用流程变量作为参数。Bean实例除了可以使用new创建之外，还可以使用 Spring 代理.</span></span><br><span class="line"><span class="comment">其中 leaveService 作为一个流程变量存在，和 activiti:class 一样需要实现 JavaDelegate 接口 或 ActivityBehavior 接口，另外还实现了Java.Serializable 接口以便引擎可以序列化变量</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:expression</span>=<span class="string">&quot;#&#123;leaveService.back()&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:delegateExpression	功能和 activiti:class 类似，而且同样需要实现 JavaDelegate 接口 或 ActivityBehavior 接口,只不过这里不是指定一个具体的实现类，而是运行时动态设置。和 activiti:expression 类似，Bean 可以使用 new 创建，也可以用 spring 代理。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">执行此任务时引擎会从变量中查询名称为 leaveBackDelegate 的 Bean 对象，然后调用实现接口的方法。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:delegateExpression</span>=<span class="string">&quot;#&#123;leaveBackDelegate&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">activiti:resultVariable	此属性适用于 activiti:expression 类型的 Java Service ，可以把一个表达式的执行结果保存到 resultVariable 指定的变量名称中</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">把leaveService.bask() 的执行结果保存到变量 backDate 中</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;myServiceTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Learn Java Service Task&quot;</span> <span class="attr">activiti:expression</span>=<span class="string">&quot;#&#123;leaveService.back()&#125;&quot;</span> <span class="attr">activiti:resultVariable</span>=<span class="string">&quot;backDate&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Web-Service-任务"><a href="#Web-Service-任务" class="headerlink" title="Web Service 任务"></a>Web Service 任务</h4><p>​    通过 Web Service 任务可以调用外部的 Web Service 资源，完成调用只需要一些必须的配置。并且支持标准的 WebService 和 Rest 风格的 Service。</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;webServiceTasks&quot;</span> <span class="attr">implementation</span>=<span class="string">&quot;##WebService&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ioSpecification</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataInput</span> <span class="attr">itemSubjectRef</span>=<span class="string">&quot;tns:prettyPrintCountRequestItem&quot;</span> <span class="attr">id</span>=<span class="string">&quot;dataInputOfServiceTask&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataOutput</span> <span class="attr">itemSubjectRef</span>=<span class="string">&quot;tns:prettyPrintCountResponseItem&quot;</span> <span class="attr">id</span>=<span class="string">&quot;dataOutputOfServuceTask&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">inputSet</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">dataInputRefs</span>&gt;</span>dataInputOfServiceTask<span class="tag">&lt;/<span class="name">dataInputRefs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">inputSet</span>&gt;</span>			</span><br><span class="line">        <span class="tag">&lt;<span class="name">outPutSet</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">dataOutputRefs</span>&gt;</span>dataOutputOfServiceTask<span class="tag">&lt;/<span class="name">dataOutputRefs</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">outPutSet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ioSpecification</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>PrefixVariable<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>prefix<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>SuffixVariable<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>suffix<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataInputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataOutputAssociation</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sourceRef</span>&gt;</span>PrettyPrint<span class="tag">&lt;/<span class="name">sourceRef</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">targetRef</span>&gt;</span>OutputVariable<span class="tag">&lt;/<span class="name">targetRef</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataOutputAssociation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- web service任务的属性 </span></span><br><span class="line"><span class="comment">	ioSpecification 定义输入，输出参数。dataInputAssociation 中定义了数据输入的关系，dataOutputAssociation中定义了数据输出的关系</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="业务规则任务"><a href="#业务规则任务" class="headerlink" title="业务规则任务"></a>业务规则任务</h4><p>​    业务逻辑和规则分开维护，一旦规则有变动只需要更改预设规则即可，业务规则任务可以流程变量的值处理预设的业务规则。</p>
+<p>​    支持的规则引擎 Drools，只需要把含有业务规则的 流程文件 和 规则引擎文件 “.drl” 一同打包部署到系统中。同时把Drools的jar包添加到classpath即可实现Activiti驱动规则引擎。</p>
+<p>​    将业务数据交由规则引擎处理，规则引擎根据不同业务规则（各种条件的判定）计算得出最终结果，最后把结果返回给 <strong>调用者</strong>，在BPMN 2.0 中 调用者为 规则引擎（项目中为Activiti）</p>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">activiti:rules</span>=<span class="string">&quot;rule1,rule2&quot;</span> </span></span><br><span class="line"><span class="tag">			<span class="attr">acriviti:ruleVariablesInput</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> <span class="attr">acriviti:exclude</span>=<span class="string">&quot;flase&quot;</span> <span class="attr">acriviti:resultVariableName</span>=<span class="string">&quot;rulesOutput&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :rules</span></span><br><span class="line"><span class="comment">	activiti:rules		在规则文件中 .drl 中定义的规则名称，对个规则用逗号分隔。要执行规则文件中的全部规则，将该属性设置为空即可。	</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">activiti:rules</span>=<span class="string">&quot;rule1,rule2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :ruleVariablesInput</span></span><br><span class="line"><span class="comment">	acriviti:ruleVariablesInput	业务规则执行需要的数据源，使用$&#123;fooVar&#125; 方式定义，多个规则用逗号分割</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">acriviti:ruleVariablesInput</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :resultVariableName</span></span><br><span class="line"><span class="comment">	activiti:resultVariableName	规则执行结果变量，变量的值为 ruleVariablesInput 定义的变量集合 （ArrayList）</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">businessRuleTask</span> <span class="attr">id</span>=<span class="string">&quot;businessRuleTasks&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Business rule task&quot;</span> <span class="attr">acriviti:resultVariableName</span>=<span class="string">&quot;rulesOutput&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">businessRuleTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 业务规则的属性 :execlude	</span></span><br><span class="line"><span class="comment">	activiti:execlude		用来设置是否排除某些规则（rule），如果值为false，不排除按照acriviti:rules 规则执行；如果设置为 true，则忽略 activiti:rules</span></span><br><span class="line"><span class="comment">	指定的规则，如果设置为false的同事 acriviti:rules 值为空，则不执行任何规则</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="邮件任务"><a href="#邮件任务" class="headerlink" title="邮件任务"></a>邮件任务</h4><p>​    可以通过 Activiti 发送邮件</p>
+<p>​    发送邮件需要配置的邮件服务信息到流程引擎中，可以在 acriviti.cfg.xml 定义的引擎属性中设置。</p>
+<h5 id="配置邮件服务器的属性"><a href="#配置邮件服务器的属性" class="headerlink" title="配置邮件服务器的属性"></a>配置邮件服务器的属性</h5><ul>
+<li>mailServerHost：    不是必填    邮件服务器的主机名，默认为localhost</li>
+<li>mailServerPort：  必填，如果没填默认的端口        SMTP通讯端口，默认为25；如果使用SSL，则为465</li>
+<li>mailServerDefaultFrom：    不必填    发件人email，如果不设置，默认为 <a href="mailto:&#97;&#x63;&#x72;&#x69;&#x76;&#105;&#x74;&#x69;&#x40;&#97;&#99;&#x72;&#x69;&#118;&#x69;&#116;&#105;&#46;&#x6f;&#x72;&#x67;">&#97;&#x63;&#x72;&#x69;&#x76;&#105;&#x74;&#x69;&#x40;&#97;&#99;&#x72;&#x69;&#118;&#x69;&#116;&#105;&#46;&#x6f;&#x72;&#x67;</a></li>
+<li>mailServerUserName:    邮件服务认证账号，默认为空</li>
+<li>mailServerPassword    邮件服务认证密码    </li>
+</ul>
+<p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">serviceTask</span> <span class="attr">id</span>=<span class="string">&quot;mailTask&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Mail Task&quot;</span> <span class="attr">activiti:type</span>=<span class="string">&quot;mail&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">extensionElements</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;to&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;henryyan@gmail.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;from&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;yanhonglei@gmail.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;subject&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;hello henryyan&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;charset&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;cc&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;cc&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;bcc&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;bcc&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;html&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activiti:expression</span>&gt;</span>&lt;![CDATA[</span><br><span class="line">      &lt;html&gt;</span><br><span class="line">       你好，我是&lt;b&gt;$&#123;userName&#125;&lt;/b&gt;。</span><br><span class="line">      &lt;/html&gt;</span><br><span class="line">      ]]&gt; <span class="tag">&lt;/<span class="name">activiti:expression</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">activiti:field</span> <span class="attr">name</span>=<span class="string">&quot;text&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;$&#123;text&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activiti:field</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">extensionElements</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">serviceTask</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">邮件任务属性</span></span><br><span class="line"><span class="comment">	to	必填	收件人，多个收件人用逗号隔开</span></span><br><span class="line"><span class="comment">	from	邮件发送人地址，如果不设置，使用引擎的 mailServerDefaultFrom 属性指定的发件人</span></span><br><span class="line"><span class="comment">	subject 发件人email，如果不设置，默认为 activiti@acriviti.org</span></span><br><span class="line"><span class="comment">	cc	抄送列表</span></span><br><span class="line"><span class="comment">	bcc	密送列表</span></span><br><span class="line"><span class="comment">	charset	邮件内容字符集</span></span><br><span class="line"><span class="comment">	text	纯文本邮件格式内容</span></span><br><span class="line"><span class="comment">	html	html格式的邮件内容</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-2%E9%A1%BA%E5%BA%8F%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mark_Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-2%E9%A1%BA%E5%BA%8F%E6%B5%81/" itemprop="url">Activiti-基础2-2顺序流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T00:35:30+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activiti/" itemprop="url" rel="index">
+                    <span itemprop="name">Activiti</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="顺序流分为两种类型"><a href="#顺序流分为两种类型" class="headerlink" title="顺序流分为两种类型"></a>顺序流分为两种类型</h4><ul>
+<li>标准顺序流</li>
+<li>条件顺序流</li>
+</ul>
+<hr>
+<h4 id="标准顺序流"><a href="#标准顺序流" class="headerlink" title="标准顺序流"></a>标准顺序流</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow&quot;</span> <span class="attr">sourceRef</span>=<span class="string">“startEvent”</span> <span class="attr">targetRef</span>=<span class="string">“userTask”</span>&gt;</span><span class="tag">&lt;/<span class="name">sequenceFlow</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 标准顺序流的属性 </span></span><br><span class="line"><span class="comment">  sequenceFlow：表示一个顺序流</span></span><br><span class="line"><span class="comment">  sourceRef：指的是顺序流的源</span></span><br><span class="line"><span class="comment">  targetRef：指的是顺序流的目的模型</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="条件顺序流"><a href="#条件顺序流" class="headerlink" title="条件顺序流"></a>条件顺序流</h4><p>对应XML描述</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sequenceFlow</span> <span class="attr">id</span>=<span class="string">&quot;flow&quot;</span> <span class="attr">sourceRef</span>=<span class="string">“startEvent”</span> <span class="attr">targetRef</span>=<span class="string">“userTask”</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">&quot;tFormalExpression&quot;</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[$&#123;PASS == true&#125;]]&gt;	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sequenceFlow</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 条件顺序流的属性 </span></span><br><span class="line"><span class="comment">	conditionExpression： 定义一个条件表达式</span></span><br><span class="line"><span class="comment">	xsi:type：指定表达式的类型为 tFormalExpression</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/08/12/Activiti-BMP%E8%A7%84%E8%8C%83-1%E5%90%AF%E5%8A%A8%E4%BA%8B%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2894,458 +3417,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%804-case%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%804-case%E5%91%BD%E4%BB%A4/" itemprop="url">Linux-Shell基础4-case命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T23:23:48+08:00">
-                2020-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="case-命令"><a href="#case-命令" class="headerlink" title="case 命令"></a>case 命令</h4><p>结构</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case variable in</span><br><span class="line">pattern1 | pattern2 ) commands1;</span><br><span class="line">pattern3) commands3;</span><br><span class="line">*) default commands;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">case $USER in</span><br><span class="line">rich | barbara ) </span><br><span class="line">echo &quot;welcome,$USER&quot;;;</span><br><span class="line">testing) </span><br><span class="line">echo &quot;test account&quot;;;</span><br><span class="line">*) echo &quot;Authentication failed&quot;;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%803-test%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%803-test%E5%91%BD%E4%BB%A4/" itemprop="url">Linux-Shell基础3-test命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T23:02:17+08:00">
-                2020-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="test-命令"><a href="#test-命令" class="headerlink" title="test 命令"></a>test 命令</h4><p>test命令可以判定三类条件</p>
-<ul>
-<li>数值比较</li>
-<li>字符串比较</li>
-<li>文件比较</li>
-</ul>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%803-test%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%805-for/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mark_Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%805-for/" itemprop="url">Linux-Shell基础3-for</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-29T21:56:53+08:00">
-                2020-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="for命令"><a href="#for命令" class="headerlink" title="for命令"></a>for命令</h4><p>结构</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for var in list</span><br><span class="line">do</span><br><span class="line">	commands</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/29/Linux-Shell%E5%9F%BA%E7%A1%805-for/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/7/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/7/">&gt;</a>
   </nav>
 
 
@@ -3394,7 +3470,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">180</span>
+                  <span class="site-state-item-count">183</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3405,7 +3481,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3416,7 +3492,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

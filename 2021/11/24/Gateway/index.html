@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="网关," />
+  <meta name="keywords" content="gateway," />
 
 
 
@@ -83,19 +83,19 @@
 
 <meta name="description" content="Gateway(API网关)API 网关API网关作用就是把各个服务对外提供的API汇聚起来，让外界看起来是一个统一的接口。同时也可在网关中提供额外的功能。 总结：网关就是所有项目的一个统一入口。  网关组成网关 &#x3D; 路由转发 + 过滤器（编写额外功能）  路由转发 接收外界请求，通过网关的路由转发，转发到后端的服务上。 如果只有这个一个功能看起来和之前学习的Nginx反向代理服务器很像，外界访问">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud-Gateway">
-<meta property="og:url" content="http://example.com/2021/11/24/SpringCloud-Gateway/index.html">
+<meta property="og:title" content="Gateway">
+<meta property="og:url" content="http://example.com/2021/11/24/Gateway/index.html">
 <meta property="og:site_name" content="Mark_Blog">
 <meta property="og:description" content="Gateway(API网关)API 网关API网关作用就是把各个服务对外提供的API汇聚起来，让外界看起来是一个统一的接口。同时也可在网关中提供额外的功能。 总结：网关就是所有项目的一个统一入口。  网关组成网关 &#x3D; 路由转发 + 过滤器（编写额外功能）  路由转发 接收外界请求，通过网关的路由转发，转发到后端的服务上。 如果只有这个一个功能看起来和之前学习的Nginx反向代理服务器很像，外界访问">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
-<meta property="og:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/11/24/Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/11/24/Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="article:published_time" content="2021-11-24T11:02:00.000Z">
-<meta property="article:modified_time" content="2021-11-25T08:58:08.845Z">
+<meta property="article:modified_time" content="2022-04-14T15:52:19.141Z">
 <meta property="article:author" content="Mark_Xu">
-<meta property="article:tag" content="网关">
+<meta property="article:tag" content="gateway">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta name="twitter:image" content="http://example.com/2021/11/24/Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/11/24/SpringCloud-Gateway/"/>
+  <link rel="canonical" href="http://example.com/2021/11/24/Gateway/"/>
 
 
 
 
 
-  <title>SpringCloud-Gateway | Mark_Blog</title>
+  <title>Gateway | Mark_Blog</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/SpringCloud-Gateway/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/Gateway/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringCloud-Gateway</h1>
+          <h1 class="post-title" itemprop="name headline">Gateway</h1>
         
 
         <div class="post-meta">
@@ -354,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E5%85%B3/" itemprop="url" rel="index">
-                    <span itemprop="name">网关</span>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">微服务</span>
                   </a>
                 </span>
 
@@ -421,7 +421,7 @@
 <p>所有生效的Filter都是GatewayFilter的实例。在Gateway运行过程中Filter负责在代理服务“之前”或“之后”去做一些事情</p>
 </li>
 </ul>
-<h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><p><img src="/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
+<h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><p><img src="/2021/11/24/Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
 <hr>
 <h4 id="Gateway-入门案例"><a href="#Gateway-入门案例" class="headerlink" title="Gateway 入门案例"></a>Gateway 入门案例</h4><ul>
 <li><h5 id="Predicate-功能介绍"><a href="#Predicate-功能介绍" class="headerlink" title="Predicate 功能介绍"></a>Predicate 功能介绍</h5></li>
@@ -633,7 +633,7 @@
 <li>在桶中放令牌，请求获取令牌后才能继续执行。如果桶中没有令牌，请求可以选择进行等待或者直接拒绝。</li>
 <li>由于桶中令牌是按照一定速率放置的，所以可以一定程度解决突发访问。如果桶中令牌最多有100个，qps最大为100</li>
 </ul>
-<p><img src="/2021/11/24/SpringCloud-Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
+<p><img src="/2021/11/24/Gateway/gateway%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="gateway流程图"></p>
 <p><strong>代码中配置限流key</strong></p>
 <p>just()方法参数表示根据什么进行限流。实例中是根据主机名进行限流。参数值影响Redis中key中红色部分。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbcComponet</span> <span class="keyword">implements</span> <span class="title">KeyResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;String&gt; <span class="title">resolve</span><span class="params">(ServerWebExchange exchange)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -663,7 +663,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%BD%91%E5%85%B3/" rel="tag"># 网关</a>
+            <a href="/tags/gateway/" rel="tag"># gateway</a>
           
         </div>
       
@@ -676,8 +676,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/11/24/SpringCloud-Nacos/" rel="next" title="SpringCloud-Nacos">
-                <i class="fa fa-chevron-left"></i> SpringCloud-Nacos
+              <a href="/2021/11/24/Nacos-3-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" rel="next" title="Nacos-3-快速入门">
+                <i class="fa fa-chevron-left"></i> Nacos-3-快速入门
               </a>
             
           </div>
@@ -769,7 +769,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">180</span>
+                  <span class="site-state-item-count">183</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -780,7 +780,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -791,7 +791,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
